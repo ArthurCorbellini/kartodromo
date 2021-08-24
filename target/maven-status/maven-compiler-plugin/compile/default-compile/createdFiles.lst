@@ -1,0 +1,6 @@
+br\univates\kartodromo\model\Usuario.class
+br\univates\kartodromo\util\HibernateUtil.class
+br\univates\kartodromo\dao\UsuarioDAO.class
+br\univates\kartodromo\Main.class
+br\univates\kartodromo\dao\BaseDAO.class
+br\univates\kartodromo\model\Usuario_.class
