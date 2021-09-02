@@ -48,5 +48,7 @@ Contributor(s):
     <property name="hibernate.connection.password">root</property>
     
     <mapping class="br.univates.kartodromo.model.Usuario" />
+    <mapping class="br.univates.kartodromo.model.Veiculo" />
+    <mapping class="br.univates.kartodromo.model.Tracado" />
   </session-factory>
 </hibernate-configuration>

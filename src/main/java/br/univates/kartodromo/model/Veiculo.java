@@ -16,20 +16,21 @@ import javax.persistence.Table;
  * @author Arthur
  */
 @Entity
-@Table(name = "USUARIOS")
-public class Usuario extends BaseEntity {
+@Table(name = "VEICULOS")
+public class Veiculo extends BaseEntity {
 
-    private String name;
+    private String nome;
+    private String marca;
 
-    public Usuario(Integer id) {
+    public Veiculo(Integer id) {
         super.setId(id);
     }
 
-    public Usuario() {
+    public Veiculo() {
     }
 
     @Id
-    @Column(name = "id_usuario")
+    @Column(name = "id_veiculo")
     @Override
     public Integer getId() {
         return super.getId();
@@ -40,13 +41,22 @@ public class Usuario extends BaseEntity {
         super.setId(id);
     }
 
-    @Column(name = "nm_usuario")
-    public String getName() {
-        return name;
+    @Column(name = "nm_veiculo")
+    public String getNome() {
+        return nome;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+
+    @Column(name = "nm_marca")
+    public String getMarca() {
+        return marca;
+    }
+
+    public void setMarca(String marca) {
+        this.marca = marca;
     }
 
 }

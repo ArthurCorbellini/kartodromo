@@ -19,7 +19,7 @@ public class Main {
      */
     public static void main(String[] args) {
         
-        Usuario entity = new Usuario(1, "Arthur");
+        Usuario entity = new Usuario(1);
         
         UsuarioDAO dao = new UsuarioDAO();
         

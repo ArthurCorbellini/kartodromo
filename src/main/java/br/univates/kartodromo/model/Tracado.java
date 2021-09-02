@@ -5,7 +5,7 @@
  */
 package br.univates.kartodromo.model;
 
-import java.io.Serializable;
+import java.math.BigDecimal;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -16,20 +16,21 @@ import javax.persistence.Table;
  * @author Arthur
  */
 @Entity
-@Table(name = "USUARIOS")
-public class Usuario extends BaseEntity {
+@Table(name = "TRACADOS")
+public class Tracado extends BaseEntity {
 
-    private String name;
+    private String nome;
+    private BigDecimal tamanho;
 
-    public Usuario(Integer id) {
+    public Tracado(Integer id) {
         super.setId(id);
     }
 
-    public Usuario() {
+    public Tracado() {
     }
 
     @Id
-    @Column(name = "id_usuario")
+    @Column(name = "id_tracado")
     @Override
     public Integer getId() {
         return super.getId();
@@ -40,13 +41,22 @@ public class Usuario extends BaseEntity {
         super.setId(id);
     }
 
-    @Column(name = "nm_usuario")
-    public String getName() {
-        return name;
+    @Column(name = "nm_tracado")
+    public String getNome() {
+        return nome;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+
+    @Column(name = "qt_tamanho")
+    public BigDecimal getTamanho() {
+        return tamanho;
+    }
+
+    public void setTamanho(BigDecimal tamanho) {
+        this.tamanho = tamanho;
     }
 
 }
