@@ -3,9 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package br.univates.kartodromo.model;
+package br.univates.kartodromo.model.entity;
 
-import java.math.BigDecimal;
+import java.io.Serializable;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -16,32 +16,31 @@ import javax.persistence.Table;
  * @author Arthur
  */
 @Entity
-@Table(name = "TRACADOS")
-public class Tracado extends BaseEntity {
+@Table(name = "MARCAS")
+public class Marca implements Serializable {
 
+    private Integer id;
     private String nome;
-    private BigDecimal tamanho;
+    private String contato;
 
-    public Tracado(Integer id) {
-        super.setId(id);
+    public Marca(Integer id) {
+        this.id = id;
     }
 
-    public Tracado() {
+    public Marca() {
     }
 
     @Id
-    @Column(name = "id_tracado")
-    @Override
+    @Column(name = "id_marca")
     public Integer getId() {
-        return super.getId();
+        return id;
     }
 
-    @Override
     public void setId(Integer id) {
-        super.setId(id);
+        this.id = id;
     }
 
-    @Column(name = "nm_tracado")
+    @Column(name = "nm_marca")
     public String getNome() {
         return nome;
     }
@@ -50,13 +49,13 @@ public class Tracado extends BaseEntity {
         this.nome = nome;
     }
 
-    @Column(name = "qt_tamanho")
-    public BigDecimal getTamanho() {
-        return tamanho;
+    @Column(name = "nm_contato")
+    public String getContato() {
+        return contato;
     }
 
-    public void setTamanho(BigDecimal tamanho) {
-        this.tamanho = tamanho;
+    public void setContato(String contato) {
+        this.contato = contato;
     }
 
 }

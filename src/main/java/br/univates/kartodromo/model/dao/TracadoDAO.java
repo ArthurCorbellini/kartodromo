@@ -3,12 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package br.univates.kartodromo.dao;
+package br.univates.kartodromo.model.dao;
 
 /**
  *
  * @author Arthur
  */
-public class VeiculoDAO extends BaseDAO{
-    
+public class TracadoDAO extends BaseDAO {
+
 }

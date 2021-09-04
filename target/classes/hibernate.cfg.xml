@@ -50,5 +50,6 @@ Contributor(s):
     <mapping class="br.univates.kartodromo.model.Usuario" />
     <mapping class="br.univates.kartodromo.model.Veiculo" />
     <mapping class="br.univates.kartodromo.model.Tracado" />
+    <mapping class="br.univates.kartodromo.model.Marca" />
   </session-factory>
 </hibernate-configuration>

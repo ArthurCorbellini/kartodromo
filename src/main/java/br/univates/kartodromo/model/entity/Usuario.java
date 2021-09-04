@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package br.univates.kartodromo.model;
+package br.univates.kartodromo.model.entity;
 
 import java.io.Serializable;
 import javax.persistence.Column;
@@ -17,12 +17,13 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name = "USUARIOS")
-public class Usuario extends BaseEntity {
+public class Usuario implements Serializable {
 
+    private Integer id;
     private String name;
 
     public Usuario(Integer id) {
-        super.setId(id);
+        this.id = id;
     }
 
     public Usuario() {
@@ -30,14 +31,12 @@ public class Usuario extends BaseEntity {
 
     @Id
     @Column(name = "id_usuario")
-    @Override
     public Integer getId() {
-        return super.getId();
+        return id;
     }
 
-    @Override
     public void setId(Integer id) {
-        super.setId(id);
+        this.id = id;
     }
 
     @Column(name = "nm_usuario")
