@@ -30,33 +30,114 @@ public class Menu extends javax.swing.JFrame {
     private void initComponents() {
 
         jpMenu = new javax.swing.JPanel();
+        tabHome = new javax.swing.JPanel();
+        jLabel16 = new javax.swing.JLabel();
+        tabIniciarCorrida = new javax.swing.JPanel();
+        jLabel4 = new javax.swing.JLabel();
         tabAgendamentos = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         tabPlacar = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         tabPaddock = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
-        tabIniciarCorrida = new javax.swing.JPanel();
-        jLabel4 = new javax.swing.JLabel();
         tabCadastros = new javax.swing.JPanel();
         jLabel5 = new javax.swing.JLabel();
         tabFinanceiro = new javax.swing.JPanel();
         jLabel6 = new javax.swing.JLabel();
         tabSobre = new javax.swing.JPanel();
         jLabel7 = new javax.swing.JLabel();
-        jLabel8 = new javax.swing.JLabel();
+        logo = new javax.swing.JLabel();
         jpContent = new javax.swing.JPanel();
-        jpAgendamentos = new javax.swing.JPanel();
+        jpHome = new javax.swing.JPanel();
         jpIniciarCorrida = new javax.swing.JPanel();
+        jPanel2 = new javax.swing.JPanel();
+        jLabel10 = new javax.swing.JLabel();
+        jpAgendamentos = new javax.swing.JPanel();
+        jPanel3 = new javax.swing.JPanel();
+        jLabel11 = new javax.swing.JLabel();
         jpPlacar = new javax.swing.JPanel();
+        jPanel4 = new javax.swing.JPanel();
+        jLabel12 = new javax.swing.JLabel();
         jpPaddock = new javax.swing.JPanel();
+        jPanel1 = new javax.swing.JPanel();
+        jLabel9 = new javax.swing.JLabel();
         jpCadastros = new javax.swing.JPanel();
+        jPanel5 = new javax.swing.JPanel();
+        jLabel13 = new javax.swing.JLabel();
         jpFinanceiro = new javax.swing.JPanel();
+        jPanel6 = new javax.swing.JPanel();
+        jLabel14 = new javax.swing.JLabel();
         jpSobre = new javax.swing.JPanel();
+        jPanel7 = new javax.swing.JPanel();
+        jLabel15 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jpMenu.setBackground(new java.awt.Color(0, 28, 57));
+
+        tabHome.setBackground(new java.awt.Color(219, 10, 64));
+        tabHome.setPreferredSize(new java.awt.Dimension(250, 30));
+        tabHome.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tabHomeMouseClicked(evt);
+            }
+        });
+
+        jLabel16.setBackground(new java.awt.Color(204, 204, 204));
+        jLabel16.setFont(new java.awt.Font("Trebuchet MS", 1, 14)); // NOI18N
+        jLabel16.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel16.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel16.setText("Home");
+        jLabel16.setPreferredSize(new java.awt.Dimension(88, 18));
+
+        javax.swing.GroupLayout tabHomeLayout = new javax.swing.GroupLayout(tabHome);
+        tabHome.setLayout(tabHomeLayout);
+        tabHomeLayout.setHorizontalGroup(
+            tabHomeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(tabHomeLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel16, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        tabHomeLayout.setVerticalGroup(
+            tabHomeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(tabHomeLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel16, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        tabIniciarCorrida.setBackground(new java.awt.Color(219, 10, 64));
+        tabIniciarCorrida.setPreferredSize(new java.awt.Dimension(250, 30));
+        tabIniciarCorrida.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tabIniciarCorridaMouseClicked(evt);
+            }
+        });
+
+        jLabel4.setBackground(new java.awt.Color(204, 204, 204));
+        jLabel4.setFont(new java.awt.Font("Trebuchet MS", 1, 14)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel4.setText("Iniciar Corrida");
+        jLabel4.setPreferredSize(new java.awt.Dimension(88, 18));
+
+        javax.swing.GroupLayout tabIniciarCorridaLayout = new javax.swing.GroupLayout(tabIniciarCorrida);
+        tabIniciarCorrida.setLayout(tabIniciarCorridaLayout);
+        tabIniciarCorridaLayout.setHorizontalGroup(
+            tabIniciarCorridaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(tabIniciarCorridaLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        tabIniciarCorridaLayout.setVerticalGroup(
+            tabIniciarCorridaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(tabIniciarCorridaLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
 
         tabAgendamentos.setBackground(new java.awt.Color(219, 10, 64));
         tabAgendamentos.setPreferredSize(new java.awt.Dimension(250, 30));
@@ -152,38 +233,6 @@ public class Menu extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
-        );
-
-        tabIniciarCorrida.setBackground(new java.awt.Color(219, 10, 64));
-        tabIniciarCorrida.setPreferredSize(new java.awt.Dimension(250, 30));
-        tabIniciarCorrida.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                tabIniciarCorridaMouseClicked(evt);
-            }
-        });
-
-        jLabel4.setBackground(new java.awt.Color(204, 204, 204));
-        jLabel4.setFont(new java.awt.Font("Trebuchet MS", 1, 14)); // NOI18N
-        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel4.setText("Iniciar Corrida");
-        jLabel4.setPreferredSize(new java.awt.Dimension(88, 18));
-
-        javax.swing.GroupLayout tabIniciarCorridaLayout = new javax.swing.GroupLayout(tabIniciarCorrida);
-        tabIniciarCorrida.setLayout(tabIniciarCorridaLayout);
-        tabIniciarCorridaLayout.setHorizontalGroup(
-            tabIniciarCorridaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(tabIniciarCorridaLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-        tabIniciarCorridaLayout.setVerticalGroup(
-            tabIniciarCorridaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(tabIniciarCorridaLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         tabCadastros.setBackground(new java.awt.Color(219, 10, 64));
@@ -282,7 +331,7 @@ public class Menu extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/logo.png"))); // NOI18N
+        logo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/logo.png"))); // NOI18N
 
         javax.swing.GroupLayout jpMenuLayout = new javax.swing.GroupLayout(jpMenu);
         jpMenu.setLayout(jpMenuLayout);
@@ -297,15 +346,18 @@ public class Menu extends javax.swing.JFrame {
             .addComponent(tabSobre, javax.swing.GroupLayout.DEFAULT_SIZE, 233, Short.MAX_VALUE)
             .addGroup(jpMenuLayout.createSequentialGroup()
                 .addGap(41, 41, 41)
-                .addComponent(jLabel8)
+                .addComponent(logo)
                 .addContainerGap(42, Short.MAX_VALUE))
+            .addComponent(tabHome, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 233, Short.MAX_VALUE)
         );
         jpMenuLayout.setVerticalGroup(
             jpMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jpMenuLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel8)
-                .addGap(15, 15, 15)
+                .addComponent(logo)
+                .addGap(60, 60, 60)
+                .addComponent(tabHome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(tabIniciarCorrida, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(tabAgendamentos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -324,95 +376,325 @@ public class Menu extends javax.swing.JFrame {
 
         jpContent.setPreferredSize(new java.awt.Dimension(575, 500));
 
-        jpAgendamentos.setBackground(new java.awt.Color(204, 204, 204));
+        jpHome.setBackground(new java.awt.Color(204, 204, 204));
 
-        javax.swing.GroupLayout jpAgendamentosLayout = new javax.swing.GroupLayout(jpAgendamentos);
-        jpAgendamentos.setLayout(jpAgendamentosLayout);
-        jpAgendamentosLayout.setHorizontalGroup(
-            jpAgendamentosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 575, Short.MAX_VALUE)
+        javax.swing.GroupLayout jpHomeLayout = new javax.swing.GroupLayout(jpHome);
+        jpHome.setLayout(jpHomeLayout);
+        jpHomeLayout.setHorizontalGroup(
+            jpHomeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 567, Short.MAX_VALUE)
         );
-        jpAgendamentosLayout.setVerticalGroup(
-            jpAgendamentosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        jpHomeLayout.setVerticalGroup(
+            jpHomeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 500, Short.MAX_VALUE)
         );
 
         jpIniciarCorrida.setBackground(new java.awt.Color(204, 204, 204));
 
+        jPanel2.setBackground(new java.awt.Color(219, 10, 64));
+
+        jLabel10.setBackground(new java.awt.Color(204, 204, 204));
+        jLabel10.setFont(new java.awt.Font("Trebuchet MS", 1, 14)); // NOI18N
+        jLabel10.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel10.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel10.setText("Iniciar Corrida");
+        jLabel10.setPreferredSize(new java.awt.Dimension(88, 18));
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                .addContainerGap(144, Short.MAX_VALUE)
+                .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(16, 16, 16)
+                .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(16, Short.MAX_VALUE))
+        );
+
         javax.swing.GroupLayout jpIniciarCorridaLayout = new javax.swing.GroupLayout(jpIniciarCorrida);
         jpIniciarCorrida.setLayout(jpIniciarCorridaLayout);
         jpIniciarCorridaLayout.setHorizontalGroup(
             jpIniciarCorridaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 575, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpIniciarCorridaLayout.createSequentialGroup()
+                .addGap(0, 267, Short.MAX_VALUE)
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         jpIniciarCorridaLayout.setVerticalGroup(
             jpIniciarCorridaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 500, Short.MAX_VALUE)
+            .addGroup(jpIniciarCorridaLayout.createSequentialGroup()
+                .addGap(50, 50, 50)
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(400, Short.MAX_VALUE))
+        );
+
+        jpAgendamentos.setBackground(new java.awt.Color(204, 204, 204));
+
+        jPanel3.setBackground(new java.awt.Color(219, 10, 64));
+
+        jLabel11.setBackground(new java.awt.Color(204, 204, 204));
+        jLabel11.setFont(new java.awt.Font("Trebuchet MS", 1, 14)); // NOI18N
+        jLabel11.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel11.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel11.setText("Agendamentos");
+        jLabel11.setPreferredSize(new java.awt.Dimension(88, 18));
+
+        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
+        jPanel3.setLayout(jPanel3Layout);
+        jPanel3Layout.setHorizontalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                .addContainerGap(144, Short.MAX_VALUE)
+                .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+        );
+        jPanel3Layout.setVerticalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addGap(16, 16, 16)
+                .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(16, Short.MAX_VALUE))
+        );
+
+        javax.swing.GroupLayout jpAgendamentosLayout = new javax.swing.GroupLayout(jpAgendamentos);
+        jpAgendamentos.setLayout(jpAgendamentosLayout);
+        jpAgendamentosLayout.setHorizontalGroup(
+            jpAgendamentosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpAgendamentosLayout.createSequentialGroup()
+                .addGap(0, 275, Short.MAX_VALUE)
+                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+        );
+        jpAgendamentosLayout.setVerticalGroup(
+            jpAgendamentosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jpAgendamentosLayout.createSequentialGroup()
+                .addGap(50, 50, 50)
+                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(400, Short.MAX_VALUE))
         );
 
         jpPlacar.setBackground(new java.awt.Color(204, 204, 204));
+
+        jPanel4.setBackground(new java.awt.Color(219, 10, 64));
+
+        jLabel12.setBackground(new java.awt.Color(204, 204, 204));
+        jLabel12.setFont(new java.awt.Font("Trebuchet MS", 1, 14)); // NOI18N
+        jLabel12.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel12.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel12.setText("Placar");
+        jLabel12.setPreferredSize(new java.awt.Dimension(88, 18));
+
+        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
+        jPanel4.setLayout(jPanel4Layout);
+        jPanel4Layout.setHorizontalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
+                .addContainerGap(144, Short.MAX_VALUE)
+                .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+        );
+        jPanel4Layout.setVerticalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel4Layout.createSequentialGroup()
+                .addGap(16, 16, 16)
+                .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(16, Short.MAX_VALUE))
+        );
 
         javax.swing.GroupLayout jpPlacarLayout = new javax.swing.GroupLayout(jpPlacar);
         jpPlacar.setLayout(jpPlacarLayout);
         jpPlacarLayout.setHorizontalGroup(
             jpPlacarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 575, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpPlacarLayout.createSequentialGroup()
+                .addGap(0, 275, Short.MAX_VALUE)
+                .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         jpPlacarLayout.setVerticalGroup(
             jpPlacarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 500, Short.MAX_VALUE)
+            .addGroup(jpPlacarLayout.createSequentialGroup()
+                .addGap(50, 50, 50)
+                .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(400, Short.MAX_VALUE))
         );
 
         jpPaddock.setBackground(new java.awt.Color(204, 204, 204));
+
+        jPanel1.setBackground(new java.awt.Color(219, 10, 64));
+
+        jLabel9.setBackground(new java.awt.Color(204, 204, 204));
+        jLabel9.setFont(new java.awt.Font("Trebuchet MS", 1, 14)); // NOI18N
+        jLabel9.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel9.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel9.setText("Paddock");
+        jLabel9.setPreferredSize(new java.awt.Dimension(88, 18));
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap(144, Short.MAX_VALUE)
+                .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(16, 16, 16)
+                .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(16, Short.MAX_VALUE))
+        );
 
         javax.swing.GroupLayout jpPaddockLayout = new javax.swing.GroupLayout(jpPaddock);
         jpPaddock.setLayout(jpPaddockLayout);
         jpPaddockLayout.setHorizontalGroup(
             jpPaddockLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 567, Short.MAX_VALUE)
+            .addGroup(jpPaddockLayout.createSequentialGroup()
+                .addGap(0, 267, Short.MAX_VALUE)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         jpPaddockLayout.setVerticalGroup(
             jpPaddockLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 500, Short.MAX_VALUE)
+            .addGroup(jpPaddockLayout.createSequentialGroup()
+                .addGap(50, 50, 50)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(400, Short.MAX_VALUE))
         );
 
         jpCadastros.setBackground(new java.awt.Color(204, 204, 204));
+
+        jPanel5.setBackground(new java.awt.Color(219, 10, 64));
+
+        jLabel13.setBackground(new java.awt.Color(204, 204, 204));
+        jLabel13.setFont(new java.awt.Font("Trebuchet MS", 1, 14)); // NOI18N
+        jLabel13.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel13.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel13.setText("Cadastros");
+        jLabel13.setPreferredSize(new java.awt.Dimension(88, 18));
+
+        javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
+        jPanel5.setLayout(jPanel5Layout);
+        jPanel5Layout.setHorizontalGroup(
+            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
+                .addContainerGap(144, Short.MAX_VALUE)
+                .addComponent(jLabel13, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+        );
+        jPanel5Layout.setVerticalGroup(
+            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel5Layout.createSequentialGroup()
+                .addGap(16, 16, 16)
+                .addComponent(jLabel13, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(16, Short.MAX_VALUE))
+        );
 
         javax.swing.GroupLayout jpCadastrosLayout = new javax.swing.GroupLayout(jpCadastros);
         jpCadastros.setLayout(jpCadastrosLayout);
         jpCadastrosLayout.setHorizontalGroup(
             jpCadastrosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 567, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpCadastrosLayout.createSequentialGroup()
+                .addGap(0, 267, Short.MAX_VALUE)
+                .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         jpCadastrosLayout.setVerticalGroup(
             jpCadastrosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 500, Short.MAX_VALUE)
+            .addGroup(jpCadastrosLayout.createSequentialGroup()
+                .addGap(50, 50, 50)
+                .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(400, Short.MAX_VALUE))
         );
 
         jpFinanceiro.setBackground(new java.awt.Color(204, 204, 204));
+
+        jPanel6.setBackground(new java.awt.Color(219, 10, 64));
+
+        jLabel14.setBackground(new java.awt.Color(204, 204, 204));
+        jLabel14.setFont(new java.awt.Font("Trebuchet MS", 1, 14)); // NOI18N
+        jLabel14.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel14.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel14.setText("Financeiro");
+        jLabel14.setPreferredSize(new java.awt.Dimension(88, 18));
+
+        javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
+        jPanel6.setLayout(jPanel6Layout);
+        jPanel6Layout.setHorizontalGroup(
+            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel6Layout.createSequentialGroup()
+                .addContainerGap(144, Short.MAX_VALUE)
+                .addComponent(jLabel14, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+        );
+        jPanel6Layout.setVerticalGroup(
+            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel6Layout.createSequentialGroup()
+                .addGap(16, 16, 16)
+                .addComponent(jLabel14, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(16, Short.MAX_VALUE))
+        );
 
         javax.swing.GroupLayout jpFinanceiroLayout = new javax.swing.GroupLayout(jpFinanceiro);
         jpFinanceiro.setLayout(jpFinanceiroLayout);
         jpFinanceiroLayout.setHorizontalGroup(
             jpFinanceiroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 567, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpFinanceiroLayout.createSequentialGroup()
+                .addGap(0, 267, Short.MAX_VALUE)
+                .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         jpFinanceiroLayout.setVerticalGroup(
             jpFinanceiroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 500, Short.MAX_VALUE)
+            .addGroup(jpFinanceiroLayout.createSequentialGroup()
+                .addGap(50, 50, 50)
+                .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(400, Short.MAX_VALUE))
         );
 
         jpSobre.setBackground(new java.awt.Color(204, 204, 204));
+
+        jPanel7.setBackground(new java.awt.Color(219, 10, 64));
+
+        jLabel15.setBackground(new java.awt.Color(204, 204, 204));
+        jLabel15.setFont(new java.awt.Font("Trebuchet MS", 1, 14)); // NOI18N
+        jLabel15.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel15.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel15.setText("Sobre");
+        jLabel15.setPreferredSize(new java.awt.Dimension(88, 18));
+
+        javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
+        jPanel7.setLayout(jPanel7Layout);
+        jPanel7Layout.setHorizontalGroup(
+            jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel7Layout.createSequentialGroup()
+                .addContainerGap(144, Short.MAX_VALUE)
+                .addComponent(jLabel15, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+        );
+        jPanel7Layout.setVerticalGroup(
+            jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel7Layout.createSequentialGroup()
+                .addGap(16, 16, 16)
+                .addComponent(jLabel15, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(16, Short.MAX_VALUE))
+        );
 
         javax.swing.GroupLayout jpSobreLayout = new javax.swing.GroupLayout(jpSobre);
         jpSobre.setLayout(jpSobreLayout);
         jpSobreLayout.setHorizontalGroup(
             jpSobreLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 575, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpSobreLayout.createSequentialGroup()
+                .addGap(0, 275, Short.MAX_VALUE)
+                .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         jpSobreLayout.setVerticalGroup(
             jpSobreLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 500, Short.MAX_VALUE)
+            .addGroup(jpSobreLayout.createSequentialGroup()
+                .addGap(50, 50, 50)
+                .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(400, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout jpContentLayout = new javax.swing.GroupLayout(jpContent);
@@ -432,6 +714,8 @@ public class Menu extends javax.swing.JFrame {
                 .addComponent(jpFinanceiro, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(jpContentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addComponent(jpSobre, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(jpContentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addComponent(jpHome, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jpContentLayout.setVerticalGroup(
             jpContentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -448,6 +732,8 @@ public class Menu extends javax.swing.JFrame {
                 .addComponent(jpFinanceiro, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(jpContentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addComponent(jpSobre, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(jpContentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addComponent(jpHome, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -471,48 +757,55 @@ public class Menu extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void tabSobreMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabSobreMouseClicked
-        hideAllPannels();
+        resetMenuComponents();
         jpSobre.setVisible(true);
         tabSobre.setBackground(new Color(255, 211, 1));
     }//GEN-LAST:event_tabSobreMouseClicked
 
     private void tabFinanceiroMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabFinanceiroMouseClicked
-        hideAllPannels();
+        resetMenuComponents();
         jpFinanceiro.setVisible(true);
         tabFinanceiro.setBackground(new Color(255, 211, 1));
     }//GEN-LAST:event_tabFinanceiroMouseClicked
 
     private void tabCadastrosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabCadastrosMouseClicked
-        hideAllPannels();
+        resetMenuComponents();
         jpCadastros.setVisible(true);
         tabCadastros.setBackground(new Color(255, 211, 1));
     }//GEN-LAST:event_tabCadastrosMouseClicked
 
     private void tabIniciarCorridaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabIniciarCorridaMouseClicked
-        hideAllPannels();
+        resetMenuComponents();
         jpIniciarCorrida.setVisible(true);
         tabIniciarCorrida.setBackground(new Color(255, 211, 1));
     }//GEN-LAST:event_tabIniciarCorridaMouseClicked
 
     private void tabPaddockMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabPaddockMouseClicked
-        hideAllPannels();
+        resetMenuComponents();
         jpPaddock.setVisible(true);
         tabPaddock.setBackground(new Color(255, 211, 1));
     }//GEN-LAST:event_tabPaddockMouseClicked
 
     private void tabPlacarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabPlacarMouseClicked
-        hideAllPannels();
+        resetMenuComponents();
         jpPlacar.setVisible(true);
         tabPlacar.setBackground(new Color(255, 211, 1));
     }//GEN-LAST:event_tabPlacarMouseClicked
 
     private void tabAgendamentosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabAgendamentosMouseClicked
-        hideAllPannels();
+        resetMenuComponents();
         jpAgendamentos.setVisible(true);
         tabAgendamentos.setBackground(new Color(255, 211, 1));
     }//GEN-LAST:event_tabAgendamentosMouseClicked
 
-    private void hideAllPannels() {
+    private void tabHomeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabHomeMouseClicked
+        resetMenuComponents();
+        jpHome.setVisible(true);
+        tabHome.setBackground(new Color(255, 211, 1));
+    }//GEN-LAST:event_tabHomeMouseClicked
+
+    private void resetMenuComponents() {
+        jpHome.setVisible(false);
         jpIniciarCorrida.setVisible(false);
         jpAgendamentos.setVisible(false);
         jpCadastros.setVisible(false);
@@ -520,14 +813,15 @@ public class Menu extends javax.swing.JFrame {
         jpPaddock.setVisible(false);
         jpPlacar.setVisible(false);
         jpSobre.setVisible(false);
-        
-        tabAgendamentos.setBackground(new Color(219,10,64));
-        tabCadastros.setBackground(new Color(219,10,64));
-        tabFinanceiro.setBackground(new Color(219,10,64));
-        tabIniciarCorrida.setBackground(new Color(219,10,64));
-        tabPaddock.setBackground(new Color(219,10,64));
-        tabPlacar.setBackground(new Color(219,10,64));
-        tabSobre.setBackground(new Color(219,10,64));
+
+        tabHome.setBackground(new Color(219, 10, 64));
+        tabIniciarCorrida.setBackground(new Color(219, 10, 64));
+        tabAgendamentos.setBackground(new Color(219, 10, 64));
+        tabCadastros.setBackground(new Color(219, 10, 64));
+        tabFinanceiro.setBackground(new Color(219, 10, 64));
+        tabPaddock.setBackground(new Color(219, 10, 64));
+        tabPlacar.setBackground(new Color(219, 10, 64));
+        tabSobre.setBackground(new Color(219, 10, 64));
     }
 
     /**
@@ -567,25 +861,42 @@ public class Menu extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
+    private javax.swing.JLabel jLabel13;
+    private javax.swing.JLabel jLabel14;
+    private javax.swing.JLabel jLabel15;
+    private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
+    private javax.swing.JPanel jPanel4;
+    private javax.swing.JPanel jPanel5;
+    private javax.swing.JPanel jPanel6;
+    private javax.swing.JPanel jPanel7;
     private javax.swing.JPanel jpAgendamentos;
     private javax.swing.JPanel jpCadastros;
     private javax.swing.JPanel jpContent;
     private javax.swing.JPanel jpFinanceiro;
+    private javax.swing.JPanel jpHome;
     private javax.swing.JPanel jpIniciarCorrida;
     private javax.swing.JPanel jpMenu;
     private javax.swing.JPanel jpPaddock;
     private javax.swing.JPanel jpPlacar;
     private javax.swing.JPanel jpSobre;
+    private javax.swing.JLabel logo;
     private javax.swing.JPanel tabAgendamentos;
     private javax.swing.JPanel tabCadastros;
     private javax.swing.JPanel tabFinanceiro;
+    private javax.swing.JPanel tabHome;
     private javax.swing.JPanel tabIniciarCorrida;
     private javax.swing.JPanel tabPaddock;
     private javax.swing.JPanel tabPlacar;
