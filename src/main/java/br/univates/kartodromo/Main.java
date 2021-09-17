@@ -27,18 +27,19 @@ public class Main {
 
         // TESTES DE INSERÇÃO
         // ------------------
-        Tracado tracado = new Tracado(1);
         
-        Marca marca = new Marca();
-        marca.setNome("teste");
-        marca.setContato("teste");
-
-        MarcaDAO marcaDAO = new MarcaDAO();
-        marcaDAO.insert(marca);
+//        Usuario teste = new Usuario();
+//        
+//        teste.setId(3);
+//        teste.setName("teste3");
+//        
+//        UsuarioDAO dao = new UsuarioDAO();
+//        dao.insert(teste);
         
-        
-        tracado.setNome("teste");
-        tracado.setTamanho(new BigDecimal(10));
+        Tracado tracado = new Tracado(2);
+                     
+        tracado.setNome("teste2");
+        tracado.setTamanho(new BigDecimal(100));
 
         TracadoDAO tracadoDAO = new TracadoDAO();
         tracadoDAO.insert(tracado);
