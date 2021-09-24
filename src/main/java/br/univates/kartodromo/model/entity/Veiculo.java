@@ -24,7 +24,7 @@ public class Veiculo implements Serializable {
 
     private Integer id;
     private String nome;
-    private Marca marca;
+    private String marca;
 
     public Veiculo(Integer id) {
         this.id = id;
@@ -52,13 +52,12 @@ public class Veiculo implements Serializable {
         this.nome = nome;
     }
 
-    @JoinColumn(name = "id_marca")
-    @ManyToOne(fetch = FetchType.LAZY)
-    public Marca getMarca() {
+    @Column(name = "id_marca")
+    public String getMarca() {
         return marca;
     }
 
-    public void setMarca(Marca marca) {
+    public void setMarca(String marca) {
         this.marca = marca;
     }
 

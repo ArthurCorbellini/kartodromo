@@ -47,9 +47,9 @@ Contributor(s):
     <property name="hibernate.connection.username">postgres</property>
     <property name="hibernate.connection.password">root</property>
     
-    <mapping class="br.univates.kartodromo.model.Usuario" />
-    <mapping class="br.univates.kartodromo.model.Veiculo" />
-    <mapping class="br.univates.kartodromo.model.Tracado" />
-    <mapping class="br.univates.kartodromo.model.Marca" />
+    <mapping class="br.univates.kartodromo.model.entity.Usuario" />
+    <mapping class="br.univates.kartodromo.model.entity.Veiculo" />
+    <mapping class="br.univates.kartodromo.model.entity.Tracado" />
+    <mapping class="br.univates.kartodromo.model.entity.Marca" />
   </session-factory>
 </hibernate-configuration>

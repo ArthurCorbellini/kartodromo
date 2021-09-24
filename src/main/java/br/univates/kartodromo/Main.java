@@ -36,7 +36,7 @@ public class Main {
 //        UsuarioDAO dao = new UsuarioDAO();
 //        dao.insert(teste);
         
-        Tracado tracado = new Tracado(2);
+        Tracado tracado = new Tracado(3);
                      
         tracado.setNome("teste2");
         tracado.setTamanho(new BigDecimal(100));
