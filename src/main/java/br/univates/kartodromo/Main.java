@@ -37,6 +37,9 @@ public class Main {
 //        dao.insert(teste);
         
         Tracado tracado = new Tracado(3);
+        
+        
+        
                      
         tracado.setNome("teste2");
         tracado.setTamanho(new BigDecimal(100));
