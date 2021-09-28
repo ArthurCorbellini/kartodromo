@@ -5,6 +5,11 @@
  */
 package br.univates.kartodromo.view.form;
 
+import br.univates.kartodromo.model.dao.TracadoDAO;
+import br.univates.kartodromo.model.entity.Tracado;
+import java.math.BigDecimal;
+import javax.swing.JTextField;
+
 /**
  *
  * @author Arthur
@@ -29,6 +34,12 @@ public class FormCadastroTracado extends javax.swing.JPanel {
 
         jPanel12 = new javax.swing.JPanel();
         jLabel22 = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
+        campoNome = new javax.swing.JTextField();
+        jLabel2 = new javax.swing.JLabel();
+        campoTamanho = new javax.swing.JTextField();
+        btnCancelar = new javax.swing.JButton();
+        btnSalvar = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(224, 224, 224));
         setPreferredSize(new java.awt.Dimension(575, 400));
@@ -59,26 +70,113 @@ public class FormCadastroTracado extends javax.swing.JPanel {
                 .addContainerGap())
         );
 
+        jLabel1.setFont(new java.awt.Font("Trebuchet MS", 0, 18)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(219, 10, 64));
+        jLabel1.setText("Nome do Traçado");
+
+        jLabel2.setFont(new java.awt.Font("Trebuchet MS", 0, 18)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(219, 10, 64));
+        jLabel2.setText("Tamanho do Traçado");
+
+        btnCancelar.setBackground(new java.awt.Color(219, 10, 64));
+        btnCancelar.setFont(new java.awt.Font("Trebuchet MS", 1, 18)); // NOI18N
+        btnCancelar.setForeground(new java.awt.Color(255, 255, 255));
+        btnCancelar.setText("Cancelar");
+
+        btnSalvar.setBackground(new java.awt.Color(219, 10, 64));
+        btnSalvar.setFont(new java.awt.Font("Trebuchet MS", 1, 18)); // NOI18N
+        btnSalvar.setForeground(new java.awt.Color(255, 255, 255));
+        btnSalvar.setText("Salvar");
+        btnSalvar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSalvarActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGap(0, 164, Short.MAX_VALUE)
+                        .addComponent(jPanel12, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(campoNome, javax.swing.GroupLayout.PREFERRED_SIZE, 365, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel1)
+                            .addComponent(campoTamanho, javax.swing.GroupLayout.PREFERRED_SIZE, 365, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel2))
+                        .addGap(0, 0, Short.MAX_VALUE))))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(174, Short.MAX_VALUE)
-                .addComponent(jPanel12, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btnCancelar)
+                .addGap(18, 18, 18)
+                .addComponent(btnSalvar)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(25, 25, 25)
                 .addComponent(jPanel12, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(300, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(campoNome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel2)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(campoTamanho, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 144, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnSalvar)
+                    .addComponent(btnCancelar))
+                .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private void btnSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarActionPerformed
+        Tracado tracado = new Tracado();
+        
+        tracado.setNome(getCampoNome().getText());
+        tracado.setTamanho(new BigDecimal(getCampoTamanho().getText()));
+        
+        TracadoDAO tracadoDAO = new TracadoDAO();
+        tracadoDAO.insert(tracado);
+
+    }//GEN-LAST:event_btnSalvarActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnCancelar;
+    private javax.swing.JButton btnSalvar;
+    private javax.swing.JTextField campoNome;
+    private javax.swing.JTextField campoTamanho;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel22;
     private javax.swing.JPanel jPanel12;
     // End of variables declaration//GEN-END:variables
+
+    public JTextField getCampoNome() {
+        return campoNome;
+    }
+
+    public void setCampoNome(JTextField campoNome) {
+        this.campoNome = campoNome;
+    }
+
+    public JTextField getCampoTamanho() {
+        return campoTamanho;
+    }
+
+    public void setCampoTamanho(JTextField campoTamanho) {
+        this.campoTamanho = campoTamanho;
+    }
+
+
+
 }

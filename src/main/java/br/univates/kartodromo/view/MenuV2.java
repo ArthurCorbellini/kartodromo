@@ -5,6 +5,7 @@
  */
 package br.univates.kartodromo.view;
 
+import br.univates.kartodromo.view.form.FormCadastroCliente;
 import br.univates.kartodromo.view.form.FormCadastroTracado;
 import br.univates.kartodromo.view.form.FormCadastroUsuario;
 import br.univates.kartodromo.view.form.FormCadastroVeiculo;
@@ -116,6 +117,17 @@ public class MenuV2 extends javax.swing.JFrame {
             }
         });
         listSubBtnCadastro.add(btnCadastroTracado);
+        
+        MenuItem btnCadastroCliente = new MenuItem(null, "Cliente", new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent ae) {
+                resetAllForms();
+                jpContent.add(new FormCadastroCliente());
+                jpContent.repaint();
+                jpContent.revalidate();
+            }
+        });
+        listSubBtnCadastro.add(btnCadastroCliente);
 
         return new MenuItem(null, "Cadastros", null, listSubBtnCadastro);
     }
