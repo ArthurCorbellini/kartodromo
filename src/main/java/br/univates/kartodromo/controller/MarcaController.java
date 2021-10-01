@@ -5,19 +5,19 @@
  */
 package br.univates.kartodromo.controller;
 
-import br.univates.kartodromo.model.dao.UsuarioDAO;
-import br.univates.kartodromo.model.entity.Usuario;
+import br.univates.kartodromo.model.dao.MarcaDAO;
+import br.univates.kartodromo.model.entity.Marca;
 import java.util.List;
 
 /**
  *
  * @author Arthur
  */
-public class UsuarioController {
+public class MarcaController {
 
-    private final UsuarioDAO getUsuarioDAO = new UsuarioDAO();
+    private final MarcaDAO getMarcaDAO = new MarcaDAO();
 
-    public List<Usuario> getAll() {
-        return getUsuarioDAO.getAll(Usuario.class);
+    public List<Marca> getAll() {
+        return getMarcaDAO.getAll(Marca.class);
     }
 }

@@ -10,6 +10,7 @@ import br.univates.kartodromo.model.entity.Auditoria;
 import java.awt.Color;
 import java.awt.Font;
 import java.util.List;
+import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -26,34 +27,41 @@ public class FormAuditoria extends javax.swing.JPanel {
 
     private void buildTableAuditoria() {
         fillTableAuditoria();
-        
+
         jtAuditoria.getTableHeader().setFont(new Font("Trebuchet MS", Font.BOLD, 12));
         jtAuditoria.getTableHeader().setOpaque(false);
 //        jtAuditoria.getTableHeader().setBackground(new Color(69, 73, 74));
         jtAuditoria.getTableHeader().setForeground(new Color(51, 51, 51));
         jtAuditoria.setRowHeight(20);
-        
-        jtAuditoria.getColumnModel().getColumn(0).setMaxWidth(30);
-        jtAuditoria.getColumnModel().getColumn(1).setMaxWidth(100);
-        jtAuditoria.getColumnModel().getColumn(2).setMaxWidth(100);
-        jtAuditoria.getColumnModel().getColumn(3).setMaxWidth(100);
-        jtAuditoria.getColumnModel().getColumn(4).setMaxWidth(200);
-        jtAuditoria.getColumnModel().getColumn(5).setMaxWidth(100);
-        jtAuditoria.getColumnModel().getColumn(6).setMaxWidth(100);
-        jtAuditoria.getColumnModel().getColumn(7).setMaxWidth(100);                
+
+        setColumnCustomWidth(jtAuditoria, 0, 30);
+        setColumnCustomWidth(jtAuditoria, 1, 75);
+        setColumnCustomWidth(jtAuditoria, 2, 75);
+        setColumnCustomWidth(jtAuditoria, 3, 75);
+        setColumnCustomWidth(jtAuditoria, 4, 200);
+        setColumnCustomWidth(jtAuditoria, 5, 30);
+        setColumnCustomWidth(jtAuditoria, 6, 100);
+        setColumnCustomWidth(jtAuditoria, 7, 100);
+        jtAuditoria.setAutoResizeMode(JTable.AUTO_RESIZE_LAST_COLUMN);
+
+    }
+
+    private void setColumnCustomWidth(JTable table, int index, int width) {
+        table.getColumnModel().getColumn(index).setMaxWidth(width);
+        table.getColumnModel().getColumn(index).setMinWidth(width);
     }
 
     private void fillTableAuditoria() {
         AuditoriaController auditoriaController = new AuditoriaController();
         List<Auditoria> audit = auditoriaController.getAll();
 
-        DefaultTableModel tableModel = new DefaultTableModel(){
+        DefaultTableModel tableModel = new DefaultTableModel() {
             @Override
             public boolean isCellEditable(int i, int i1) {
                 return false;
-            }            
-        };        
-        
+            }
+        };
+
         tableModel.addColumn("Id");
         tableModel.addColumn("Schema");
         tableModel.addColumn("Tabela");
@@ -63,7 +71,7 @@ public class FormAuditoria extends javax.swing.JPanel {
         tableModel.addColumn("Dados originais");
         tableModel.addColumn("Dados atuais");
         tableModel.addColumn("Query");
-        
+
         audit.stream().forEach(p -> {
             tableModel.addRow(
                     new Object[]{

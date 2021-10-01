@@ -5,13 +5,11 @@
  */
 package br.univates.kartodromo.view;
 
-import br.univates.kartodromo.model.entity.Usuario;
 import br.univates.kartodromo.view.form.FormAuditoria;
 import br.univates.kartodromo.view.form.FormCadastroCliente;
 import br.univates.kartodromo.view.form.FormCadastroTracado;
 import br.univates.kartodromo.view.form.FormCadastroUsuario;
 import br.univates.kartodromo.view.form.FormCadastroVeiculo;
-import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;

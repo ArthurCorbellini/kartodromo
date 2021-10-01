@@ -42,14 +42,14 @@ public class MenuItem extends javax.swing.JPanel {
         initComponents();
         lbIcon.setIcon(icon);
         lbName.setText(menuName);
-        
-        if(action != null){
+
+        if (action != null) {
             this.action = action;
         }
-        
-        this.setSize(new Dimension(Integer.MAX_VALUE, 45));
-        this.setMaximumSize(new Dimension(Integer.MAX_VALUE, 45));
-        this.setMinimumSize(new Dimension(Integer.MAX_VALUE, 45));
+
+        this.setSize(new Dimension(Integer.MAX_VALUE, 35));
+        this.setMaximumSize(new Dimension(Integer.MAX_VALUE, 35));
+        this.setMinimumSize(new Dimension(Integer.MAX_VALUE, 35));
 
         if (subMenu != null) {
             subMenu.forEach(v -> {
@@ -121,8 +121,8 @@ public class MenuItem extends javax.swing.JPanel {
         } else {
             showMenu();
         }
-        
-        if(action != null){
+
+        if (action != null) {
             action.actionPerformed(null);
         }
     }//GEN-LAST:event_formMousePressed

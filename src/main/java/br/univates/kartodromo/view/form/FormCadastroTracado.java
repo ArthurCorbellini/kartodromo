@@ -140,10 +140,10 @@ public class FormCadastroTracado extends javax.swing.JPanel {
 
     private void btnSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarActionPerformed
         Tracado tracado = new Tracado();
-        
+
         tracado.setNome(getCampoNome().getText());
         tracado.setTamanho(new BigDecimal(getCampoTamanho().getText()));
-        
+
         TracadoDAO tracadoDAO = new TracadoDAO();
         tracadoDAO.insert(tracado);
 
@@ -176,7 +176,5 @@ public class FormCadastroTracado extends javax.swing.JPanel {
     public void setCampoTamanho(JTextField campoTamanho) {
         this.campoTamanho = campoTamanho;
     }
-
-
 
 }
