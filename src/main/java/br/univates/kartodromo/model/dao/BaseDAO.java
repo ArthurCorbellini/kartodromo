@@ -5,10 +5,11 @@
  */
 package br.univates.kartodromo.model.dao;
 
-import br.univates.kartodromo.model.entity.Usuario;
 import br.univates.kartodromo.util.HibernateUtil;
 import java.util.Arrays;
 import java.util.List;
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaQuery;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
@@ -18,9 +19,27 @@ import org.hibernate.Transaction;
  * @author Arthur
  */
 public class BaseDAO {
-
-//    falta incluir o search
     
+        public <T> List<T> getAll(Class<T> exampleClass) {
+        List<T> listReturn = null;
+
+        Session session = null;
+        try {
+            session = HibernateUtil.getSessionFactory().openSession();
+
+            CriteriaBuilder builder = session.getCriteriaBuilder();
+            CriteriaQuery criteriaQuery = builder.createQuery(exampleClass);
+            criteriaQuery.from(exampleClass);
+
+            listReturn = session.createQuery(criteriaQuery).getResultList();
+        } catch (HibernateException hibEx) {
+            hibEx.printStackTrace();
+        } finally {
+            session.close();
+        }
+        return listReturn;
+    }
+
     public void insert(Object entity) {
         insert(Arrays.asList(entity));
     }

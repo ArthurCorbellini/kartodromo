@@ -5,32 +5,53 @@
  */
 package br.univates.kartodromo.util;
 
-import org.hibernate.cfg.AnnotationConfiguration;
 import org.hibernate.SessionFactory;
+import org.hibernate.boot.Metadata;
+import org.hibernate.boot.MetadataSources;
+import org.hibernate.boot.registry.StandardServiceRegistry;
+import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 
 /**
- * Hibernate Utility class with a convenient method to get Session Factory
- * object.
  *
  * @author Arthur
  */
 public class HibernateUtil {
 
-    private static final SessionFactory sessionFactory;
-    
-    static {
-        try {
-            // Create the SessionFactory from standard (hibernate.cfg.xml) 
-            // config file.
-            sessionFactory = new AnnotationConfiguration().configure().buildSessionFactory();
-        } catch (Throwable ex) {
-            // Log the exception. 
-            System.err.println("Initial SessionFactory creation failed." + ex);
-            throw new ExceptionInInitializerError(ex);
-        }
-    }
-    
+    private static StandardServiceRegistry registry;
+    private static SessionFactory sessionFactory;
+
     public static SessionFactory getSessionFactory() {
+        if (sessionFactory == null) {
+            try {
+                // Cria o registro
+                // https://docs.jboss.org/hibernate/orm/5.3/javadocs/org/hibernate/boot/registry/class-use/StandardServiceRegistry.html
+                registry = new StandardServiceRegistryBuilder().configure().build();
+
+                // Cria o MetadataSources
+                // https://docs.jboss.org/hibernate/orm/5.3/javadocs/org/hibernate/boot/MetadataSources.html
+                MetadataSources sources = new MetadataSources(registry);
+
+                // Create Metadata
+                // https://docs.jboss.org/hibernate/orm/5.3/javadocs/org/hibernate/boot/Metadata.html
+                Metadata metadata = sources.getMetadataBuilder().build();
+
+                // Create SessionFactory
+                // https://docs.jboss.org/hibernate/orm/3.5/api/org/hibernate/SessionFactory.html
+                sessionFactory = metadata.getSessionFactoryBuilder().build();
+
+            } catch (Exception e) {
+                e.printStackTrace();
+                if (registry != null) {
+                    StandardServiceRegistryBuilder.destroy(registry);
+                }
+            }
+        }
         return sessionFactory;
+    }
+
+    public static void closeConnections() {
+        if (registry != null) {
+            StandardServiceRegistryBuilder.destroy(registry);
+        }
     }
 }

@@ -5,14 +5,18 @@
  */
 package br.univates.kartodromo;
 
+import br.univates.kartodromo.controller.AuditoriaController;
+import br.univates.kartodromo.controller.UsuarioController;
 import br.univates.kartodromo.model.dao.MarcaDAO;
 import br.univates.kartodromo.model.dao.TracadoDAO;
 import br.univates.kartodromo.model.dao.UsuarioDAO;
+import br.univates.kartodromo.model.entity.Auditoria;
 import br.univates.kartodromo.model.entity.Marca;
 import br.univates.kartodromo.model.entity.Tracado;
 import br.univates.kartodromo.model.entity.Usuario;
 import br.univates.kartodromo.model.entity.Veiculo;
 import java.math.BigDecimal;
+import java.util.List;
 
 /**
  *
@@ -25,30 +29,12 @@ public class Main {
      */
     public static void main(String[] args) {
 
-        // TESTES DE INSERÇÃO
-        // ------------------
-        
-//        Usuario teste = new Usuario();
-//        
-//        teste.setId(3);
-//        teste.setName("teste3");
-//        
-//        UsuarioDAO dao = new UsuarioDAO();
-//        dao.insert(teste);
-        
+        // TESTE DE INSERÇÃO
+        UsuarioDAO dao = new UsuarioDAO();
+        Usuario entity = new Usuario(11);
+        entity.setName("teste");
 
-
-
-//        Tracado tracado = new Tracado(3);
-                 
-//        tracado.setNome("teste2");
-  //      tracado.setTamanho(new BigDecimal(100));
-
-  //      TracadoDAO tracadoDAO = new TracadoDAO();
-//        tracadoDAO.insert(tracado);
-
-        // ------------------
-        
+        dao.insert(entity);
     }
 
 }

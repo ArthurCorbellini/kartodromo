@@ -5,19 +5,20 @@
  */
 package br.univates.kartodromo.view;
 
+import br.univates.kartodromo.model.entity.Usuario;
+import br.univates.kartodromo.view.form.FormAuditoria;
 import br.univates.kartodromo.view.form.FormCadastroCliente;
 import br.univates.kartodromo.view.form.FormCadastroTracado;
 import br.univates.kartodromo.view.form.FormCadastroUsuario;
 import br.univates.kartodromo.view.form.FormCadastroVeiculo;
+import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import javax.swing.ImageIcon;
 import javax.swing.JFrame;
-import javax.swing.JOptionPane;
 
 /**
  *
@@ -45,6 +46,9 @@ public class MenuV2 extends javax.swing.JFrame {
 
         // -------- btnCadastros --------
         listMenu.add(buildBtnCadastro());
+
+        // -------- btnAuditoria --------
+        listMenu.add(buildBtnAuditoria());
 
         // -------- btnSobre --------        
         jpAboutShow.add(buildBtnSobreShow());
@@ -117,7 +121,7 @@ public class MenuV2 extends javax.swing.JFrame {
             }
         });
         listSubBtnCadastro.add(btnCadastroTracado);
-        
+
         MenuItem btnCadastroCliente = new MenuItem(null, "Cliente", new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent ae) {
@@ -130,6 +134,18 @@ public class MenuV2 extends javax.swing.JFrame {
         listSubBtnCadastro.add(btnCadastroCliente);
 
         return new MenuItem(null, "Cadastros", null, listSubBtnCadastro);
+    }
+
+    private MenuItem buildBtnAuditoria() {
+        return new MenuItem(null, "Auditoria", new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent ae) {
+                resetAllForms();
+                jpContent.add(new FormAuditoria());
+                jpContent.repaint();
+                jpContent.revalidate();
+            }
+        });
     }
 
     private void resetAllForms() {
@@ -206,7 +222,7 @@ public class MenuV2 extends javax.swing.JFrame {
             .addGroup(jpHeaderLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel17, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(594, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jpHeaderLayout.setVerticalGroup(
             jpHeaderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -287,8 +303,8 @@ public class MenuV2 extends javax.swing.JFrame {
         jpBodyLayout.setHorizontalGroup(
             jpBodyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpBodyLayout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(jpContent, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(225, 225, 225)
+                .addComponent(jpContent, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(jpBodyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jpBodyLayout.createSequentialGroup()
                     .addComponent(jpMenu, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -312,14 +328,13 @@ public class MenuV2 extends javax.swing.JFrame {
         jPanelLayout.setHorizontalGroup(
             jPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jpHeader, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addGroup(jPanelLayout.createSequentialGroup()
-                .addGap(0, 0, 0)
-                .addComponent(jpBody, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addComponent(jpBody, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         jPanelLayout.setVerticalGroup(
             jPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanelLayout.createSequentialGroup()
                 .addComponent(jpHeader, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, 0)
                 .addComponent(jpBody, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGap(0, 0, 0))
         );
@@ -349,7 +364,7 @@ public class MenuV2 extends javax.swing.JFrame {
          */
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
+                if ("Windows".equals(info.getName())) {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
                 }
