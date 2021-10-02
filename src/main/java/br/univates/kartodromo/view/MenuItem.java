@@ -32,19 +32,35 @@ public class MenuItem extends javax.swing.JPanel {
     private final ArrayList<MenuItem> subMenu = new ArrayList<>();
     private ActionListener action;
 
-    public MenuItem(Icon icon, String menuName, ActionListener action) {
-        instanciarMenu(icon, menuName, action, null);
+    private boolean clicked;
+    private Icon lightIcon;
+    private Icon darkIcon;
+
+    public MenuItem(Icon lightIcon, String menuName, ActionListener action) {
+        instanciarMenu(lightIcon, null, menuName, action, null);
+    }
+    
+    public MenuItem(Icon lightIcon,Icon darkIcon, String menuName, ActionListener action) {
+        instanciarMenu(lightIcon, darkIcon, menuName, action, null);
     }
 
-    public MenuItem(Icon icon, String menuName, ActionListener action, List<MenuItem> subMenu) {
-        instanciarMenu(icon, menuName, action, subMenu);
+    public MenuItem(Icon lightIcon, String menuName, ActionListener action, List<MenuItem> subMenu) {
+        instanciarMenu(lightIcon, null, menuName, action, subMenu);
     }
 
-    private void instanciarMenu(Icon icon, String menuName, ActionListener action, List<MenuItem> subMenu) {
+    public MenuItem(Icon lightIcon, Icon darkIcon, String menuName, ActionListener action, List<MenuItem> subMenu) {
+        instanciarMenu(lightIcon, darkIcon, menuName, action, subMenu);
+    }
+
+    private void instanciarMenu(Icon lightIcon, Icon darkIcon, String menuName, ActionListener action, List<MenuItem> subMenu) {
         initComponents();
-        lbIcon.setIcon(icon);
+        this.lightIcon = lightIcon;
+        this.darkIcon = darkIcon;
+
+        lbIcon.setIcon(lightIcon);
         lbName.setText(menuName);
         lbName.setForeground(new Color(204, 204, 204));
+        clicked = false;
 
         if (action != null) {
             this.action = action;
@@ -60,22 +76,6 @@ public class MenuItem extends javax.swing.JPanel {
                 v.setVisible(false);
             });
         }
-    }
-
-    public JLabel getLbIcon() {
-        return lbIcon;
-    }
-
-    public void setLbIcon(JLabel lbIcon) {
-        this.lbIcon = lbIcon;
-    }
-
-    public JLabel getLbName() {
-        return lbName;
-    }
-
-    public void setLbName(JLabel lbName) {
-        this.lbName = lbName;
     }
 
     /**
@@ -184,6 +184,46 @@ public class MenuItem extends javax.swing.JPanel {
             Thread.sleep(20);
         } catch (Exception e) {
         }
+    }
+
+    public JLabel getLbIcon() {
+        return lbIcon;
+    }
+
+    public void setLbIcon(JLabel lbIcon) {
+        this.lbIcon = lbIcon;
+    }
+
+    public JLabel getLbName() {
+        return lbName;
+    }
+
+    public void setLbName(JLabel lbName) {
+        this.lbName = lbName;
+    }
+
+    public boolean isClicked() {
+        return clicked;
+    }
+
+    public void setClicked(boolean clicked) {
+        this.clicked = clicked;
+    }
+
+    public Icon getLightIcon() {
+        return lightIcon;
+    }
+
+    public void setLightIcon(Icon lightIcon) {
+        this.lightIcon = lightIcon;
+    }
+
+    public Icon getDarkIcon() {
+        return darkIcon;
+    }
+
+    public void setDarkIcon(Icon darkIcon) {
+        this.darkIcon = darkIcon;
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
