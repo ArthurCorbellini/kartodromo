@@ -21,6 +21,12 @@ public class Usuario implements Serializable {
 
     private Integer id;
     private String name;
+    // VARCHAR (String) CPF
+    // VARCHAR (String) telefone
+    // VARCHAR (String) e-mail
+    // VARCHAR (String) senha
+    // INTEGER (Integer) perfilUsuario
+    // VARCHAR (String) sexo 
 
     public Usuario(Integer id) {
         this.id = id;

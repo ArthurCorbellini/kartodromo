@@ -25,6 +25,7 @@ public class FormAuditoria extends javax.swing.JPanel {
         buildTableAuditoria();
     }
 
+    // CUSTOMIZAR 
     private void buildTableAuditoria() {
         fillTableAuditoria();
 
@@ -51,6 +52,7 @@ public class FormAuditoria extends javax.swing.JPanel {
         table.getColumnModel().getColumn(index).setMinWidth(width);
     }
 
+    // POPULAR
     private void fillTableAuditoria() {
         AuditoriaController auditoriaController = new AuditoriaController();
         List<Auditoria> audit = auditoriaController.getAll();
