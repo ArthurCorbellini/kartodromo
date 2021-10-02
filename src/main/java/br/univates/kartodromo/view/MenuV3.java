@@ -6,7 +6,6 @@
 package br.univates.kartodromo.view;
 
 import br.univates.kartodromo.view.form.FormAuditoria;
-import br.univates.kartodromo.view.form.FormCadastroCliente;
 import br.univates.kartodromo.view.form.FormCadastroTracado;
 import br.univates.kartodromo.view.form.FormCadastroUsuario;
 import br.univates.kartodromo.view.form.FormCadastroVeiculo;
@@ -43,7 +42,6 @@ public class MenuV3 extends javax.swing.JFrame {
     private MenuItem btnCadastroUsuario;
     private MenuItem btnCadastroVeiculo;
     private MenuItem btnCadastroTracado;
-    private MenuItem btnCadastroCliente;
     private MenuItem btnAuditoria;
 
     public MenuV3() {
@@ -137,16 +135,7 @@ public class MenuV3 extends javax.swing.JFrame {
             }
         });
         btnCadastroTracado.getLbIcon().setHorizontalAlignment(JLabel.RIGHT);
-        listSubBtnCadastro.add(btnCadastroTracado);
-
-        btnCadastroCliente = new MenuItem(dotLight, dotDark, "  Cliente", new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent ae) {
-//                pressButton(btnCadastroCliente, new FormCadastroCliente());                
-            }
-        });
-        btnCadastroCliente.getLbIcon().setHorizontalAlignment(JLabel.RIGHT);
-        listSubBtnCadastro.add(btnCadastroCliente);
+        listSubBtnCadastro.add(btnCadastroTracado);        
 
         ImageIcon lightIcon = new ImageIcon(getClass().getResource("/images/menuIcons/icon-registration-light.png"));
         ImageIcon darkIcon = new ImageIcon(getClass().getResource("/images/menuIcons/icon-registration-dark.png"));

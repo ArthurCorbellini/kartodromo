@@ -6,7 +6,6 @@
 package br.univates.kartodromo.view;
 
 import br.univates.kartodromo.view.form.FormAuditoria;
-import br.univates.kartodromo.view.form.FormCadastroCliente;
 import br.univates.kartodromo.view.form.FormCadastroTracado;
 import br.univates.kartodromo.view.form.FormCadastroUsuario;
 import br.univates.kartodromo.view.form.FormCadastroVeiculo;
@@ -128,19 +127,7 @@ public class MenuV2 extends javax.swing.JFrame {
             }
         });
         btnCadastroTracado.getLbIcon().setHorizontalAlignment(JLabel.RIGHT);
-        listSubBtnCadastro.add(btnCadastroTracado);
-
-        MenuItem btnCadastroCliente = new MenuItem(dot, "  Cliente", new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent ae) {
-                resetAllForms();
-                jpContent.add(new FormCadastroCliente());
-                jpContent.repaint();
-                jpContent.revalidate();
-            }
-        });
-        btnCadastroCliente.getLbIcon().setHorizontalAlignment(JLabel.RIGHT);
-        listSubBtnCadastro.add(btnCadastroCliente);
+        listSubBtnCadastro.add(btnCadastroTracado);       
 
         ImageIcon img = new ImageIcon(getClass().getResource("/images/menuIcons/icon_registration.png"));
         return new MenuItem(img, "Cadastros", null, listSubBtnCadastro);
