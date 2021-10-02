@@ -5,11 +5,13 @@
  */
 package br.univates.kartodromo.view;
 
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.Icon;
+import javax.swing.JLabel;
 
 /**
  *
@@ -42,6 +44,7 @@ public class MenuItem extends javax.swing.JPanel {
         initComponents();
         lbIcon.setIcon(icon);
         lbName.setText(menuName);
+        lbName.setForeground(new Color(204, 204, 204));
 
         if (action != null) {
             this.action = action;
@@ -59,6 +62,22 @@ public class MenuItem extends javax.swing.JPanel {
         }
     }
 
+    public JLabel getLbIcon() {
+        return lbIcon;
+    }
+
+    public void setLbIcon(JLabel lbIcon) {
+        this.lbIcon = lbIcon;
+    }
+
+    public JLabel getLbName() {
+        return lbName;
+    }
+
+    public void setLbName(JLabel lbName) {
+        this.lbName = lbName;
+    }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -72,8 +91,7 @@ public class MenuItem extends javax.swing.JPanel {
         lbName = new javax.swing.JLabel();
         lbIcon = new javax.swing.JLabel();
 
-        setBackground(new java.awt.Color(219, 10, 64));
-        setBorder(javax.swing.BorderFactory.createMatteBorder(2, 0, 2, 0, new java.awt.Color(0, 28, 57)));
+        setBackground(new java.awt.Color(21, 25, 28));
         setPreferredSize(new java.awt.Dimension(225, 35));
         addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
@@ -81,14 +99,17 @@ public class MenuItem extends javax.swing.JPanel {
             }
         });
 
+        jSeparator1.setBackground(new java.awt.Color(21, 25, 28));
         jSeparator1.setPreferredSize(new java.awt.Dimension(225, 0));
 
         lbName.setBackground(new java.awt.Color(204, 204, 204));
         lbName.setFont(new java.awt.Font("Trebuchet MS", 1, 14)); // NOI18N
-        lbName.setForeground(new java.awt.Color(255, 255, 255));
+        lbName.setForeground(new java.awt.Color(204, 204, 204));
         lbName.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         lbName.setText("Content");
         lbName.setPreferredSize(new java.awt.Dimension(61, 18));
+
+        lbIcon.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);

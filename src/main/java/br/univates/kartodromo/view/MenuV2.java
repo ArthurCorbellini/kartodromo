@@ -16,25 +16,29 @@ import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import javax.swing.ImageIcon;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.border.EmptyBorder;
 
 /**
  *
  * @author Arthur
  */
 public class MenuV2 extends javax.swing.JFrame {
-
-    /**
-     * Creates new form Menu
-     */
+    
+    private List<MenuItem> listMenu;
+    
     public MenuV2() {
         initComponents();
         setExtendedState(JFrame.MAXIMIZED_BOTH);
         execute();
     }
-
+    
     private void execute() {
-        List<MenuItem> listMenu = new ArrayList<>();
+        lbLogo.setIcon(new ImageIcon(getClass().getResource("/images/logo_crown_orange.png")));
+        
+        listMenu = new ArrayList<>();
 
         // -------- btnHome --------
         listMenu.add(buildBtnHome());
@@ -51,43 +55,47 @@ public class MenuV2 extends javax.swing.JFrame {
         // -------- btnSobre --------        
         jpAboutShow.add(buildBtnSobreShow());
         jpAboutHide.add(buildBtnSobreHide());
-
+        
         addMenu(listMenu);
     }
-
+    
     private void addMenu(List<MenuItem> listMenu) {
         listMenu.forEach(v -> {
             menus.add(v);
-
+            
             List<MenuItem> subMenu = v.getSubMenu();
             subMenu.forEach(u -> addMenu(Arrays.asList(u)));
         });
         menus.revalidate();
     }
-
+    
     private MenuItem buildBtnIniciarCorrida() {
-        return new MenuItem(null, "IniciarCorrida", null);
+        ImageIcon img = new ImageIcon(getClass().getResource("/images/menuIcons/icon_helmet.png"));
+        return new MenuItem(img, "Iniciar Corrida", null);
     }
-
+    
     private MenuItem buildBtnHome() {
-        return new MenuItem(null, "Home", null);
+        ImageIcon img = new ImageIcon(getClass().getResource("/images/menuIcons/icon_home.png"));
+        return new MenuItem(img, "Home", null);
     }
-
+    
     private MenuItem buildBtnSobreShow() {
-        return new MenuItem(null, "Sobre", null);
+        ImageIcon img = new ImageIcon(getClass().getResource("/images/menuIcons/icon_mustache.png"));
+        return new MenuItem(img, "Sobre", null);
     }
-
+    
     private MenuItem buildBtnSobreHide() {
         MenuItem btnAboutHide = new MenuItem(null, "Sobre", null);
         btnAboutHide.setBackground(new Color(0, 28, 57));
-
+        
         return btnAboutHide;
     }
-
+    
     private MenuItem buildBtnCadastro() {
         List<MenuItem> listSubBtnCadastro = new ArrayList<>();
-
-        MenuItem btnCadastroUsuario = new MenuItem(null, "Usuário", new ActionListener() {
+        ImageIcon dot = new ImageIcon(getClass().getResource("/images/menuIcons/icon_dot.png"));
+        
+        MenuItem btnCadastroUsuario = new MenuItem(dot, "  Usuário", new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent ae) {
                 resetAllForms();
@@ -96,9 +104,10 @@ public class MenuV2 extends javax.swing.JFrame {
                 jpContent.revalidate();
             }
         });
+        btnCadastroUsuario.getLbIcon().setHorizontalAlignment(JLabel.RIGHT);
         listSubBtnCadastro.add(btnCadastroUsuario);
-
-        MenuItem btnCadastroVeiculo = new MenuItem(null, "Veículo", new ActionListener() {
+        
+        MenuItem btnCadastroVeiculo = new MenuItem(dot, "  Veículo", new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent ae) {
                 resetAllForms();
@@ -107,20 +116,22 @@ public class MenuV2 extends javax.swing.JFrame {
                 jpContent.revalidate();
             }
         });
+        btnCadastroVeiculo.getLbIcon().setHorizontalAlignment(JLabel.RIGHT);
         listSubBtnCadastro.add(btnCadastroVeiculo);
-
-        MenuItem btnCadastroTracado = new MenuItem(null, "Traçado", new ActionListener() {
+        
+        MenuItem btnCadastroTracado = new MenuItem(dot, "  Traçado", new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent ae) {
-                resetAllForms();
+                resetAllForms();                
                 jpContent.add(new FormCadastroTracado());
                 jpContent.repaint();
                 jpContent.revalidate();
             }
         });
+        btnCadastroTracado.getLbIcon().setHorizontalAlignment(JLabel.RIGHT);
         listSubBtnCadastro.add(btnCadastroTracado);
-
-        MenuItem btnCadastroCliente = new MenuItem(null, "Cliente", new ActionListener() {
+        
+        MenuItem btnCadastroCliente = new MenuItem(dot, "  Cliente", new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent ae) {
                 resetAllForms();
@@ -129,23 +140,34 @@ public class MenuV2 extends javax.swing.JFrame {
                 jpContent.revalidate();
             }
         });
+        btnCadastroCliente.getLbIcon().setHorizontalAlignment(JLabel.RIGHT);
         listSubBtnCadastro.add(btnCadastroCliente);
-
-        return new MenuItem(null, "Cadastros", null, listSubBtnCadastro);
+        
+        ImageIcon img = new ImageIcon(getClass().getResource("/images/menuIcons/icon_registration.png"));
+        return new MenuItem(img, "Cadastros", null, listSubBtnCadastro);
     }
-
+    
     private MenuItem buildBtnAuditoria() {
-        return new MenuItem(null, "Auditoria", new ActionListener() {
+        ImageIcon img = new ImageIcon(getClass().getResource("/images/menuIcons/icon_police_hat.png"));
+        return new MenuItem(img, "Auditoria", new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent ae) {
                 resetAllForms();
+                
+                resetAllButtons();                
+                setBackground(new Color(255, 211, 0));
+                
                 jpContent.add(new FormAuditoria());
                 jpContent.repaint();
                 jpContent.revalidate();
             }
         });
     }
-
+    
+    private void resetAllButtons() {
+        listMenu.forEach(p -> p.setBackground(new Color(21, 25, 28)));
+    }
+    
     private void resetAllForms() {
         jpContent.removeAll();
     }
@@ -184,8 +206,6 @@ public class MenuV2 extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel = new javax.swing.JPanel();
-        jpHeader = new javax.swing.JPanel();
-        jLabel17 = new javax.swing.JLabel();
         jpBody = new javax.swing.JPanel();
         jpAbout = new javax.swing.JPanel();
         jsp3 = new javax.swing.JScrollPane();
@@ -195,43 +215,18 @@ public class MenuV2 extends javax.swing.JFrame {
         menus = new javax.swing.JPanel();
         jsp2 = new javax.swing.JScrollPane();
         jpAboutShow = new javax.swing.JPanel();
+        lbLogo = new javax.swing.JLabel();
         jpContent = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
+        jPanel.setBackground(new java.awt.Color(21, 25, 28));
         jPanel.setMaximumSize(new java.awt.Dimension(2147483647, 2147483647));
         jPanel.setMinimumSize(new java.awt.Dimension(0, 0));
         jPanel.setPreferredSize(new java.awt.Dimension(800, 500));
 
-        jpHeader.setBackground(new java.awt.Color(0, 28, 57));
-        jpHeader.setPreferredSize(new java.awt.Dimension(800, 100));
-
-        jLabel17.setBackground(new java.awt.Color(204, 204, 204));
-        jLabel17.setFont(new java.awt.Font("Trebuchet MS", 1, 18)); // NOI18N
-        jLabel17.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel17.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel17.setText("Red Bunny System");
-        jLabel17.setPreferredSize(new java.awt.Dimension(88, 18));
-
-        javax.swing.GroupLayout jpHeaderLayout = new javax.swing.GroupLayout(jpHeader);
-        jpHeader.setLayout(jpHeaderLayout);
-        jpHeaderLayout.setHorizontalGroup(
-            jpHeaderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jpHeaderLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel17, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-        jpHeaderLayout.setVerticalGroup(
-            jpHeaderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpHeaderLayout.createSequentialGroup()
-                .addContainerGap(27, Short.MAX_VALUE)
-                .addComponent(jLabel17, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(23, 23, 23))
-        );
-
         jpBody.setBackground(new java.awt.Color(224, 224, 224));
-        jpBody.setPreferredSize(new java.awt.Dimension(800, 400));
+        jpBody.setPreferredSize(new java.awt.Dimension(800, 500));
 
         jpAbout.setBackground(new java.awt.Color(204, 204, 204));
         jpAbout.setPreferredSize(new java.awt.Dimension(225, 400));
@@ -257,14 +252,14 @@ public class MenuV2 extends javax.swing.JFrame {
                 .addComponent(jsp3, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
-        jpMenu.setBackground(new java.awt.Color(0, 28, 57));
+        jpMenu.setBackground(new java.awt.Color(21, 25, 28));
         jpMenu.setPreferredSize(new java.awt.Dimension(225, 400));
 
         jsp1.setBackground(new java.awt.Color(0, 28, 57));
         jsp1.setBorder(null);
         jsp1.setPreferredSize(new java.awt.Dimension(225, 360));
 
-        menus.setBackground(new java.awt.Color(0, 28, 57));
+        menus.setBackground(new java.awt.Color(21, 25, 28));
         menus.setLayout(new javax.swing.BoxLayout(menus, javax.swing.BoxLayout.Y_AXIS));
         jsp1.setViewportView(menus);
 
@@ -272,9 +267,12 @@ public class MenuV2 extends javax.swing.JFrame {
         jsp2.setBorder(null);
         jsp2.setPreferredSize(new java.awt.Dimension(225, 360));
 
-        jpAboutShow.setBackground(new java.awt.Color(0, 28, 57));
+        jpAboutShow.setBackground(new java.awt.Color(21, 25, 28));
         jpAboutShow.setLayout(new javax.swing.BoxLayout(jpAboutShow, javax.swing.BoxLayout.Y_AXIS));
         jsp2.setViewportView(jpAboutShow);
+
+        lbLogo.setBackground(new java.awt.Color(21, 25, 28));
+        lbLogo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
 
         javax.swing.GroupLayout jpMenuLayout = new javax.swing.GroupLayout(jpMenu);
         jpMenu.setLayout(jpMenuLayout);
@@ -282,17 +280,23 @@ public class MenuV2 extends javax.swing.JFrame {
             jpMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jsp1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(jsp2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(jpMenuLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(lbLogo, javax.swing.GroupLayout.DEFAULT_SIZE, 213, Short.MAX_VALUE)
+                .addContainerGap())
         );
         jpMenuLayout.setVerticalGroup(
             jpMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jpMenuLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jsp1, javax.swing.GroupLayout.DEFAULT_SIZE, 344, Short.MAX_VALUE)
+                .addComponent(lbLogo, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jsp1, javax.swing.GroupLayout.DEFAULT_SIZE, 300, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jsp2, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
-        jpContent.setBackground(new java.awt.Color(224, 224, 224));
+        jpContent.setBackground(new java.awt.Color(35, 40, 44));
         jpContent.setPreferredSize(new java.awt.Dimension(575, 400));
         jpContent.setLayout(new java.awt.BorderLayout());
 
@@ -316,22 +320,20 @@ public class MenuV2 extends javax.swing.JFrame {
             jpBodyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jpContent, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(jpBodyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addComponent(jpMenu, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(jpMenu, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 500, Short.MAX_VALUE))
             .addGroup(jpBodyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addComponent(jpAbout, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(jpAbout, javax.swing.GroupLayout.DEFAULT_SIZE, 500, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout jPanelLayout = new javax.swing.GroupLayout(jPanel);
         jPanel.setLayout(jPanelLayout);
         jPanelLayout.setHorizontalGroup(
             jPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jpHeader, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(jpBody, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         jPanelLayout.setVerticalGroup(
             jPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanelLayout.createSequentialGroup()
-                .addComponent(jpHeader, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0)
                 .addComponent(jpBody, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGap(0, 0, 0))
@@ -388,18 +390,17 @@ public class MenuV2 extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel jLabel17;
     private javax.swing.JPanel jPanel;
     private javax.swing.JPanel jpAbout;
     private javax.swing.JPanel jpAboutHide;
     private javax.swing.JPanel jpAboutShow;
     private javax.swing.JPanel jpBody;
     private javax.swing.JPanel jpContent;
-    private javax.swing.JPanel jpHeader;
     private javax.swing.JPanel jpMenu;
     private javax.swing.JScrollPane jsp1;
     private javax.swing.JScrollPane jsp2;
     private javax.swing.JScrollPane jsp3;
+    private javax.swing.JLabel lbLogo;
     private javax.swing.JPanel menus;
     // End of variables declaration//GEN-END:variables
 }
