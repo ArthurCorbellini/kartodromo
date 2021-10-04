@@ -9,9 +9,9 @@ package br.univates.kartodromo.view.form;
  *
  * @author Arthur
  */
-public class FormCadastroVeiculo extends javax.swing.JPanel {
+public class FormIniciarCorrida extends javax.swing.JPanel {
 
-    public FormCadastroVeiculo() {
+    public FormIniciarCorrida() {
         initComponents();
     }
 
@@ -39,7 +39,7 @@ public class FormCadastroVeiculo extends javax.swing.JPanel {
         lbTitulo.setFont(new java.awt.Font("Trebuchet MS", 0, 24)); // NOI18N
         lbTitulo.setForeground(new java.awt.Color(204, 204, 204));
         lbTitulo.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        lbTitulo.setText("Cadastro Veículos");
+        lbTitulo.setText("Iniciar Corrida");
         lbTitulo.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
         lbTitulo.setPreferredSize(new java.awt.Dimension(321, 30));
 
@@ -47,7 +47,7 @@ public class FormCadastroVeiculo extends javax.swing.JPanel {
         lbSubTitulo.setFont(new java.awt.Font("Trebuchet MS", 0, 12)); // NOI18N
         lbSubTitulo.setForeground(new java.awt.Color(204, 204, 204));
         lbSubTitulo.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        lbSubTitulo.setText("Formulário para o cadastro de veículos.");
+        lbSubTitulo.setText("Formulário para iniciar corridas.");
         lbSubTitulo.setVerticalAlignment(javax.swing.SwingConstants.TOP);
         lbSubTitulo.setPreferredSize(new java.awt.Dimension(300, 16));
 

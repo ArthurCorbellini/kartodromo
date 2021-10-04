@@ -11,9 +11,6 @@ package br.univates.kartodromo.view.form;
  */
 public class FormCadastroUsuario extends javax.swing.JPanel {
 
-    /**
-     * Creates new form formCadastros
-     */
     public FormCadastroUsuario() {
         initComponents();
     }
@@ -27,67 +24,68 @@ public class FormCadastroUsuario extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanel12 = new javax.swing.JPanel();
-        jLabel22 = new javax.swing.JLabel();
-        jLabel1 = new javax.swing.JLabel();
-        campoNome = new javax.swing.JTextField();
-        jLabel2 = new javax.swing.JLabel();
-        campoSenha = new javax.swing.JPasswordField();
-        campoConfirmeSenha = new javax.swing.JPasswordField();
-        jLabel3 = new javax.swing.JLabel();
-        btnCancelar = new javax.swing.JButton();
-        btnSalvar = new javax.swing.JButton();
+        jpHeader = new javax.swing.JPanel();
+        lbTitulo = new javax.swing.JLabel();
+        lbSubTitulo = new javax.swing.JLabel();
+        jpBody = new javax.swing.JPanel();
 
-        setBackground(new java.awt.Color(224, 224, 224));
+        setBackground(new java.awt.Color(35, 40, 44));
         setPreferredSize(new java.awt.Dimension(575, 400));
 
-        jPanel12.setBackground(new java.awt.Color(219, 10, 64));
+        jpHeader.setBackground(new java.awt.Color(35, 40, 44));
+        jpHeader.setPreferredSize(new java.awt.Dimension(333, 58));
 
-        jLabel22.setBackground(new java.awt.Color(204, 204, 204));
-        jLabel22.setFont(new java.awt.Font("Trebuchet MS", 1, 24)); // NOI18N
-        jLabel22.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel22.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        jLabel22.setText("Cadastro Usuário");
-        jLabel22.setPreferredSize(new java.awt.Dimension(88, 18));
+        lbTitulo.setBackground(new java.awt.Color(204, 204, 204));
+        lbTitulo.setFont(new java.awt.Font("Trebuchet MS", 0, 24)); // NOI18N
+        lbTitulo.setForeground(new java.awt.Color(204, 204, 204));
+        lbTitulo.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        lbTitulo.setText("Cadastro Usuário");
+        lbTitulo.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
+        lbTitulo.setPreferredSize(new java.awt.Dimension(321, 30));
 
-        javax.swing.GroupLayout jPanel12Layout = new javax.swing.GroupLayout(jPanel12);
-        jPanel12.setLayout(jPanel12Layout);
-        jPanel12Layout.setHorizontalGroup(
-            jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel12Layout.createSequentialGroup()
-                .addContainerGap(71, Short.MAX_VALUE)
-                .addComponent(jLabel22, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(30, 30, 30))
-        );
-        jPanel12Layout.setVerticalGroup(
-            jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel12Layout.createSequentialGroup()
+        lbSubTitulo.setBackground(new java.awt.Color(204, 204, 204));
+        lbSubTitulo.setFont(new java.awt.Font("Trebuchet MS", 0, 12)); // NOI18N
+        lbSubTitulo.setForeground(new java.awt.Color(204, 204, 204));
+        lbSubTitulo.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        lbSubTitulo.setText("Formulário para o cadastro de usuários.");
+        lbSubTitulo.setVerticalAlignment(javax.swing.SwingConstants.TOP);
+        lbSubTitulo.setPreferredSize(new java.awt.Dimension(300, 16));
+
+        javax.swing.GroupLayout jpHeaderLayout = new javax.swing.GroupLayout(jpHeader);
+        jpHeader.setLayout(jpHeaderLayout);
+        jpHeaderLayout.setHorizontalGroup(
+            jpHeaderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jpHeaderLayout.createSequentialGroup()
+                .addGap(27, 27, 27)
+                .addComponent(lbSubTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(jpHeaderLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel22, javax.swing.GroupLayout.DEFAULT_SIZE, 63, Short.MAX_VALUE)
+                .addComponent(lbTitulo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
+        jpHeaderLayout.setVerticalGroup(
+            jpHeaderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jpHeaderLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(lbTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, 0)
+                .addComponent(lbSubTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(6, 6, 6))
+        );
 
-        jLabel1.setFont(new java.awt.Font("Trebuchet MS", 0, 18)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(219, 10, 64));
-        jLabel1.setText("Nome");
+        jpBody.setBackground(new java.awt.Color(35, 40, 44));
 
-        jLabel2.setFont(new java.awt.Font("Trebuchet MS", 0, 18)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(219, 10, 64));
-        jLabel2.setText("Senha");
-
-        jLabel3.setFont(new java.awt.Font("Trebuchet MS", 0, 18)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(219, 10, 64));
-        jLabel3.setText("Confirme sua Senha");
-
-        btnCancelar.setBackground(new java.awt.Color(219, 10, 64));
-        btnCancelar.setFont(new java.awt.Font("Trebuchet MS", 1, 18)); // NOI18N
-        btnCancelar.setForeground(new java.awt.Color(255, 255, 255));
-        btnCancelar.setText("Cancelar");
-
-        btnSalvar.setBackground(new java.awt.Color(219, 10, 64));
-        btnSalvar.setFont(new java.awt.Font("Trebuchet MS", 1, 18)); // NOI18N
-        btnSalvar.setForeground(new java.awt.Color(255, 255, 255));
-        btnSalvar.setText("Salvar");
+        javax.swing.GroupLayout jpBodyLayout = new javax.swing.GroupLayout(jpBody);
+        jpBody.setLayout(jpBodyLayout);
+        jpBodyLayout.setHorizontalGroup(
+            jpBodyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+        jpBodyLayout.setVerticalGroup(
+            jpBodyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 324, Short.MAX_VALUE)
+        );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -96,62 +94,28 @@ public class FormCadastroUsuario extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGap(0, 164, Short.MAX_VALUE)
-                        .addComponent(jPanel12, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jpBody, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(campoNome)
-                                .addComponent(jLabel1)
-                                .addComponent(jLabel2)
-                                .addComponent(campoSenha, javax.swing.GroupLayout.DEFAULT_SIZE, 365, Short.MAX_VALUE))
-                            .addComponent(jLabel3)
-                            .addComponent(campoConfirmeSenha, javax.swing.GroupLayout.PREFERRED_SIZE, 365, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(0, 0, Short.MAX_VALUE))))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btnCancelar)
-                .addGap(18, 18, 18)
-                .addComponent(btnSalvar)
+                        .addComponent(jpHeader, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 230, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(25, 25, 25)
-                .addComponent(jPanel12, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jLabel1)
+                .addContainerGap()
+                .addComponent(jpHeader, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(campoNome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(campoSenha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel3)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(campoConfirmeSenha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 79, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnSalvar)
-                    .addComponent(btnCancelar))
+                .addComponent(jpBody, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnCancelar;
-    private javax.swing.JButton btnSalvar;
-    private javax.swing.JPasswordField campoConfirmeSenha;
-    private javax.swing.JTextField campoNome;
-    private javax.swing.JPasswordField campoSenha;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel22;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JPanel jPanel12;
+    private javax.swing.JPanel jpBody;
+    private javax.swing.JPanel jpHeader;
+    private javax.swing.JLabel lbSubTitulo;
+    private javax.swing.JLabel lbTitulo;
     // End of variables declaration//GEN-END:variables
 }

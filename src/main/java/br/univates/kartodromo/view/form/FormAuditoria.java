@@ -102,40 +102,60 @@ public class FormAuditoria extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanel12 = new javax.swing.JPanel();
-        jLabel22 = new javax.swing.JLabel();
+        jpHeader = new javax.swing.JPanel();
+        lbTitulo = new javax.swing.JLabel();
+        lbSubTitulo = new javax.swing.JLabel();
+        jpBody = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
         jtAuditoria = new javax.swing.JTable();
 
-        setBackground(new java.awt.Color(224, 224, 224));
+        setBackground(new java.awt.Color(35, 40, 44));
         setPreferredSize(new java.awt.Dimension(575, 400));
 
-        jPanel12.setBackground(new java.awt.Color(219, 10, 64));
+        jpHeader.setBackground(new java.awt.Color(35, 40, 44));
+        jpHeader.setPreferredSize(new java.awt.Dimension(333, 58));
 
-        jLabel22.setBackground(new java.awt.Color(204, 204, 204));
-        jLabel22.setFont(new java.awt.Font("Trebuchet MS", 1, 24)); // NOI18N
-        jLabel22.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel22.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        jLabel22.setText("Auditoria e Acessos");
-        jLabel22.setMaximumSize(new java.awt.Dimension(500, 100));
-        jLabel22.setPreferredSize(new java.awt.Dimension(300, 63));
+        lbTitulo.setBackground(new java.awt.Color(204, 204, 204));
+        lbTitulo.setFont(new java.awt.Font("Trebuchet MS", 0, 24)); // NOI18N
+        lbTitulo.setForeground(new java.awt.Color(204, 204, 204));
+        lbTitulo.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        lbTitulo.setText("Auditoria");
+        lbTitulo.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
+        lbTitulo.setPreferredSize(new java.awt.Dimension(321, 30));
 
-        javax.swing.GroupLayout jPanel12Layout = new javax.swing.GroupLayout(jPanel12);
-        jPanel12.setLayout(jPanel12Layout);
-        jPanel12Layout.setHorizontalGroup(
-            jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel12Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel22, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(30, 30, 30))
-        );
-        jPanel12Layout.setVerticalGroup(
-            jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel12Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel22, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+        lbSubTitulo.setBackground(new java.awt.Color(204, 204, 204));
+        lbSubTitulo.setFont(new java.awt.Font("Trebuchet MS", 0, 12)); // NOI18N
+        lbSubTitulo.setForeground(new java.awt.Color(204, 204, 204));
+        lbSubTitulo.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        lbSubTitulo.setText("Lista das alterações, inserções e exclusões dos últimos três meses");
+        lbSubTitulo.setVerticalAlignment(javax.swing.SwingConstants.TOP);
+        lbSubTitulo.setPreferredSize(new java.awt.Dimension(300, 16));
+
+        javax.swing.GroupLayout jpHeaderLayout = new javax.swing.GroupLayout(jpHeader);
+        jpHeader.setLayout(jpHeaderLayout);
+        jpHeaderLayout.setHorizontalGroup(
+            jpHeaderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jpHeaderLayout.createSequentialGroup()
+                .addGroup(jpHeaderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jpHeaderLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(lbTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, 418, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jpHeaderLayout.createSequentialGroup()
+                        .addGap(27, 27, 27)
+                        .addComponent(lbSubTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, 397, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
+        jpHeaderLayout.setVerticalGroup(
+            jpHeaderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jpHeaderLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(lbTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, 0)
+                .addComponent(lbSubTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(6, 6, 6))
+        );
+
+        jpBody.setBackground(new java.awt.Color(35, 40, 44));
 
         jtAuditoria.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -151,6 +171,23 @@ public class FormAuditoria extends javax.swing.JPanel {
         jtAuditoria.getTableHeader().setReorderingAllowed(false);
         jScrollPane2.setViewportView(jtAuditoria);
 
+        javax.swing.GroupLayout jpBodyLayout = new javax.swing.GroupLayout(jpBody);
+        jpBody.setLayout(jpBodyLayout);
+        jpBodyLayout.setHorizontalGroup(
+            jpBodyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jpBodyLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 551, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+        jpBodyLayout.setVerticalGroup(
+            jpBodyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jpBodyLayout.createSequentialGroup()
+                .addGap(6, 6, 6)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 312, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -159,28 +196,29 @@ public class FormAuditoria extends javax.swing.JPanel {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(0, 233, Short.MAX_VALUE)
-                        .addComponent(jPanel12, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jScrollPane2)
-                        .addContainerGap())))
+                        .addComponent(jpHeader, javax.swing.GroupLayout.PREFERRED_SIZE, 408, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addComponent(jpBody, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(25, 25, 25)
-                .addComponent(jPanel12, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 282, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jpHeader, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jpBody, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel jLabel22;
-    private javax.swing.JPanel jPanel12;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JPanel jpBody;
+    private javax.swing.JPanel jpHeader;
     private javax.swing.JTable jtAuditoria;
+    private javax.swing.JLabel lbSubTitulo;
+    private javax.swing.JLabel lbTitulo;
     // End of variables declaration//GEN-END:variables
 }

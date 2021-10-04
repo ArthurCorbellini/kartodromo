@@ -100,7 +100,7 @@
               <Color blue="cc" green="cc" red="cc" type="rgb"/>
             </Property>
             <Property name="horizontalAlignment" type="int" value="2"/>
-            <Property name="text" type="java.lang.String" value="T&#xed;tulo Lorem Ipsum"/>
+            <Property name="text" type="java.lang.String" value="Iniciar Corrida"/>
             <Property name="verticalAlignment" type="int" value="3"/>
             <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
               <Dimension value="[321, 30]"/>
@@ -119,7 +119,7 @@
               <Color blue="cc" green="cc" red="cc" type="rgb"/>
             </Property>
             <Property name="horizontalAlignment" type="int" value="2"/>
-            <Property name="text" type="java.lang.String" value="T&#xed;tulo Lorem Ipsum"/>
+            <Property name="text" type="java.lang.String" value="Formul&#xe1;rio para iniciar corridas."/>
             <Property name="verticalAlignment" type="int" value="1"/>
             <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
               <Dimension value="[300, 16]"/>

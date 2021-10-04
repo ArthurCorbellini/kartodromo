@@ -39,8 +39,8 @@ public class MenuItem extends javax.swing.JPanel {
     public MenuItem(Icon lightIcon, String menuName, ActionListener action) {
         instanciarMenu(lightIcon, null, menuName, action, null);
     }
-    
-    public MenuItem(Icon lightIcon,Icon darkIcon, String menuName, ActionListener action) {
+
+    public MenuItem(Icon lightIcon, Icon darkIcon, String menuName, ActionListener action) {
         instanciarMenu(lightIcon, darkIcon, menuName, action, null);
     }
 
@@ -92,7 +92,7 @@ public class MenuItem extends javax.swing.JPanel {
         lbIcon = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(21, 25, 28));
-        setPreferredSize(new java.awt.Dimension(225, 35));
+        setPreferredSize(new java.awt.Dimension(225, 30));
         addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
                 formMousePressed(evt);
@@ -103,11 +103,11 @@ public class MenuItem extends javax.swing.JPanel {
         jSeparator1.setPreferredSize(new java.awt.Dimension(225, 0));
 
         lbName.setBackground(new java.awt.Color(204, 204, 204));
-        lbName.setFont(new java.awt.Font("Trebuchet MS", 1, 14)); // NOI18N
+        lbName.setFont(new java.awt.Font("Trebuchet MS", 1, 12)); // NOI18N
         lbName.setForeground(new java.awt.Color(204, 204, 204));
         lbName.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         lbName.setText("Content");
-        lbName.setPreferredSize(new java.awt.Dimension(61, 18));
+        lbName.setPreferredSize(new java.awt.Dimension(61, 15));
 
         lbIcon.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
 
@@ -126,11 +126,10 @@ public class MenuItem extends javax.swing.JPanel {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lbIcon, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(lbName, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                    .addComponent(lbName, javax.swing.GroupLayout.DEFAULT_SIZE, 30, Short.MAX_VALUE)
+                    .addComponent(lbIcon, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(0, 0, 0)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
     }// </editor-fold>//GEN-END:initComponents
@@ -181,7 +180,7 @@ public class MenuItem extends javax.swing.JPanel {
 
     private void sleep() {
         try {
-            Thread.sleep(20);
+            Thread.sleep(1);
         } catch (Exception e) {
         }
     }

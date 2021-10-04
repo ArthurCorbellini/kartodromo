@@ -51,7 +51,7 @@ public class MenuV3 extends javax.swing.JFrame {
     }
 
     private void execute() {
-        lbLogo.setIcon(new ImageIcon(getClass().getResource("/images/logo_crown_orange.png")));
+        lbLogo.setIcon(new ImageIcon(getClass().getResource("/images/logo-crown-orange.png")));
 
         listMenu = new ArrayList<>();
 

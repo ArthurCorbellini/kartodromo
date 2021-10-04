@@ -9,6 +9,8 @@ import br.univates.kartodromo.view.form.FormAuditoria;
 import br.univates.kartodromo.view.form.FormCadastroTracado;
 import br.univates.kartodromo.view.form.FormCadastroUsuario;
 import br.univates.kartodromo.view.form.FormCadastroVeiculo;
+import br.univates.kartodromo.view.form.FormHome;
+import br.univates.kartodromo.view.form.FormIniciarCorrida;
 import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -18,41 +20,60 @@ import java.util.List;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
 
 /**
  *
  * @author Arthur
  */
-public class MenuV2 extends javax.swing.JFrame {
+public class MenuV4 extends javax.swing.JFrame {
 
+    private Color defaultDarkColor = new Color(21, 25, 28);
+    private Color defaultLightColor = new Color(204, 204, 204);
+    private Color defaultColor = new Color(255, 211, 0);
+
+    private List<MenuItem> allButtons = new ArrayList<>();
     private List<MenuItem> listMenu;
 
-    public MenuV2() {
+    private MenuItem btnHome;
+    private MenuItem btnIniciarCorrida;
+    private MenuItem btnSobreShow;
+    private MenuItem btnSobreHide;
+    private MenuItem btnCadastro;
+    private MenuItem btnCadastroUsuario;
+    private MenuItem btnCadastroVeiculo;
+    private MenuItem btnCadastroTracado;
+    private MenuItem btnAuditoria;
+
+    public MenuV4() {
         initComponents();
         setExtendedState(JFrame.MAXIMIZED_BOTH);
         execute();
     }
 
     private void execute() {
-        lbLogo.setIcon(new ImageIcon(getClass().getResource("/images/logo-crown-orange.png")));
+        lbDefaultLogo.setIcon(new ImageIcon(getClass().getResource("/images/logo-crown-orange.png")));
+        lbDarkLogo.setIcon(new ImageIcon(getClass().getResource("/images/logo-crown-dark.png")));
 
         listMenu = new ArrayList<>();
 
-        // -------- btnHome --------
-        listMenu.add(buildBtnHome());
+        buildBtnHome();
+        listMenu.add(btnHome);
 
-        // -------- btnIniciarCorrida --------        
-        listMenu.add(buildBtnIniciarCorrida());
+        buildBtnIniciarCorrida();
+        listMenu.add(btnIniciarCorrida);
 
-        // -------- btnCadastros --------
-        listMenu.add(buildBtnCadastro());
+        buildBtnCadastro();
+        listMenu.add(btnCadastro);
 
-        // -------- btnAuditoria --------
-        listMenu.add(buildBtnAuditoria());
+        buildBtnAuditoria();
+        listMenu.add(btnAuditoria);
 
-        // -------- btnSobre --------        
-        jpAboutShow.add(buildBtnSobreShow());
-        jpAboutHide.add(buildBtnSobreHide());
+        buildBtnSobreShow();
+        jpAboutShow.add(btnSobreShow);
+        buildBtnSobreHide();
+        jpAboutHide.add(btnSobreHide);
 
         addMenu(listMenu);
     }
@@ -63,117 +84,175 @@ public class MenuV2 extends javax.swing.JFrame {
 
             List<MenuItem> subMenu = v.getSubMenu();
             subMenu.forEach(u -> addMenu(Arrays.asList(u)));
+
+            // Lista contendo todos os botões e sub botões
+            allButtons.add(v);
         });
         menus.revalidate();
     }
 
-    private MenuItem buildBtnIniciarCorrida() {
-        ImageIcon img = new ImageIcon(getClass().getResource("/images/menuIcons/icon_helmet.png"));
-        return new MenuItem(img, "Iniciar Corrida", null);
-    }
-
-    private MenuItem buildBtnHome() {
-        ImageIcon img = new ImageIcon(getClass().getResource("/images/menuIcons/icon_home.png"));
-        return new MenuItem(img, "Home", null);
-    }
-
-    private MenuItem buildBtnSobreShow() {
-        ImageIcon img = new ImageIcon(getClass().getResource("/images/menuIcons/icon_mustache.png"));
-        return new MenuItem(img, "Sobre", null);
-    }
-
-    private MenuItem buildBtnSobreHide() {
-        MenuItem btnAboutHide = new MenuItem(null, "Sobre", null);
-        btnAboutHide.setBackground(new Color(0, 28, 57));
-
-        return btnAboutHide;
-    }
-
-    private MenuItem buildBtnCadastro() {
-        List<MenuItem> listSubBtnCadastro = new ArrayList<>();
-        ImageIcon dot = new ImageIcon(getClass().getResource("/images/menuIcons/icon_dot.png"));
-
-        MenuItem btnCadastroUsuario = new MenuItem(dot, "  Usuário", new ActionListener() {
+    private void buildBtnHome() {
+        ImageIcon lightIcon = new ImageIcon(getClass().getResource("/images/menuIcons/icon-home-light.png"));
+        ImageIcon darkIcon = new ImageIcon(getClass().getResource("/images/menuIcons/icon-home-dark.png"));
+        btnHome = new MenuItem(lightIcon, darkIcon, "Home", new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent ae) {
-                resetAllForms();
-                jpContent.add(new FormCadastroUsuario());
-                jpContent.repaint();
-                jpContent.revalidate();
+                pressButton(btnHome, new FormHome());
+            }
+        });
+    }
+
+    private void buildBtnIniciarCorrida() {
+        ImageIcon lightIcon = new ImageIcon(getClass().getResource("/images/menuIcons/icon-helmet-light.png"));
+        ImageIcon darkIcon = new ImageIcon(getClass().getResource("/images/menuIcons/icon-helmet-dark.png"));
+        btnIniciarCorrida = new MenuItem(lightIcon, darkIcon, "Iniciar Corrida", new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent ae) {
+                pressButton(btnIniciarCorrida, new FormIniciarCorrida());
+            }
+        });
+    }
+
+    private void buildBtnCadastro() {
+        List<MenuItem> listSubBtnCadastro = new ArrayList<>();
+        ImageIcon dotLight = new ImageIcon(getClass().getResource("/images/menuIcons/icon-dot-light.png"));
+        ImageIcon dotDark = new ImageIcon(getClass().getResource("/images/menuIcons/icon-dot-dark.png"));
+
+        btnCadastroUsuario = new MenuItem(dotLight, dotDark, "  Usuário", new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent ae) {
+                pressButton(btnCadastroUsuario, new FormCadastroUsuario());
             }
         });
         btnCadastroUsuario.getLbIcon().setHorizontalAlignment(JLabel.RIGHT);
         listSubBtnCadastro.add(btnCadastroUsuario);
 
-        MenuItem btnCadastroVeiculo = new MenuItem(dot, "  Veículo", new ActionListener() {
+        btnCadastroVeiculo = new MenuItem(dotLight, dotDark, "  Veículo", new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent ae) {
-                resetAllForms();
-                jpContent.add(new FormCadastroVeiculo());
-                jpContent.repaint();
-                jpContent.revalidate();
+                pressButton(btnCadastroVeiculo, new FormCadastroVeiculo());
             }
         });
         btnCadastroVeiculo.getLbIcon().setHorizontalAlignment(JLabel.RIGHT);
         listSubBtnCadastro.add(btnCadastroVeiculo);
 
-        MenuItem btnCadastroTracado = new MenuItem(dot, "  Traçado", new ActionListener() {
+        btnCadastroTracado = new MenuItem(dotLight, dotDark, "  Traçado", new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent ae) {
-                resetAllForms();
-                jpContent.add(new FormCadastroTracado());
-                jpContent.repaint();
-                jpContent.revalidate();
+                pressButton(btnCadastroTracado, new FormCadastroTracado());
             }
         });
         btnCadastroTracado.getLbIcon().setHorizontalAlignment(JLabel.RIGHT);
-        listSubBtnCadastro.add(btnCadastroTracado);       
+        listSubBtnCadastro.add(btnCadastroTracado);
 
-        ImageIcon img = new ImageIcon(getClass().getResource("/images/menuIcons/icon_registration.png"));
-        return new MenuItem(img, "Cadastros", null, listSubBtnCadastro);
+        ImageIcon lightIcon = new ImageIcon(getClass().getResource("/images/menuIcons/icon-registration-light.png"));
+        ImageIcon darkIcon = new ImageIcon(getClass().getResource("/images/menuIcons/icon-registration-dark.png"));
+        btnCadastro = new MenuItem(lightIcon, darkIcon, "Cadastros", null, listSubBtnCadastro);
     }
 
-    private MenuItem buildBtnAuditoria() {
-        ImageIcon img = new ImageIcon(getClass().getResource("/images/menuIcons/icon_police_hat.png"));
-        return new MenuItem(img, "Auditoria", new ActionListener() {
+    private void buildBtnAuditoria() {
+        ImageIcon lightIcon = new ImageIcon(getClass().getResource("/images/menuIcons/icon-police-hat-light.png"));
+        ImageIcon darkIcon = new ImageIcon(getClass().getResource("/images/menuIcons/icon-police-hat-dark.png"));
+
+        btnAuditoria = new MenuItem(lightIcon, darkIcon, "Auditoria", new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent ae) {
-                resetAllForms();
-                jpContent.add(new FormAuditoria());
-                jpContent.repaint();
-                jpContent.revalidate();
+                pressButton(btnAuditoria, new FormAuditoria());
             }
         });
     }
 
-    private void resetAllForms() {
-        jpContent.removeAll();
+    private void buildBtnSobreShow() {
+        ImageIcon lightIcon = new ImageIcon(getClass().getResource("/images/menuIcons/icon-mustache-light.png"));
+        ImageIcon darkIcon = new ImageIcon(getClass().getResource("/images/menuIcons/icon-mustache-dark.png"));
+
+        btnSobreShow = new MenuItem(lightIcon, darkIcon, "Sobre", new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent ae) {
+                btnSobreShow.setBackground(defaultColor);
+                btnSobreShow.getLbName().setForeground(defaultDarkColor);
+                btnSobreShow.getLbIcon().setIcon(btnSobreShow.getDarkIcon());
+                btnSobreHide.setBackground(defaultColor);
+                btnSobreHide.getLbName().setForeground(defaultDarkColor);
+                btnSobreHide.getLbIcon().setIcon(btnSobreHide.getDarkIcon());
+
+                jpMenu.setSize(jpAbout.getWidth(), jpAbout.getHeight());
+                Thread th = new Thread() {
+                    @Override
+                    public void run() {
+                        try {
+                            for (int i = jpAbout.getWidth(); i >= 0; i--) {
+                                Thread.sleep(1);
+                                jpMenu.setSize(i, jpAbout.getHeight());
+                            }
+                        } catch (Exception e) {
+                            JOptionPane.showMessageDialog(null, e);
+                        }
+                    }
+                };
+                th.start();
+            }
+        });
     }
 
-//    private void resetMenuButtons() {
-//        tabHome.setBackground(new Color(219, 10, 64));
-//        tabIniciarCorrida.setBackground(new Color(219, 10, 64));
-//        tabAgendamentos.setBackground(new Color(219, 10, 64));
-//        tabCadastros.setBackground(new Color(219, 10, 64));
-//        tabFinanceiro.setBackground(new Color(219, 10, 64));
-//        tabPaddock.setBackground(new Color(219, 10, 64));
-//        tabPlacar.setBackground(new Color(219, 10, 64));
-//        tabSobre.setBackground(new Color(219, 10, 64));
-//    }
-//
-//    private void resetContentPanels() {
-//        // Paineis com uma hierarquia a cima dos demais (parents).    
-//        jpContent.setVisible(true);
-//        jpHomePage.setVisible(false);
-//
-//        jpIniciarCorrida.setVisible(false);
-//        jpAgendamentos.setVisible(false);
-//        jpCadastros.setVisible(false);
-//        jpFinanceiro.setVisible(false);
-//        jpPaddock.setVisible(false);
-//        jpPlacar.setVisible(false);
-//        jpSobre.setVisible(false);
-//    }
+    private void buildBtnSobreHide() {
+        ImageIcon lightIcon = new ImageIcon(getClass().getResource("/images/menuIcons/icon-mustache-light.png"));
+        ImageIcon darkIcon = new ImageIcon(getClass().getResource("/images/menuIcons/icon-mustache-dark.png"));
+
+        btnSobreHide = new MenuItem(lightIcon, darkIcon, "Sobre", new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent ae) {
+                btnSobreShow.setBackground(defaultDarkColor);
+                btnSobreShow.getLbName().setForeground(defaultLightColor);
+                btnSobreShow.getLbIcon().setIcon(btnSobreShow.getLightIcon());
+                btnSobreHide.setBackground(defaultLightColor);
+                btnSobreHide.getLbName().setForeground(defaultDarkColor);
+                btnSobreHide.getLbIcon().setIcon(btnSobreHide.getDarkIcon());
+
+                jpMenu.setVisible(true);
+                jpMenu.setSize(jpAbout.getWidth(), jpAbout.getHeight());
+                Thread th = new Thread() {
+                    @Override
+                    public void run() {
+                        try {
+                            for (int i = 0; i <= jpAbout.getWidth(); i++) {
+                                Thread.sleep(1);
+                                jpMenu.setSize(i, jpAbout.getHeight());
+                            }
+                        } catch (Exception e) {
+                            JOptionPane.showMessageDialog(null, e);
+                        }
+                    }
+                };
+                th.start();
+            }
+        });
+    }
+
+    private void pressButton(MenuItem btn, JPanel form) {
+        resetOnButton();
+
+        btn.setClicked(true);
+        btn.setBackground(defaultColor);
+        btn.getLbName().setForeground(defaultDarkColor);
+        btn.getLbIcon().setIcon(btn.getDarkIcon());
+
+        jpContent.add(form);
+        jpContent.repaint();
+        jpContent.revalidate();
+
+    }
+
+    private void resetOnButton() {
+        jpContent.removeAll();
+
+        allButtons.stream().filter(p -> p.isClicked()).forEach(p -> {
+            p.setBackground(defaultDarkColor);
+            p.getLbName().setForeground(defaultLightColor);
+            p.getLbIcon().setIcon(p.getLightIcon());
+        });
+    }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -188,12 +267,13 @@ public class MenuV2 extends javax.swing.JFrame {
         jpAbout = new javax.swing.JPanel();
         jsp3 = new javax.swing.JScrollPane();
         jpAboutHide = new javax.swing.JPanel();
+        lbDarkLogo = new javax.swing.JLabel();
         jpMenu = new javax.swing.JPanel();
         jsp1 = new javax.swing.JScrollPane();
         menus = new javax.swing.JPanel();
         jsp2 = new javax.swing.JScrollPane();
         jpAboutShow = new javax.swing.JPanel();
-        lbLogo = new javax.swing.JLabel();
+        lbDefaultLogo = new javax.swing.JLabel();
         jpContent = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -217,16 +297,25 @@ public class MenuV2 extends javax.swing.JFrame {
         jpAboutHide.setLayout(new javax.swing.BoxLayout(jpAboutHide, javax.swing.BoxLayout.Y_AXIS));
         jsp3.setViewportView(jpAboutHide);
 
+        lbDarkLogo.setBackground(new java.awt.Color(224, 224, 224));
+        lbDarkLogo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+
         javax.swing.GroupLayout jpAboutLayout = new javax.swing.GroupLayout(jpAbout);
         jpAbout.setLayout(jpAboutLayout);
         jpAboutLayout.setHorizontalGroup(
             jpAboutLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jsp3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(jpAboutLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(lbDarkLogo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
         jpAboutLayout.setVerticalGroup(
             jpAboutLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpAboutLayout.createSequentialGroup()
-                .addGap(0, 356, Short.MAX_VALUE)
+                .addContainerGap()
+                .addComponent(lbDarkLogo, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 312, Short.MAX_VALUE)
                 .addComponent(jsp3, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
@@ -249,8 +338,8 @@ public class MenuV2 extends javax.swing.JFrame {
         jpAboutShow.setLayout(new javax.swing.BoxLayout(jpAboutShow, javax.swing.BoxLayout.Y_AXIS));
         jsp2.setViewportView(jpAboutShow);
 
-        lbLogo.setBackground(new java.awt.Color(21, 25, 28));
-        lbLogo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lbDefaultLogo.setBackground(new java.awt.Color(21, 25, 28));
+        lbDefaultLogo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
 
         javax.swing.GroupLayout jpMenuLayout = new javax.swing.GroupLayout(jpMenu);
         jpMenu.setLayout(jpMenuLayout);
@@ -260,14 +349,14 @@ public class MenuV2 extends javax.swing.JFrame {
             .addComponent(jsp2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(jpMenuLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(lbLogo, javax.swing.GroupLayout.DEFAULT_SIZE, 213, Short.MAX_VALUE)
+                .addComponent(lbDefaultLogo, javax.swing.GroupLayout.DEFAULT_SIZE, 213, Short.MAX_VALUE)
                 .addContainerGap())
         );
         jpMenuLayout.setVerticalGroup(
             jpMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jpMenuLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(lbLogo, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(lbDefaultLogo, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jsp1, javax.swing.GroupLayout.DEFAULT_SIZE, 300, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -348,21 +437,27 @@ public class MenuV2 extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(MenuV2.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(MenuV4.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(MenuV2.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(MenuV4.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(MenuV2.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(MenuV4.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(MenuV2.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(MenuV4.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new MenuV2().setVisible(true);
+                new MenuV4().setVisible(true);
             }
         });
     }
@@ -378,7 +473,8 @@ public class MenuV2 extends javax.swing.JFrame {
     private javax.swing.JScrollPane jsp1;
     private javax.swing.JScrollPane jsp2;
     private javax.swing.JScrollPane jsp3;
-    private javax.swing.JLabel lbLogo;
+    private javax.swing.JLabel lbDarkLogo;
+    private javax.swing.JLabel lbDefaultLogo;
     private javax.swing.JPanel menus;
     // End of variables declaration//GEN-END:variables
 }
