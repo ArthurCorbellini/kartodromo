@@ -21,12 +21,13 @@ public class Usuario implements Serializable {
 
     private Integer id;
     private String name;
-    // VARCHAR (String) CPF
-    // VARCHAR (String) telefone
-    // VARCHAR (String) e-mail
-    // VARCHAR (String) senha
-    // INTEGER (Integer) perfilUsuario
-    // VARCHAR (String) sexo 
+    private String cpf;
+    private String telefone;
+    private String email;
+    private String senha;
+    private Integer perfilUsuario;
+    private String sexo;
+     
 
     public Usuario(Integer id) {
         this.id = id;
@@ -53,5 +54,58 @@ public class Usuario implements Serializable {
     public void setName(String name) {
         this.name = name;
     }
+    
+    @Column(name = "CPF_usuario")
+    public String getcpf() {
+        return cpf;
+    }
 
+    public void setcpf(String cpf) {
+        this.cpf = cpf;
+    }
+    
+    @Column(name = "telefone_usuario")
+    public String getTelefone() {
+        return telefone;
+    }
+
+    public void setTelefone(String telefone) {
+        this.telefone = telefone;
+    }
+    
+    @Column(name = "email_usuario")
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+    
+     @Column(name = "senha_usuario")
+    public String getSenha() {
+        return senha;
+    }
+
+    public void setSenha(String senha) {
+        this.senha = senha;
+    }
+    
+    @Column(name = "Perfilusuario")
+    public Integer getPerfil() {
+        return perfilUsuario;
+    }
+
+    public void setPerfil(Integer perfilUsuario) {
+        this.perfilUsuario = perfilUsuario;
+    }
+    
+    @Column(name = "sexo_cliente")
+    public String getSexo() {
+        return sexo;
+    }
+
+    public void setsexo(String sexo) {
+        this.sexo = sexo;
+    }
 }

@@ -22,6 +22,8 @@ public class Tracado implements Serializable {
 
     private Integer id;
     private String nome;
+    private String dificuldade;
+    private String maximo;
     private BigDecimal tamanho;
 
     public Tracado(Integer id) {
@@ -49,7 +51,25 @@ public class Tracado implements Serializable {
     public void setNome(String nome) {
         this.nome = nome;
     }
+    
+    @Column(name = "dificuldade_tracado")
+    public String getDificuldade() {
+        return dificuldade;
+    }
 
+    public void setDificuldade(String dificuldade) {
+        this.dificuldade = dificuldade;
+    }
+
+    @Column(name = "maximo_tracado")
+    public String getMaximo() {
+        return maximo;
+    }
+
+    public void setMaximoPilotos(String maximo) {
+        this.maximo = maximo;
+    }
+    
     @Column(name = "qt_tamanho")
     public BigDecimal getTamanho() {
         return tamanho;
@@ -58,5 +78,5 @@ public class Tracado implements Serializable {
     public void setTamanho(BigDecimal tamanho) {
         this.tamanho = tamanho;
     }
-
+    
 }
