@@ -5,6 +5,7 @@
  */
 package br.univates.kartodromo.model.dao;
 
+import br.univates.kartodromo.SystemKartodromo;
 import br.univates.kartodromo.util.HibernateUtil;
 import java.util.Arrays;
 import java.util.List;
@@ -19,8 +20,8 @@ import org.hibernate.Transaction;
  * @author Arthur
  */
 public class BaseDAO {
-    
-        public <T> List<T> getAll(Class<T> exampleClass) {
+
+    public <T> List<T> getAll(Class<T> exampleClass) {
         List<T> listReturn = null;
 
         Session session = null;

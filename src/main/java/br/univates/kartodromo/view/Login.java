@@ -5,6 +5,8 @@
  */
 package br.univates.kartodromo.view;
 
+import br.univates.kartodromo.controller.UsuarioController;
+import br.univates.kartodromo.view.MenuV4;
 import java.awt.Color;
 import javax.swing.ImageIcon;
 
@@ -18,6 +20,8 @@ public class Login extends javax.swing.JFrame {
     private Color defaultRightColor = new Color(35, 40, 44);
     private Color defaultColor = new Color(255, 211, 0);
     private ImageIcon logo = new ImageIcon(getClass().getResource("/images/logo-crown-orange.png"));
+
+    private UsuarioController controller;
 
     public Login() {
         initComponents();
@@ -232,7 +236,7 @@ public class Login extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                     .addComponent(jpLeft, javax.swing.GroupLayout.DEFAULT_SIZE, 400, Short.MAX_VALUE)
-                    .addComponent(jpRight, javax.swing.GroupLayout.DEFAULT_SIZE, 400, Short.MAX_VALUE))
+                    .addComponent(jpRight, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(0, 0, Short.MAX_VALUE))
         );
 
@@ -254,6 +258,10 @@ public class Login extends javax.swing.JFrame {
 
     private void lbLoginMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbLoginMouseReleased
         jpLogin.setBackground(defaultRightColor);
+
+        if (controller.validateUser(tfUser.getText(), tfPassword.getPassword().toString())) {
+            new MenuV4().setVisible(true);
+        }
     }//GEN-LAST:event_lbLoginMouseReleased
 
     /**

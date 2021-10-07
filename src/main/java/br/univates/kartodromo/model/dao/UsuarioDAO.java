@@ -11,4 +11,15 @@ package br.univates.kartodromo.model.dao;
  */
 public class UsuarioDAO extends BaseDAO {
 
+    // TESTE
+    public boolean validateUser(String user, String password) {
+        StringBuilder query = new StringBuilder();
+
+        query.append(" select * ");
+        query.append(" from   usuarios usua ");
+        query.append(" where  usua.user = " + user);
+        query.append(" and    usua.password = " + password);
+
+        return false;
+    }
 }

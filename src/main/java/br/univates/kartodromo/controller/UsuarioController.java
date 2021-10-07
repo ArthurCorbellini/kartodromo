@@ -17,7 +17,12 @@ public class UsuarioController {
 
     private final UsuarioDAO getUsuarioDAO = new UsuarioDAO();
 
+    public boolean validateUser(String user, String password) {
+        return getUsuarioDAO.validateUser(user, password);
+    }
+
     public List<Usuario> getAll() {
         return getUsuarioDAO.getAll(Usuario.class);
     }
+
 }
