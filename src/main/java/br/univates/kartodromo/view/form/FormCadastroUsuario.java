@@ -223,8 +223,8 @@ public class FormCadastroUsuario extends javax.swing.JPanel {
     private void btnSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarActionPerformed
 
         Usuario usuario = new Usuario();
-        
-        usuario.setName(getCampoNome().getText());
+
+        usuario.setNome(getCampoNome().getText());
 
         UsuarioDAO usuarioDAO = new UsuarioDAO();
         usuarioDAO.insert(usuario);
@@ -252,6 +252,5 @@ public class FormCadastroUsuario extends javax.swing.JPanel {
     public void setCampoNome(JTextField campoNome) {
         this.campoNome = campoNome;
     }
-
 
 }

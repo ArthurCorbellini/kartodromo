@@ -5,10 +5,16 @@
  */
 package br.univates.kartodromo.model.dao;
 
-import br.univates.kartodromo.SystemKartodromo;
 import br.univates.kartodromo.util.HibernateUtil;
+import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.util.Arrays;
 import java.util.List;
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import org.hibernate.HibernateException;
@@ -20,6 +26,30 @@ import org.hibernate.Transaction;
  * @author Arthur
  */
 public class BaseDAO {
+
+    private static EntityManagerFactory emFactory = Persistence.createEntityManagerFactory("kartodromoPU");
+    private static EntityManager entityManager = emFactory.createEntityManager();
+
+    public static void firstExecutionProcess() {
+        Session session = null;
+        try {
+            session = HibernateUtil.getSessionFactory().openSession();
+            Transaction transacao = session.beginTransaction();
+
+            Path schemaPath = new File("src/main/resources/schema.sql").toPath();
+            String schema = new String(Files.readAllBytes(schemaPath)).replaceAll("\\:", "\\\\:");
+
+            session.createSQLQuery(schema).executeUpdate();
+
+            transacao.commit();
+        } catch (HibernateException hibEx) {
+            hibEx.printStackTrace();
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        } finally {
+            session.close();
+        }
+    }
 
     public <T> List<T> getAll(Class<T> exampleClass) {
         List<T> listReturn = null;
@@ -103,6 +133,22 @@ public class BaseDAO {
         } finally {
             sessao.close();
         }
+    }
+
+    public static EntityManagerFactory getEmFactory() {
+        return emFactory;
+    }
+
+    public static void setEmFactory(EntityManagerFactory emFactory) {
+        BaseDAO.emFactory = emFactory;
+    }
+
+    public static EntityManager getEntityManager() {
+        return entityManager;
+    }
+
+    public static void setEntityManager(EntityManager entityManager) {
+        BaseDAO.entityManager = entityManager;
     }
 
 }

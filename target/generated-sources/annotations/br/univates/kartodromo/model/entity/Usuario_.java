@@ -8,8 +8,25 @@ import javax.persistence.metamodel.StaticMetamodel;
 @StaticMetamodel(Usuario.class)
 public abstract class Usuario_ {
 
-	public static volatile SingularAttribute<Usuario, String> name;
+	public static volatile SingularAttribute<Usuario, String> senha;
+	public static volatile SingularAttribute<Usuario, Long> telefone;
+	public static volatile SingularAttribute<Usuario, Long> cpf;
+	public static volatile SingularAttribute<Usuario, String> nome;
 	public static volatile SingularAttribute<Usuario, Integer> id;
+	public static volatile SingularAttribute<Usuario, String> login;
+	public static volatile SingularAttribute<Usuario, String> sexo;
+	public static volatile SingularAttribute<Usuario, String> email;
+	public static volatile SingularAttribute<Usuario, Integer> perfil;
+
+	public static final String SENHA = "senha";
+	public static final String TELEFONE = "telefone";
+	public static final String CPF = "cpf";
+	public static final String NOME = "nome";
+	public static final String ID = "id";
+	public static final String LOGIN = "login";
+	public static final String SEXO = "sexo";
+	public static final String EMAIL = "email";
+	public static final String PERFIL = "perfil";
 
 }
 

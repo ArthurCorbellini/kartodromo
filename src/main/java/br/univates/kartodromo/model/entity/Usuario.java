@@ -20,14 +20,14 @@ import javax.persistence.Table;
 public class Usuario implements Serializable {
 
     private Integer id;
-    private String name;
-    private String cpf;
-    private String telefone;
-    private String email;
+    private String login;
     private String senha;
-    private Integer perfilUsuario;
+    private String nome;
+    private Long cpf;
+    private Long telefone;
+    private String email;
+    private Integer perfil;
     private String sexo;
-     
 
     public Usuario(Integer id) {
         this.id = id;
@@ -46,43 +46,16 @@ public class Usuario implements Serializable {
         this.id = id;
     }
 
-    @Column(name = "nm_usuario")
-    public String getName() {
-        return name;
+    @Column(name = "tx_login")
+    public String getLogin() {
+        return login;
     }
 
-    public void setName(String name) {
-        this.name = name;
-    }
-    
-    @Column(name = "CPF_usuario")
-    public String getcpf() {
-        return cpf;
+    public void setLogin(String login) {
+        this.login = login;
     }
 
-    public void setcpf(String cpf) {
-        this.cpf = cpf;
-    }
-    
-    @Column(name = "telefone_usuario")
-    public String getTelefone() {
-        return telefone;
-    }
-
-    public void setTelefone(String telefone) {
-        this.telefone = telefone;
-    }
-    
-    @Column(name = "email_usuario")
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-    
-     @Column(name = "senha_usuario")
+    @Column(name = "tx_senha")
     public String getSenha() {
         return senha;
     }
@@ -90,22 +63,59 @@ public class Usuario implements Serializable {
     public void setSenha(String senha) {
         this.senha = senha;
     }
-    
-    @Column(name = "Perfilusuario")
-    public Integer getPerfil() {
-        return perfilUsuario;
+
+    @Column(name = "nm_nome")
+    public String getNome() {
+        return nome;
     }
 
-    public void setPerfil(Integer perfilUsuario) {
-        this.perfilUsuario = perfilUsuario;
+    public void setNome(String nome) {
+        this.nome = nome;
     }
-    
-    @Column(name = "sexo_cliente")
+
+    @Column(name = "nr_cpf")
+    public Long getCpf() {
+        return cpf;
+    }
+
+    public void setCpf(Long cpf) {
+        this.cpf = cpf;
+    }
+
+    @Column(name = "nr_telefone")
+    public Long getTelefone() {
+        return telefone;
+    }
+
+    public void setTelefone(Long telefone) {
+        this.telefone = telefone;
+    }
+
+    @Column(name = "tx_email")
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    @Column(name = "dm_perfil")
+    public Integer getPerfil() {
+        return perfil;
+    }
+
+    public void setPerfil(Integer perfil) {
+        this.perfil = perfil;
+    }
+
+    @Column(name = "dm_sexo")
     public String getSexo() {
         return sexo;
     }
 
-    public void setsexo(String sexo) {
+    public void setSexo(String sexo) {
         this.sexo = sexo;
     }
+
 }

@@ -9,7 +9,6 @@ import br.univates.kartodromo.model.dao.ClienteDAO;
 import br.univates.kartodromo.model.entity.Cliente;
 import java.util.Calendar;
 import javax.swing.JComboBox;
-import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 
 /**
@@ -357,13 +356,13 @@ public class FormCadastroCliente extends javax.swing.JPanel {
         Cliente cliente = new Cliente();
 
         cliente.setNome(getCampoNome().getText());
-        cliente.setActionTimeStamp((Calendar) getCampoDataNascimento().getAction());
-        cliente.setcpf(getCampoCPF().getText());
-        cliente.setsexo((String) getComboSexo().getSelectedItem());
+        cliente.setDataNascimento((Calendar) getCampoDataNascimento().getAction());
+        cliente.setCpf(Long.parseLong(getCampoCPF().getText()));
+        cliente.setSexo((String) getComboSexo().getSelectedItem());
         cliente.setEmail(getCampoEmail().getText());
-        cliente.setTelefone(getCampoTelefone().getText());
+        cliente.setTelefone(Long.parseLong(getCampoTelefone().getText()));
         cliente.setEndereco(getCampoEndereco().getText());
-        cliente.setcep(getCampoCEP().getText());
+        cliente.setCep(Long.parseLong(getCampoCEP().getText()));
 
         ClienteDAO clienteDAO = new ClienteDAO();
         clienteDAO.insert(cliente);

@@ -12,5 +12,9 @@ public abstract class Marca_ {
 	public static volatile SingularAttribute<Marca, Integer> id;
 	public static volatile SingularAttribute<Marca, String> contato;
 
+	public static final String NOME = "nome";
+	public static final String ID = "id";
+	public static final String CONTATO = "contato";
+
 }
 

@@ -19,5 +19,15 @@ public abstract class Auditoria_ {
 	public static volatile SingularAttribute<Auditoria, String> newData;
 	public static volatile SingularAttribute<Auditoria, String> tableName;
 
+	public static final String ACTION_TIME_STAMP = "actionTimeStamp";
+	public static final String QUERY = "query";
+	public static final String ACTION = "action";
+	public static final String SCHEMA_NAME = "schemaName";
+	public static final String USER_NAME = "userName";
+	public static final String ORIGINAL_DATA = "originalData";
+	public static final String SEQUENCE_ID = "sequenceId";
+	public static final String NEW_DATA = "newData";
+	public static final String TABLE_NAME = "tableName";
+
 }
 

@@ -5,21 +5,24 @@
  */
 package br.univates.kartodromo.model.dao;
 
+import javax.persistence.Query;
+
 /**
  *
  * @author Arthur
  */
 public class UsuarioDAO extends BaseDAO {
 
-    // TESTE
     public boolean validateUser(String user, String password) {
-        StringBuilder query = new StringBuilder();
+        StringBuilder stringQuery = new StringBuilder();
 
-        query.append(" select * ");
-        query.append(" from   usuarios usua ");
-        query.append(" where  usua.user = " + user);
-        query.append(" and    usua.password = " + password);
+        stringQuery.append(" select exists (select st_login ");
+        stringQuery.append("                from   usuarios ");
+        stringQuery.append("                where  st_login = '" + user + "' ");
+        stringQuery.append("                and    st_senha = '" + password + "') ");
 
-        return false;
+        Query query = getEntityManager().createNativeQuery(stringQuery.toString());
+
+        return (boolean) query.getSingleResult();
     }
 }

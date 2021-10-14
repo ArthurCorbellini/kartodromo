@@ -10,8 +10,16 @@ import javax.persistence.metamodel.StaticMetamodel;
 public abstract class Tracado_ {
 
 	public static volatile SingularAttribute<Tracado, BigDecimal> tamanho;
+	public static volatile SingularAttribute<Tracado, String> dificuldade;
+	public static volatile SingularAttribute<Tracado, String> maximo;
 	public static volatile SingularAttribute<Tracado, String> nome;
 	public static volatile SingularAttribute<Tracado, Integer> id;
+
+	public static final String TAMANHO = "tamanho";
+	public static final String DIFICULDADE = "dificuldade";
+	public static final String MAXIMO = "maximo";
+	public static final String NOME = "nome";
+	public static final String ID = "id";
 
 }
 

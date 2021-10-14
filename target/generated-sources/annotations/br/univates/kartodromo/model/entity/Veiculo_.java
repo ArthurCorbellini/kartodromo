@@ -12,5 +12,9 @@ public abstract class Veiculo_ {
 	public static volatile SingularAttribute<Veiculo, String> nome;
 	public static volatile SingularAttribute<Veiculo, Integer> id;
 
+	public static final String MARCA = "marca";
+	public static final String NOME = "nome";
+	public static final String ID = "id";
+
 }
 

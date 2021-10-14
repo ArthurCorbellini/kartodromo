@@ -18,20 +18,19 @@ import javax.persistence.TemporalType;
  *
  * @author JORGE
  */
-
 @Entity
 @Table(name = "CLIENTES")
 public class Cliente implements Serializable {
-    
+
     private Integer id;
     private String nome;
     private Calendar dataNascimento;
-    private String cpf;
+    private Long cpf;
     private String sexo;
     private String email;
-    private String telefone;
+    private Long telefone;
     private String endereco;
-    private String cep;
+    private Long cep;
 
     public Cliente(Integer id) {
         this.id = id;
@@ -39,16 +38,16 @@ public class Cliente implements Serializable {
 
     public Cliente() {
     }
-    
+
     @Id
     @Column(name = "id_cliente")
-     public Integer getId() {
+    public Integer getId() {
         return id;
     }
 
     public void setId(Integer id) {
         this.id = id;
-  }
+    }
 
     @Column(name = "nm_cliente")
     public String getNome() {
@@ -58,36 +57,36 @@ public class Cliente implements Serializable {
     public void setNome(String nome) {
         this.nome = nome;
     }
-    
-    @Column(name = "dataNascimento_cliente")
+
+    @Column(name = "dt_nascimento")
     @Temporal(TemporalType.TIMESTAMP)
-    public Calendar getdataNascimento() {
+    public Calendar getDataNascimento() {
         return dataNascimento;
     }
 
-    public void setActionTimeStamp(Calendar dataNascimento) {
+    public void setDataNascimento(Calendar dataNascimento) {
         this.dataNascimento = dataNascimento;
     }
-    
-    @Column(name = "CPF_cliente")
-    public String getcpf() {
+
+    @Column(name = "nr_cpf")
+    public Long getCpf() {
         return cpf;
     }
 
-    public void setcpf(String cpf) {
+    public void setCpf(Long cpf) {
         this.cpf = cpf;
     }
-    
-    @Column(name = "sexo_cliente")
+
+    @Column(name = "dm_sexo")
     public String getSexo() {
         return sexo;
     }
 
-    public void setsexo(String sexo) {
+    public void setSexo(String sexo) {
         this.sexo = sexo;
     }
-    
-    @Column(name = "email_cliente")
+
+    @Column(name = "tx_email")
     public String getEmail() {
         return email;
     }
@@ -95,17 +94,17 @@ public class Cliente implements Serializable {
     public void setEmail(String email) {
         this.email = email;
     }
-    
-    @Column(name = "telefone_cliente")
-    public String getTelefone() {
+
+    @Column(name = "nr_telefone")
+    public Long getTelefone() {
         return telefone;
     }
 
-    public void setTelefone(String telefone) {
+    public void setTelefone(Long telefone) {
         this.telefone = telefone;
     }
-    
-    @Column(name = "endereco_cliente")
+
+    @Column(name = "tx_endereco")
     public String getEndereco() {
         return endereco;
     }
@@ -113,13 +112,14 @@ public class Cliente implements Serializable {
     public void setEndereco(String endereco) {
         this.endereco = endereco;
     }
-    
-    @Column(name = "CEP_cliente")
-    public String getcep() {
+
+    @Column(name = "nr_cep")
+    public Long getCep() {
         return cep;
     }
 
-    public void setcep(String cep) {
+    public void setCep(Long cep) {
         this.cep = cep;
     }
+
 }

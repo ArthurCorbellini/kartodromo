@@ -278,7 +278,7 @@ public class FormCadastroTracado extends javax.swing.JPanel {
 
         tracado.setNome(getCampoNome().getText());
         tracado.setDificuldade((String) getComboDificuldade().getSelectedItem());
-        tracado.setMaximoPilotos(getCampoNumeroMaximo().getText());
+        tracado.setMaximo(getCampoNumeroMaximo().getText());
         tracado.setTamanho(new BigDecimal(getCampoTamanho().getText()));
 
         TracadoDAO tracadoDAO = new TracadoDAO();
