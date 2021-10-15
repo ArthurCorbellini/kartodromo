@@ -30,6 +30,10 @@ public class BaseDAO {
     private static EntityManagerFactory emFactory = Persistence.createEntityManagerFactory("kartodromoPU");
     private static EntityManager entityManager = emFactory.createEntityManager();
 
+    public static void connect() {
+
+    }
+
     public static void firstExecutionProcess() {
         Session session = null;
         try {

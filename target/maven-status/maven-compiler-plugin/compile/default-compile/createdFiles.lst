@@ -1,6 +1,7 @@
 br\univates\kartodromo\view\form\FormCadastroCliente$2.class
 br\univates\kartodromo\view\MenuV3$5.class
 br\univates\kartodromo\view\MenuV2.class
+br\univates\kartodromo\view\ErrorPanel$1.class
 br\univates\kartodromo\view\Menu$13.class
 br\univates\kartodromo\view\MenuV3$2.class
 br\univates\kartodromo\rascunhos\Menu$1.class
@@ -87,6 +88,7 @@ br\univates\kartodromo\util\HibernateUtil.class
 br\univates\kartodromo\view\Login$3.class
 br\univates\kartodromo\model\entity\Tracado.class
 br\univates\kartodromo\rascunhos\Agendamentos$1.class
+br\univates\kartodromo\view\ErrorPanel.class
 br\univates\kartodromo\model\entity\Marca.class
 br\univates\kartodromo\view\Menu$10.class
 br\univates\kartodromo\view\MenuV4$9$1.class
@@ -95,6 +97,7 @@ br\univates\kartodromo\view\MenuV4$6.class
 br\univates\kartodromo\view\Menu$9.class
 br\univates\kartodromo\view\MenuV3$1.class
 br\univates\kartodromo\rascunhos\IniciarCorrida.class
+br\univates\kartodromo\CriacaoBanco.class
 br\univates\kartodromo\model\dao\TracadoDAO.class
 br\univates\kartodromo\view\form\FormIniciarCorrida.class
 br\univates\kartodromo\view\MenuV2$3.class

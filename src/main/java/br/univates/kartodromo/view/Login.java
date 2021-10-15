@@ -21,8 +21,6 @@ public class Login extends javax.swing.JFrame {
     private Color defaultColor = new Color(255, 211, 0);
     private ImageIcon logo = new ImageIcon(getClass().getResource("/images/logo-crown-orange.png"));
 
-    private UsuarioController controller;
-
     public Login() {
         initComponents();
 
@@ -113,58 +111,70 @@ public class Login extends javax.swing.JFrame {
         jpLogin.setBackground(new java.awt.Color(35, 40, 44));
         jpLogin.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 204)));
         jpLogin.setPreferredSize(new java.awt.Dimension(100, 35));
+        jpLogin.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                jpLoginMousePressed(evt);
+            }
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                jpLoginMouseReleased(evt);
+            }
+        });
 
         lbLogin.setFont(new java.awt.Font("Trebuchet MS", 1, 12)); // NOI18N
         lbLogin.setForeground(new java.awt.Color(204, 204, 204));
         lbLogin.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lbLogin.setText("Entrar");
-        lbLogin.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                lbLoginMousePressed(evt);
-            }
-            public void mouseReleased(java.awt.event.MouseEvent evt) {
-                lbLoginMouseReleased(evt);
-            }
-        });
 
         javax.swing.GroupLayout jpLoginLayout = new javax.swing.GroupLayout(jpLogin);
         jpLogin.setLayout(jpLoginLayout);
         jpLoginLayout.setHorizontalGroup(
             jpLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(lbLogin, javax.swing.GroupLayout.DEFAULT_SIZE, 98, Short.MAX_VALUE)
+            .addGroup(jpLoginLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(lbLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jpLoginLayout.setVerticalGroup(
             jpLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(lbLogin, javax.swing.GroupLayout.DEFAULT_SIZE, 33, Short.MAX_VALUE)
+            .addGroup(jpLoginLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(lbLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         jpExit.setBackground(new java.awt.Color(35, 40, 44));
         jpExit.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 204)));
         jpExit.setPreferredSize(new java.awt.Dimension(100, 35));
         jpExit.setRequestFocusEnabled(false);
+        jpExit.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                jpExitMousePressed(evt);
+            }
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                jpExitMouseReleased(evt);
+            }
+        });
 
         lbExit.setFont(new java.awt.Font("Trebuchet MS", 1, 12)); // NOI18N
         lbExit.setForeground(new java.awt.Color(204, 204, 204));
         lbExit.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lbExit.setText("Sair");
-        lbExit.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                lbExitMousePressed(evt);
-            }
-            public void mouseReleased(java.awt.event.MouseEvent evt) {
-                lbExitMouseReleased(evt);
-            }
-        });
 
         javax.swing.GroupLayout jpExitLayout = new javax.swing.GroupLayout(jpExit);
         jpExit.setLayout(jpExitLayout);
         jpExitLayout.setHorizontalGroup(
             jpExitLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(lbExit, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 98, Short.MAX_VALUE)
+            .addGroup(jpExitLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(lbExit, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jpExitLayout.setVerticalGroup(
             jpExitLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(lbExit, javax.swing.GroupLayout.DEFAULT_SIZE, 33, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpExitLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(lbExit, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
 
         javax.swing.GroupLayout jpInputDataLayout = new javax.swing.GroupLayout(jpInputData);
@@ -243,26 +253,29 @@ public class Login extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void lbExitMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbExitMouseReleased
-        jpExit.setBackground(defaultRightColor);
-        System.exit(0);
-    }//GEN-LAST:event_lbExitMouseReleased
-
-    private void lbExitMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbExitMousePressed
-        jpExit.setBackground(defaultLeftColor);
-    }//GEN-LAST:event_lbExitMousePressed
-
-    private void lbLoginMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbLoginMousePressed
+    private void jpLoginMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jpLoginMousePressed
         jpLogin.setBackground(defaultLeftColor);
-    }//GEN-LAST:event_lbLoginMousePressed
+    }//GEN-LAST:event_jpLoginMousePressed
 
-    private void lbLoginMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbLoginMouseReleased
+    private void jpLoginMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jpLoginMouseReleased
         jpLogin.setBackground(defaultRightColor);
 
-        if (controller.validateUser(tfUser.getText(), tfPassword.getPassword().toString())) {
+        if (UsuarioController.validateUser(tfUser.getText(), tfPassword.getPassword().toString())) {
+            this.setVisible(false);
             new MenuV4().setVisible(true);
+        } else {
+            new DialogError(this, "Usuário não localizado.").setVisible(true);
         }
-    }//GEN-LAST:event_lbLoginMouseReleased
+    }//GEN-LAST:event_jpLoginMouseReleased
+
+    private void jpExitMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jpExitMousePressed
+        jpExit.setBackground(defaultLeftColor);
+    }//GEN-LAST:event_jpExitMousePressed
+
+    private void jpExitMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jpExitMouseReleased
+        jpExit.setBackground(defaultRightColor);
+        System.exit(0);
+    }//GEN-LAST:event_jpExitMouseReleased
 
     /**
      * @param args the command line arguments

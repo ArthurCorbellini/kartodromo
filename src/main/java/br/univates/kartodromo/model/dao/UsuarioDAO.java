@@ -16,10 +16,10 @@ public class UsuarioDAO extends BaseDAO {
     public boolean validateUser(String user, String password) {
         StringBuilder stringQuery = new StringBuilder();
 
-        stringQuery.append(" select exists (select st_login ");
+        stringQuery.append(" select exists (select tx_login ");
         stringQuery.append("                from   usuarios ");
-        stringQuery.append("                where  st_login = '" + user + "' ");
-        stringQuery.append("                and    st_senha = '" + password + "') ");
+        stringQuery.append("                where  tx_login = '" + user + "' ");
+        stringQuery.append("                and    tx_senha = '" + password + "') ");
 
         Query query = getEntityManager().createNativeQuery(stringQuery.toString());
 

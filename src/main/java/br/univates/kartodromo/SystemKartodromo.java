@@ -5,6 +5,7 @@
  */
 package br.univates.kartodromo;
 
+import br.univates.kartodromo.model.dao.BaseDAO;
 import br.univates.kartodromo.view.Login;
 
 /**
@@ -20,6 +21,8 @@ public class SystemKartodromo {
     }
 
     public void start() {
+        BaseDAO.connect();
+        
         new Login().setVisible(true);
     }
 

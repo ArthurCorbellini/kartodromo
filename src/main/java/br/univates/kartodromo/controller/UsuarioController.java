@@ -15,9 +15,9 @@ import java.util.List;
  */
 public class UsuarioController {
 
-    private final UsuarioDAO getUsuarioDAO = new UsuarioDAO();
+    private static final UsuarioDAO getUsuarioDAO = new UsuarioDAO();
 
-    public boolean validateUser(String user, String password) {
+    public static boolean validateUser(String user, String password) {
         return getUsuarioDAO.validateUser(user, password);
     }
 
