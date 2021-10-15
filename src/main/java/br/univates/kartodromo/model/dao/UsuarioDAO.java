@@ -5,6 +5,9 @@
  */
 package br.univates.kartodromo.model.dao;
 
+import br.univates.kartodromo.model.entity.Usuario;
+import java.math.BigInteger;
+import java.security.MessageDigest;
 import javax.persistence.Query;
 
 /**
@@ -13,13 +16,37 @@ import javax.persistence.Query;
  */
 public class UsuarioDAO extends BaseDAO {
 
+    @Override
+    public void insert(Object entity) {
+        Usuario user = (Usuario) entity;
+        user.setSenha(encrypt(user.getSenha()));
+
+        super.insert(user);
+    }
+
+    private static String encrypt(String password) {
+        String retorno = new String();
+
+        MessageDigest md;
+        try {
+            md = MessageDigest.getInstance("MD5");
+            BigInteger hash = new BigInteger(1, md.digest(password.getBytes()));
+
+            retorno = hash.toString(16);
+        } catch (Exception e) {
+        }
+
+        return retorno;
+    }
+
     public boolean validateUser(String user, String password) {
+
         StringBuilder stringQuery = new StringBuilder();
 
         stringQuery.append(" select exists (select tx_login ");
         stringQuery.append("                from   usuarios ");
         stringQuery.append("                where  tx_login = '" + user + "' ");
-        stringQuery.append("                and    tx_senha = '" + password + "') ");
+        stringQuery.append("                and    tx_senha = '" + encrypt(password) + "') ");
 
         Query query = getEntityManager().createNativeQuery(stringQuery.toString());
 

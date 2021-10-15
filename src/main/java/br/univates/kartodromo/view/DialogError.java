@@ -50,7 +50,6 @@ public class DialogError extends javax.swing.JDialog {
         lbConfirm = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setPreferredSize(new java.awt.Dimension(300, 150));
         setSize(new java.awt.Dimension(300, 150));
 
         jpBody.setBackground(new java.awt.Color(35, 40, 44));
@@ -115,17 +114,11 @@ public class DialogError extends javax.swing.JDialog {
         jpConfirm.setLayout(jpConfirmLayout);
         jpConfirmLayout.setHorizontalGroup(
             jpConfirmLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jpConfirmLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(lbConfirm, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
+            .addComponent(lbConfirm, javax.swing.GroupLayout.DEFAULT_SIZE, 98, Short.MAX_VALUE)
         );
         jpConfirmLayout.setVerticalGroup(
             jpConfirmLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpConfirmLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(lbConfirm, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
+            .addComponent(lbConfirm, javax.swing.GroupLayout.DEFAULT_SIZE, 33, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout jpBodyLayout = new javax.swing.GroupLayout(jpBody);

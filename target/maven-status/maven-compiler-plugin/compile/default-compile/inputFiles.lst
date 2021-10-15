@@ -12,7 +12,6 @@ C:\Users\Arthur\Documents\NetBeansProjects\kartodromo\src\main\java\br\univates\
 C:\Users\Arthur\Documents\NetBeansProjects\kartodromo\src\main\java\br\univates\kartodromo\view\Menu.java
 C:\Users\Arthur\Documents\NetBeansProjects\kartodromo\src\main\java\br\univates\kartodromo\rascunhos\IniciarCorrida.java
 C:\Users\Arthur\Documents\NetBeansProjects\kartodromo\src\main\java\br\univates\kartodromo\rascunhos\Menu.java
-C:\Users\Arthur\Documents\NetBeansProjects\kartodromo\src\main\java\br\univates\kartodromo\view\ErrorPanel.java
 C:\Users\Arthur\Documents\NetBeansProjects\kartodromo\src\main\java\br\univates\kartodromo\view\MenuItem.java
 C:\Users\Arthur\Documents\NetBeansProjects\kartodromo\src\main\java\br\univates\kartodromo\controller\UsuarioController.java
 C:\Users\Arthur\Documents\NetBeansProjects\kartodromo\src\main\java\br\univates\kartodromo\view\form\FormCadastroVeiculo.java
@@ -24,6 +23,7 @@ C:\Users\Arthur\Documents\NetBeansProjects\kartodromo\src\main\java\br\univates\
 C:\Users\Arthur\Documents\NetBeansProjects\kartodromo\src\main\java\br\univates\kartodromo\view\form\FormAuditoria.java
 C:\Users\Arthur\Documents\NetBeansProjects\kartodromo\src\main\java\br\univates\kartodromo\model\dao\AuditoriaDAO.java
 C:\Users\Arthur\Documents\NetBeansProjects\kartodromo\src\main\java\br\univates\kartodromo\model\entity\Veiculo.java
+C:\Users\Arthur\Documents\NetBeansProjects\kartodromo\src\main\java\br\univates\kartodromo\view\DialogError.java
 C:\Users\Arthur\Documents\NetBeansProjects\kartodromo\src\main\java\br\univates\kartodromo\rascunhos\Agendamentos.java
 C:\Users\Arthur\Documents\NetBeansProjects\kartodromo\src\main\java\br\univates\kartodromo\view\form\FormCadastroTracado.java
 C:\Users\Arthur\Documents\NetBeansProjects\kartodromo\src\main\java\br\univates\kartodromo\view\form\FormIniciarCorrida.java

@@ -9,6 +9,7 @@ import br.univates.kartodromo.controller.UsuarioController;
 import br.univates.kartodromo.view.MenuV4;
 import java.awt.Color;
 import javax.swing.ImageIcon;
+import javax.swing.JTextField;
 
 /**
  *
@@ -96,13 +97,30 @@ public class Login extends javax.swing.JFrame {
         tfUser.setText("Usuário");
         tfUser.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(21, 25, 28)));
         tfUser.setPreferredSize(new java.awt.Dimension(240, 35));
+        tfUser.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                tfUserFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                tfUserFocusLost(evt);
+            }
+        });
 
         tfPassword.setBackground(new java.awt.Color(35, 40, 44));
         tfPassword.setFont(new java.awt.Font("Trebuchet MS", 1, 12)); // NOI18N
         tfPassword.setForeground(new java.awt.Color(204, 204, 204));
-        tfPassword.setText("Password");
+        tfPassword.setText("Senha");
         tfPassword.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(21, 25, 28)));
+        tfPassword.setEchoChar('\u0000');
         tfPassword.setPreferredSize(new java.awt.Dimension(240, 35));
+        tfPassword.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                tfPasswordFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                tfPasswordFocusLost(evt);
+            }
+        });
 
         lbIconUser.setPreferredSize(new java.awt.Dimension(35, 35));
 
@@ -129,17 +147,11 @@ public class Login extends javax.swing.JFrame {
         jpLogin.setLayout(jpLoginLayout);
         jpLoginLayout.setHorizontalGroup(
             jpLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jpLoginLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(lbLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addComponent(lbLogin, javax.swing.GroupLayout.DEFAULT_SIZE, 98, Short.MAX_VALUE)
         );
         jpLoginLayout.setVerticalGroup(
             jpLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jpLoginLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(lbLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addComponent(lbLogin, javax.swing.GroupLayout.DEFAULT_SIZE, 33, Short.MAX_VALUE)
         );
 
         jpExit.setBackground(new java.awt.Color(35, 40, 44));
@@ -164,17 +176,11 @@ public class Login extends javax.swing.JFrame {
         jpExit.setLayout(jpExitLayout);
         jpExitLayout.setHorizontalGroup(
             jpExitLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jpExitLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(lbExit, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addComponent(lbExit, javax.swing.GroupLayout.DEFAULT_SIZE, 98, Short.MAX_VALUE)
         );
         jpExitLayout.setVerticalGroup(
             jpExitLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpExitLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(lbExit, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+            .addComponent(lbExit, javax.swing.GroupLayout.DEFAULT_SIZE, 33, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout jpInputDataLayout = new javax.swing.GroupLayout(jpInputData);
@@ -260,7 +266,7 @@ public class Login extends javax.swing.JFrame {
     private void jpLoginMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jpLoginMouseReleased
         jpLogin.setBackground(defaultRightColor);
 
-        if (UsuarioController.validateUser(tfUser.getText(), tfPassword.getPassword().toString())) {
+        if (UsuarioController.validateUser(tfUser.getText(), tfPassword.getText())) {
             this.setVisible(false);
             new MenuV4().setVisible(true);
         } else {
@@ -276,6 +282,32 @@ public class Login extends javax.swing.JFrame {
         jpExit.setBackground(defaultRightColor);
         System.exit(0);
     }//GEN-LAST:event_jpExitMouseReleased
+
+    private void tfUserFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_tfUserFocusGained
+        if (tfUser.getText().equals("Usuário")) {
+            tfUser.setText(null);
+        }
+
+    }//GEN-LAST:event_tfUserFocusGained
+
+    private void tfUserFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_tfUserFocusLost
+        if (tfUser.getText().equals(""))
+            tfUser.setText("Usuário");
+    }//GEN-LAST:event_tfUserFocusLost
+
+    private void tfPasswordFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_tfPasswordFocusGained
+        if (tfPassword.getText().equals("Senha")) {
+            tfPassword.setText(null);
+            tfPassword.setEchoChar('*');
+        }
+    }//GEN-LAST:event_tfPasswordFocusGained
+
+    private void tfPasswordFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_tfPasswordFocusLost
+        if (tfPassword.getText().length() == 0) {
+            tfPassword.setText("Senha");
+            tfPassword.setEchoChar('\u0000');
+        }
+    }//GEN-LAST:event_tfPasswordFocusLost
 
     /**
      * @param args the command line arguments

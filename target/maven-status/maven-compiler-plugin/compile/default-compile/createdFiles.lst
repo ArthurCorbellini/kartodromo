@@ -1,7 +1,7 @@
 br\univates\kartodromo\view\form\FormCadastroCliente$2.class
 br\univates\kartodromo\view\MenuV3$5.class
+br\univates\kartodromo\view\Login$5.class
 br\univates\kartodromo\view\MenuV2.class
-br\univates\kartodromo\view\ErrorPanel$1.class
 br\univates\kartodromo\view\Menu$13.class
 br\univates\kartodromo\view\MenuV3$2.class
 br\univates\kartodromo\rascunhos\Menu$1.class
@@ -13,6 +13,7 @@ br\univates\kartodromo\SystemKartodromo.class
 br\univates\kartodromo\view\MenuV2$1.class
 br\univates\kartodromo\rascunhos\IniciarCorrida$2.class
 br\univates\kartodromo\rascunhos\Menu.class
+br\univates\kartodromo\view\DialogError$1.class
 br\univates\kartodromo\rascunhos\Cadastros$1.class
 br\univates\kartodromo\view\Login$2.class
 br\univates\kartodromo\view\MenuV4$8.class
@@ -22,6 +23,7 @@ br\univates\kartodromo\view\form\FormCadastroVeiculo.class
 br\univates\kartodromo\view\form\FormAuditoria.class
 br\univates\kartodromo\model\entity\Usuario_.class
 br\univates\kartodromo\controller\UsuarioController.class
+br\univates\kartodromo\view\DialogError$2$1.class
 br\univates\kartodromo\view\form\FormCadastroUsuario$2.class
 br\univates\kartodromo\view\form\Template.class
 br\univates\kartodromo\view\MenuV2$5.class
@@ -85,11 +87,12 @@ br\univates\kartodromo\model\entity\Tracado_.class
 br\univates\kartodromo\view\MenuV2$2.class
 br\univates\kartodromo\model\dao\BaseDAO.class
 br\univates\kartodromo\util\HibernateUtil.class
+br\univates\kartodromo\view\DialogError.class
 br\univates\kartodromo\view\Login$3.class
 br\univates\kartodromo\model\entity\Tracado.class
 br\univates\kartodromo\rascunhos\Agendamentos$1.class
-br\univates\kartodromo\view\ErrorPanel.class
 br\univates\kartodromo\model\entity\Marca.class
+br\univates\kartodromo\view\DialogError$2.class
 br\univates\kartodromo\view\Menu$10.class
 br\univates\kartodromo\view\MenuV4$9$1.class
 br\univates\kartodromo\view\form\FormCadastroCliente$1.class
@@ -103,4 +106,5 @@ br\univates\kartodromo\view\form\FormIniciarCorrida.class
 br\univates\kartodromo\view\MenuV2$3.class
 br\univates\kartodromo\Main.class
 br\univates\kartodromo\view\Menu$11.class
+br\univates\kartodromo\view\Login$4.class
 br\univates\kartodromo\view\form\FormCadastroUsuario.class
