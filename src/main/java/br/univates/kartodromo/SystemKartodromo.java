@@ -22,7 +22,7 @@ public class SystemKartodromo {
 
     public void start() {
         BaseDAO.connect();
-        
+
         new Login().setVisible(true);
     }
 

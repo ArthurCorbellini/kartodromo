@@ -8,7 +8,10 @@ package br.univates.kartodromo.model.entity;
 import java.io.Serializable;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 /**
@@ -31,6 +34,8 @@ public class Veiculo implements Serializable {
     }
 
     @Id
+    @SequenceGenerator(name = "veiculos_id_veiculo_seq", sequenceName = "veiculos_id_veiculo_seq")
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "veiculos_id_veiculo_seq")
     @Column(name = "id_veiculo")
     public Integer getId() {
         return id;

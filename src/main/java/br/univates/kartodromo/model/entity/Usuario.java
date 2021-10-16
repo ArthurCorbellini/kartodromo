@@ -5,11 +5,18 @@
  */
 package br.univates.kartodromo.model.entity;
 
+import br.univates.kartodromo.model.type.PerfilType;
 import java.io.Serializable;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
+import org.hibernate.annotations.Type;
 
 /**
  *
@@ -26,7 +33,7 @@ public class Usuario implements Serializable {
     private Long cpf;
     private Long telefone;
     private String email;
-    private Integer perfil;
+    private PerfilType perfil;
     private String sexo;
 
     public Usuario(Integer id) {
@@ -37,6 +44,8 @@ public class Usuario implements Serializable {
     }
 
     @Id
+    @SequenceGenerator(name = "usuarios_id_usuario_seq", sequenceName = "usuarios_id_usuario_seq")
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "usuarios_id_usuario_seq")
     @Column(name = "id_usuario")
     public Integer getId() {
         return id;
@@ -100,12 +109,13 @@ public class Usuario implements Serializable {
         this.email = email;
     }
 
+    @Enumerated(EnumType.STRING)
     @Column(name = "dm_perfil")
-    public Integer getPerfil() {
+    public PerfilType getPerfil() {
         return perfil;
     }
 
-    public void setPerfil(Integer perfil) {
+    public void setPerfil(PerfilType perfil) {
         this.perfil = perfil;
     }
 

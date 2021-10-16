@@ -102,7 +102,7 @@ FOR EACH ROW EXECUTE PROCEDURE audit.if_modified_func();
 
 CREATE TABLE IF NOT EXISTS public.clientes
 (
-    id_cliente integer NOT NULL,
+    id_cliente serial,
     nm_cliente character varying NOT NULL,
     dt_nascimento date,
     nr_cpf bigint,
@@ -125,7 +125,7 @@ FOR EACH ROW EXECUTE PROCEDURE audit.if_modified_func();
 
 CREATE TABLE IF NOT EXISTS public.usuarios
 (
-    id_usuario integer NOT NULL,
+    id_usuario serial,
     tx_login character varying NOT NULL,
     tx_senha character varying NOT NULL,
     nm_nome character varying NOT NULL,
@@ -148,7 +148,7 @@ FOR EACH ROW EXECUTE PROCEDURE audit.if_modified_func();
 
 CREATE TABLE IF NOT EXISTS public.marcas
 (
-    id_marca integer NOT NULL,
+    id_marca serial,
     nm_marca character varying NOT NULL,
     nm_contato character varying,
     PRIMARY KEY (id_marca)
@@ -165,7 +165,7 @@ FOR EACH ROW EXECUTE PROCEDURE audit.if_modified_func();
 
 CREATE TABLE IF NOT EXISTS public.tracados
 (
-    id_tracado integer NOT NULL,
+    id_tracado serial,
     nm_tracado character varying NOT NULL,
     dm_dificuldade character varying NOT NULL,
     vl_maximo bigint,
@@ -184,7 +184,7 @@ FOR EACH ROW EXECUTE PROCEDURE audit.if_modified_func();
 
 CREATE TABLE IF NOT EXISTS public.veiculos
 (
-    id_veiculo integer NOT NULL,
+    id_veiculo serial,
     nm_veiculo character varying NOT NULL,
     id_marca character varying,
     PRIMARY KEY (id_veiculo)
