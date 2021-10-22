@@ -71,7 +71,7 @@ public class MenuV4 extends javax.swing.JFrame {
         buildBtnCadastro();
         listMenu.add(btnCadastro);
 
-        if (UsuarioController.getLoggedUser().getPerfil().equals(PerfilType.ADMIN)) {
+        if (isUserAdmin()) {
             buildBtnAuditoria();
             listMenu.add(btnAuditoria);
         }
@@ -125,14 +125,16 @@ public class MenuV4 extends javax.swing.JFrame {
         ImageIcon dotLight = new ImageIcon(getClass().getResource("/images/menuIcons/icon-dot-light.png"));
         ImageIcon dotDark = new ImageIcon(getClass().getResource("/images/menuIcons/icon-dot-dark.png"));
 
-        btnCadastroUsuario = new MenuItem(dotLight, dotDark, "  Usuário", new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent ae) {
-                pressButton(btnCadastroUsuario, new FormCadastroUsuario());
-            }
-        });
-        btnCadastroUsuario.getLbIcon().setHorizontalAlignment(JLabel.RIGHT);
-        listSubBtnCadastro.add(btnCadastroUsuario);
+        if (isUserAdmin()) {
+            btnCadastroUsuario = new MenuItem(dotLight, dotDark, "  Usuário", new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent ae) {
+                    pressButton(btnCadastroUsuario, new FormCadastroUsuario());
+                }
+            });
+            btnCadastroUsuario.getLbIcon().setHorizontalAlignment(JLabel.RIGHT);
+            listSubBtnCadastro.add(btnCadastroUsuario);
+        }
 
         btnCadastroVeiculo = new MenuItem(dotLight, dotDark, "  Veículo", new ActionListener() {
             @Override
@@ -143,14 +145,16 @@ public class MenuV4 extends javax.swing.JFrame {
         btnCadastroVeiculo.getLbIcon().setHorizontalAlignment(JLabel.RIGHT);
         listSubBtnCadastro.add(btnCadastroVeiculo);
 
-        btnCadastroTracado = new MenuItem(dotLight, dotDark, "  Traçado", new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent ae) {
-                pressButton(btnCadastroTracado, new FormCadastroTracado());
-            }
-        });
-        btnCadastroTracado.getLbIcon().setHorizontalAlignment(JLabel.RIGHT);
-        listSubBtnCadastro.add(btnCadastroTracado);
+        if (isUserAdmin()) {
+            btnCadastroTracado = new MenuItem(dotLight, dotDark, "  Traçado", new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent ae) {
+                    pressButton(btnCadastroTracado, new FormCadastroTracado());
+                }
+            });
+            btnCadastroTracado.getLbIcon().setHorizontalAlignment(JLabel.RIGHT);
+            listSubBtnCadastro.add(btnCadastroTracado);
+        }
 
         btnCadastroCliente = new MenuItem(dotLight, dotDark, "  Cliente", new ActionListener() {
             @Override
@@ -267,6 +271,10 @@ public class MenuV4 extends javax.swing.JFrame {
             p.getLbName().setForeground(defaultLightColor);
             p.getLbIcon().setIcon(p.getLightIcon());
         });
+    }
+
+    private boolean isUserAdmin() {
+        return UsuarioController.getLoggedUser().getPerfil().equals(PerfilType.ADMIN);
     }
 
     /**
