@@ -23,7 +23,7 @@ import org.hibernate.annotations.Type;
  * @author Arthur
  */
 @Entity
-@Table(name = "USUARIOS")
+@Table(name = "usuarios")
 public class Usuario implements Serializable {
 
     private Integer id;

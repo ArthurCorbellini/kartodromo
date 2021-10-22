@@ -5,6 +5,8 @@
  */
 package br.univates.kartodromo.view;
 
+import br.univates.kartodromo.controller.UsuarioController;
+import br.univates.kartodromo.model.type.PerfilType;
 import br.univates.kartodromo.view.form.FormAuditoria;
 import br.univates.kartodromo.view.form.FormCadastroCliente;
 import br.univates.kartodromo.view.form.FormCadastroTracado;
@@ -69,12 +71,14 @@ public class MenuV4 extends javax.swing.JFrame {
         buildBtnCadastro();
         listMenu.add(btnCadastro);
 
-        buildBtnAuditoria();
-        listMenu.add(btnAuditoria);
+        if (UsuarioController.getLoggedUser().getPerfil().equals(PerfilType.ADMIN)) {
+            buildBtnAuditoria();
+            listMenu.add(btnAuditoria);
+        }
 
         buildBtnSobreShow();
         jpAboutShow.add(btnSobreShow);
-        
+
         buildBtnSobreHide();
         jpAboutHide.add(btnSobreHide);
 
@@ -156,7 +160,7 @@ public class MenuV4 extends javax.swing.JFrame {
         });
         btnCadastroCliente.getLbIcon().setHorizontalAlignment(JLabel.RIGHT);
         listSubBtnCadastro.add(btnCadastroCliente);
-        
+
         ImageIcon lightIcon = new ImageIcon(getClass().getResource("/images/menuIcons/icon-registration-light.png"));
         ImageIcon darkIcon = new ImageIcon(getClass().getResource("/images/menuIcons/icon-registration-dark.png"));
         btnCadastro = new MenuItem(lightIcon, darkIcon, "Cadastros", null, listSubBtnCadastro);
