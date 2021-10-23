@@ -11,7 +11,7 @@ package br.univates.kartodromo;
  */
 public class Main {
 
-    public static void main(String[] args) {       
+    public static void main(String[] args) {
         SystemKartodromo sys = SystemKartodromo.getInstance();
         sys.start();
     }
