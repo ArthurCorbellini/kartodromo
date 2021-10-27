@@ -1,5 +1,6 @@
 package br.univates.kartodromo.model.entity;
 
+import br.univates.kartodromo.model.type.PerfilType;
 import javax.annotation.Generated;
 import javax.persistence.metamodel.SingularAttribute;
 import javax.persistence.metamodel.StaticMetamodel;
@@ -16,7 +17,7 @@ public abstract class Usuario_ {
 	public static volatile SingularAttribute<Usuario, String> login;
 	public static volatile SingularAttribute<Usuario, String> sexo;
 	public static volatile SingularAttribute<Usuario, String> email;
-	public static volatile SingularAttribute<Usuario, Integer> perfil;
+	public static volatile SingularAttribute<Usuario, PerfilType> perfil;
 
 	public static final String SENHA = "senha";
 	public static final String TELEFONE = "telefone";

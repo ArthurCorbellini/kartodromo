@@ -9,6 +9,7 @@ import br.univates.kartodromo.model.dao.TracadoDAO;
 import br.univates.kartodromo.model.entity.Tracado;
 import java.math.BigDecimal;
 import javax.swing.JComboBox;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 
 /**
@@ -127,8 +128,8 @@ public class FormCadastroTracado extends javax.swing.JPanel {
         jLabel4.setForeground(new java.awt.Color(255, 255, 255));
         jLabel4.setText("Tamanho em Metros");
 
-        btnCancelar.setBackground(new java.awt.Color(35, 40, 44));
-        btnCancelar.setForeground(new java.awt.Color(255, 255, 255));
+        btnCancelar.setBackground(new java.awt.Color(44, 51, 62));
+        btnCancelar.setForeground(new java.awt.Color(44, 51, 62));
         btnCancelar.setText("Cancelar");
         btnCancelar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -138,8 +139,8 @@ public class FormCadastroTracado extends javax.swing.JPanel {
 
         campoTamanho.setFont(new java.awt.Font("Open Sans", 0, 12)); // NOI18N
 
-        btnSalvar.setBackground(new java.awt.Color(35, 40, 44));
-        btnSalvar.setForeground(new java.awt.Color(255, 255, 255));
+        btnSalvar.setBackground(new java.awt.Color(44, 51, 62));
+        btnSalvar.setForeground(new java.awt.Color(44, 51, 62));
         btnSalvar.setText("Salvar");
         btnSalvar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -147,7 +148,12 @@ public class FormCadastroTracado extends javax.swing.JPanel {
             }
         });
 
-        comboDificuldade.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        comboDificuldade.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Fácil", "Médio", "Díficil" }));
+        comboDificuldade.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                comboDificuldadeActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -273,7 +279,14 @@ public class FormCadastroTracado extends javax.swing.JPanel {
     }//GEN-LAST:event_btnCancelarActionPerformed
 
     private void btnSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarActionPerformed
-     
+     boolean continuar = true;
+
+        if (campoNome.getText().equals("") || campoNumeroMaximo.getText().equals("") || campoTamanho.getText().equals("")) {
+            JOptionPane.showMessageDialog(null, "Todos Campos são Obrigatórios!");
+            continuar = false;
+            //TextUsuario.requestFocus();
+        }
+
         Tracado tracado = new Tracado();
 
         tracado.setNome(getCampoNome().getText());
@@ -283,9 +296,23 @@ public class FormCadastroTracado extends javax.swing.JPanel {
 
         TracadoDAO tracadoDAO = new TracadoDAO();
         tracadoDAO.insert(tracado);
-     
+        
+        this.limparTela();
+        JOptionPane.showMessageDialog(this, "Traçado cadastrado com sucesso", "Salvo", JOptionPane.INFORMATION_MESSAGE);
+        
     }//GEN-LAST:event_btnSalvarActionPerformed
 
+    private void comboDificuldadeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboDificuldadeActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_comboDificuldadeActionPerformed
+
+    public void limparTela() {
+
+        getCampoTamanho().setText("");
+        getCampoNumeroMaximo().setText("");
+        getCampoNome().setText("");
+        getComboDificuldade().setSelectedIndex(WIDTH);
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCancelar;

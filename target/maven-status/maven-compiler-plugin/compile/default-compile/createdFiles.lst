@@ -65,6 +65,7 @@ br\univates\kartodromo\model\dao\MarcaDAO.class
 br\univates\kartodromo\view\MenuV4$4.class
 br\univates\kartodromo\model\entity\Auditoria.class
 br\univates\kartodromo\model\dao\VeiculoDAO.class
+br\univates\kartodromo\model\type\PerfilType.class
 br\univates\kartodromo\rascunhos\Menu$3.class
 br\univates\kartodromo\view\Menu.class
 br\univates\kartodromo\view\MenuV4$8$1.class
