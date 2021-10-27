@@ -5,10 +5,13 @@
  */
 package br.univates.kartodromo.model.entity;
 
+import br.univates.kartodromo.model.type.CrudType;
 import java.io.Serializable;
 import java.util.Calendar;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
@@ -27,7 +30,7 @@ public class Auditoria implements Serializable {
     private String tableName;
     private String userName;
     private Calendar actionTimeStamp;
-    private String action;
+    private CrudType action;
     private String originalData;
     private String newData;
     private String query;
@@ -86,12 +89,13 @@ public class Auditoria implements Serializable {
         this.actionTimeStamp = actionTimeStamp;
     }
 
+    @Enumerated(EnumType.STRING)
     @Column(name = "action")
-    public String getAction() {
+    public CrudType getAction() {
         return action;
     }
 
-    public void setAction(String action) {
+    public void setAction(CrudType action) {
         this.action = action;
     }
 

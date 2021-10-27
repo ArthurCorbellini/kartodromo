@@ -7,9 +7,13 @@ package br.univates.kartodromo.view.form;
 
 import br.univates.kartodromo.controller.AuditoriaController;
 import br.univates.kartodromo.model.entity.Auditoria;
+import br.univates.kartodromo.model.type.CrudType;
 import java.awt.Color;
 import java.awt.Font;
+import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
@@ -19,10 +23,21 @@ import javax.swing.table.DefaultTableModel;
  */
 public class FormAuditoria extends javax.swing.JPanel {
 
+    private List<Auditoria> audit;
+
     public FormAuditoria() {
         initComponents();
 
+        audit = new AuditoriaController().getAll();
         buildTableAuditoria();
+
+        buildFilters();
+    }
+
+    private void buildFilters() {
+        cbAcao.setModel(new DefaultComboBoxModel<>(CrudType.values()));
+        ((DefaultComboBoxModel) cbAcao.getModel()).insertElementAt(null, 0);
+        cbAcao.setSelectedIndex(0);
     }
 
     // CUSTOMIZAR 
@@ -40,7 +55,7 @@ public class FormAuditoria extends javax.swing.JPanel {
         setColumnCustomWidth(jtAuditoria, 2, 75);
         setColumnCustomWidth(jtAuditoria, 3, 75);
         setColumnCustomWidth(jtAuditoria, 4, 200);
-        setColumnCustomWidth(jtAuditoria, 5, 30);
+        setColumnCustomWidth(jtAuditoria, 5, 40);
         setColumnCustomWidth(jtAuditoria, 6, 100);
         setColumnCustomWidth(jtAuditoria, 7, 100);
         jtAuditoria.setAutoResizeMode(JTable.AUTO_RESIZE_LAST_COLUMN);
@@ -54,9 +69,6 @@ public class FormAuditoria extends javax.swing.JPanel {
 
     // POPULAR
     private void fillTableAuditoria() {
-        AuditoriaController auditoriaController = new AuditoriaController();
-        List<Auditoria> audit = auditoriaController.getAll();
-
         DefaultTableModel tableModel = new DefaultTableModel() {
             @Override
             public boolean isCellEditable(int i, int i1) {
@@ -74,7 +86,7 @@ public class FormAuditoria extends javax.swing.JPanel {
         tableModel.addColumn("Dados atuais");
         tableModel.addColumn("Query");
 
-        audit.stream().forEach(p -> {
+        audit.stream().filter(p -> applyTableFilters(p)).forEach(p -> {
             tableModel.addRow(
                     new Object[]{
                         p.getSequenceId(),
@@ -93,6 +105,14 @@ public class FormAuditoria extends javax.swing.JPanel {
         this.jtAuditoria.setModel(tableModel);
     }
 
+    private boolean applyTableFilters(Auditoria audit) {
+        if (cbAcao.getSelectedItem() != null) {
+            return audit.getAction().toString() == cbAcao.getSelectedItem().toString();
+        }
+
+        return true;
+    }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -108,6 +128,8 @@ public class FormAuditoria extends javax.swing.JPanel {
         jpBody = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
         jtAuditoria = new javax.swing.JTable();
+        cbAcao = new javax.swing.JComboBox<>();
+        lbAcao = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(35, 40, 44));
         setPreferredSize(new java.awt.Dimension(575, 400));
@@ -171,6 +193,18 @@ public class FormAuditoria extends javax.swing.JPanel {
         jtAuditoria.getTableHeader().setReorderingAllowed(false);
         jScrollPane2.setViewportView(jtAuditoria);
 
+        cbAcao.setFont(new java.awt.Font("Trebuchet MS", 0, 12)); // NOI18N
+        cbAcao.setPreferredSize(new java.awt.Dimension(50, 21));
+        cbAcao.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cbAcaoActionPerformed(evt);
+            }
+        });
+
+        lbAcao.setFont(new java.awt.Font("Trebuchet MS", 0, 12)); // NOI18N
+        lbAcao.setForeground(new java.awt.Color(204, 204, 204));
+        lbAcao.setText("Ação:");
+
         javax.swing.GroupLayout jpBodyLayout = new javax.swing.GroupLayout(jpBody);
         jpBody.setLayout(jpBodyLayout);
         jpBodyLayout.setHorizontalGroup(
@@ -179,12 +213,22 @@ public class FormAuditoria extends javax.swing.JPanel {
                 .addContainerGap()
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 551, Short.MAX_VALUE)
                 .addContainerGap())
+            .addGroup(jpBodyLayout.createSequentialGroup()
+                .addGap(8, 8, 8)
+                .addComponent(lbAcao)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(cbAcao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jpBodyLayout.setVerticalGroup(
             jpBodyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jpBodyLayout.createSequentialGroup()
-                .addGap(6, 6, 6)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 312, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpBodyLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jpBodyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(cbAcao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lbAcao))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 285, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -212,12 +256,18 @@ public class FormAuditoria extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private void cbAcaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbAcaoActionPerformed
+        buildTableAuditoria();
+    }//GEN-LAST:event_cbAcaoActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JComboBox<CrudType> cbAcao;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JPanel jpBody;
     private javax.swing.JPanel jpHeader;
     private javax.swing.JTable jtAuditoria;
+    private javax.swing.JLabel lbAcao;
     private javax.swing.JLabel lbSubTitulo;
     private javax.swing.JLabel lbTitulo;
     // End of variables declaration//GEN-END:variables
