@@ -6,7 +6,7 @@
 package br.univates.kartodromo.view;
 
 import br.univates.kartodromo.controller.UsuarioController;
-import br.univates.kartodromo.view.MenuV4;
+import br.univates.kartodromo.view.MenuPrincipal;
 import java.awt.Color;
 import javax.swing.ImageIcon;
 import javax.swing.JTextField;
@@ -268,7 +268,7 @@ public class Login extends javax.swing.JFrame {
 
         if (UsuarioController.validateUser(tfUser.getText(), tfPassword.getText())) {
             this.setVisible(false);
-            new MenuV4().setVisible(true);
+            new MenuPrincipal().setVisible(true);
         } else {
             new DialogError(this, "Usuário não localizado.").setVisible(true);
         }
