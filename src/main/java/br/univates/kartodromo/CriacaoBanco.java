@@ -19,6 +19,7 @@ public class CriacaoBanco {
     // OBS.: A data base precisa ser criada a mão, com o nome de "kartodromo" para funcionar.
     public static void main(String[] args) {
         BaseDAO.firstExecutionProcess();
+        BaseDAO.populateDataBase();
         
         System.exit(0);
     }

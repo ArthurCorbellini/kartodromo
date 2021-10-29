@@ -1,0 +1,62 @@
+/* -------------------------------------------------------------------- */
+/* --------------- Inserção dos Registros nas tabelas ----------------- */
+/* -------------------------------------------------------------------- */
+
+insert into usuarios (tx_login, tx_senha, nm_nome, nr_cpf, nr_telefone, tx_email, dm_perfil, dm_sexo)
+values ('adm', 'b09c600fddc573f117449b3723f23d64', 'Administrador', '12345610001', '999999999', 'teste@gmail.com', 'ADMIN', 'M')
+,      ('arthur', 'b09c600fddc573f117449b3723f23d64', 'Arthur Corbellini', '12345610001', '999999999', 'teste@gmail.com', 'PADRAO', 'M')
+,      ('ricardo', 'b09c600fddc573f117449b3723f23d64', 'Ricardo Fulano', '12345610001', '999999999', 'teste@gmail.com', 'PADRAO', 'M')
+,      ('marcelo', 'b09c600fddc573f117449b3723f23d64', 'Marcelo Beltrano', '12345610001', '999999999', 'teste@gmail.com', 'PADRAO', 'M')
+,      ('jorge', 'b09c600fddc573f117449b3723f23d64', 'Jorge', '12345610001', '999999999', 'teste@gmail.com', 'PADRAO', 'M')
+,      ('daiana', 'b09c600fddc573f117449b3723f23d64', 'Daiana Fulana', '12345610001', '999999999', 'teste@gmail.com', 'PADRAO', 'F')
+,      ('ana', 'b09c600fddc573f117449b3723f23d64', 'Ana Beltrana', '12345610001', '999999999', 'teste@gmail.com', 'PADRAO', 'F')
+,      ('roberto', 'b09c600fddc573f117449b3723f23d64', 'Roberto Beltrano', '12345610001', '999999999', 'teste@gmail.com', 'PADRAO', 'M')
+,      ('thais', 'b09c600fddc573f117449b3723f23d64', 'Thais Condida', '12345610001', '999999999', 'teste@gmail.com', 'PADRAO', 'F')
+,      ('rodrigo', 'b09c600fddc573f117449b3723f23d64', 'Rodrigo Fulano', '12345610001', '999999999', 'teste@gmail.com', 'PADRAO', 'M')
+,      ('felipe', 'b09c600fddc573f117449b3723f23d64', 'Felipe Beltrano', '12345610001', '999999999', 'teste@gmail.com', 'PADRAO', 'M')
+,      ('rodolfo', 'b09c600fddc573f117449b3723f23d64', 'Rodolfo Ciclano', '12345610001', '999999999', 'teste@gmail.com', 'PADRAO', 'M')
+,      ('gabriela', 'b09c600fddc573f117449b3723f23d64', 'Gabriela Fulana', '12345610001', '999999999', 'teste@gmail.com', 'PADRAO', 'F')
+,      ('marcela', 'b09c600fddc573f117449b3723f23d64', 'Marcela Beltrana', '12345610001', '999999999', 'teste@gmail.com', 'PADRAO', 'F')
+,      ('maria', 'b09c600fddc573f117449b3723f23d64', 'Maria Beltrano', '12345610001', '999999999', 'teste@gmail.com', 'PADRAO', 'F')
+,      ('nina', 'b09c600fddc573f117449b3723f23d64', 'Nina Fulana', '12345610001', '999999999', 'teste@gmail.com', 'PADRAO', 'F')
+;
+
+insert into clientes (nm_cliente, nr_cpf, nr_telefone, tx_email, tx_endereco, dm_sexo)
+values ('Administrador', '12345610001', '999999999', 'teste@gmail.com', 'Rua dos Bobos', 'M')
+,      ('Arthur Corbellini', '12345610001', '999999999', 'teste@gmail.com', 'Rua dos Bobos', 'M')
+,      ('Ricardo Fulano', '12345610001', '999999999', 'teste@gmail.com', 'Rua dos Bobos', 'M')
+,      ('Marcelo Beltrano', '12345610001', '999999999', 'teste@gmail.com', 'Rua dos Bobos', 'M')
+,      ('Jorge', '12345610001', '999999999', 'teste@gmail.com', 'Rua dos Bobos', 'M')
+,      ('Daiana Fulana', '12345610001', '999999999', 'teste@gmail.com', 'Rua dos Bobos', 'F')
+,      ('Ana Beltrana', '12345610001', '999999999', 'teste@gmail.com', 'Rua dos Bobos', 'F')
+,      ('Roberto Beltrano', '12345610001', '999999999', 'teste@gmail.com', 'Rua dos Bobos', 'M')
+,      ('Thais Condida', '12345610001', '999999999', 'teste@gmail.com', 'Rua dos Bobos', 'F')
+,      ('Rodrigo Fulano', '12345610001', '999999999', 'teste@gmail.com', 'Rua dos Bobos', 'M')
+,      ('Felipe Beltrano', '12345610001', '999999999', 'teste@gmail.com', 'Rua dos Bobos', 'M')
+,      ('Rodolfo Ciclano', '12345610001', '999999999', 'teste@gmail.com', 'Rua dos Bobos', 'M')
+,      ('Gabriela Fulana', '12345610001', '999999999', 'teste@gmail.com', 'Rua dos Bobos', 'F')
+,      ('Marcela Beltrana', '12345610001', '999999999', 'teste@gmail.com', 'Rua dos Bobos', 'F')
+,      ('Maria Beltrano', '12345610001', '999999999', 'teste@gmail.com', 'Rua dos Bobos', 'F')
+,      ('Nina Fulana', '12345610001', '999999999', 'teste@gmail.com', 'Rua dos Bobos', 'F')
+;
+
+insert into veiculos (nm_veiculo, id_marca)
+values ('Carro A', '1')
+,      ('Carro B', '1')
+,      ('Carro C', '1')
+,      ('Carro D', '1')
+,      ('Carro E', '1')
+,      ('Carro F', '1')
+,      ('Carro G', '1')
+,      ('Carro H', '1')
+,      ('Carro I', '1')
+;
+
+insert into tracados (nm_tracado, dm_dificuldade, vl_maximo, vl_tamanho)
+values ('Traçado A', '1', 60, 1000)
+,      ('Traçado B', '1', 50, 600)
+,      ('Traçado C', '2', 40, 600)
+,      ('Traçado D', '2', 60, 800)
+,      ('Traçado E', '3', 50, 700)
+,      ('Traçado F', '3', 50, 600)
+;

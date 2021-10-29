@@ -34,6 +34,27 @@ public class BaseDAO {
 
     }
 
+    public static void populateDataBase() {
+        Session session = null;
+        try {
+            session = HibernateUtil.getSessionFactory().openSession();
+            Transaction transacao = session.beginTransaction();
+
+            Path schemaPath = new File("src/main/resources/data.sql").toPath();
+            String schema = new String(Files.readAllBytes(schemaPath)).replaceAll("\\:", "\\\\:");
+
+            session.createSQLQuery(schema).executeUpdate();
+
+            transacao.commit();
+        } catch (HibernateException hibEx) {
+            hibEx.printStackTrace();
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        } finally {
+            session.close();
+        }
+    }
+
     public static void firstExecutionProcess() {
         Session session = null;
         try {
