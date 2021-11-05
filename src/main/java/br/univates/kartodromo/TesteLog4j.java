@@ -5,7 +5,7 @@
  */
 package br.univates.kartodromo;
 
-import org.jboss.logging.Logger;
+import org.apache.log4j.Logger;
 
 /**
  *
@@ -13,7 +13,7 @@ import org.jboss.logging.Logger;
  */
 public class TesteLog4j {
 
-    final static Logger logger = Logger.getLogger(TesteLog4j.class);
+    static final Logger logger = Logger.getLogger(TesteLog4j.class);
 
     public static void main(String[] args) {
         TesteLog4j teste = new TesteLog4j();

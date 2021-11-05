@@ -5,6 +5,7 @@
  */
 package br.univates.kartodromo.model.dao;
 
+import br.univates.kartodromo.TesteLog4j;
 import br.univates.kartodromo.util.HibernateUtil;
 import java.io.File;
 import java.io.IOException;
@@ -17,6 +18,7 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
+import org.apache.log4j.Logger;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
@@ -29,6 +31,7 @@ public class BaseDAO {
 
     private static EntityManagerFactory emFactory = Persistence.createEntityManagerFactory("kartodromoPU");
     private static EntityManager entityManager = emFactory.createEntityManager();
+    static final Logger logger = Logger.getLogger(TesteLog4j.class);
 
     public static void connect() {
 
@@ -47,9 +50,9 @@ public class BaseDAO {
 
             transacao.commit();
         } catch (HibernateException hibEx) {
-            hibEx.printStackTrace();
+            logger.error("HibernateException - metodo BaseDAO.populateDataBase", hibEx);
         } catch (IOException ex) {
-            ex.printStackTrace();
+            logger.error("IOException - metodo BaseDAO.populateDataBase", ex);
         } finally {
             session.close();
         }
@@ -68,9 +71,9 @@ public class BaseDAO {
 
             transacao.commit();
         } catch (HibernateException hibEx) {
-            hibEx.printStackTrace();
+            logger.error("HibernateException - metodo BaseDAO.firstExecutionProcess", hibEx);
         } catch (IOException ex) {
-            ex.printStackTrace();
+            logger.error("IOException - metodo BaseDAO.firstExecutionProcess", ex);
         } finally {
             session.close();
         }
@@ -89,7 +92,7 @@ public class BaseDAO {
 
             listReturn = session.createQuery(criteriaQuery).getResultList();
         } catch (HibernateException hibEx) {
-            hibEx.printStackTrace();
+            logger.error("HibernateException - metodo BaseDAO.getAll", hibEx);
         } finally {
             session.close();
         }
@@ -120,7 +123,7 @@ public class BaseDAO {
             }
             transacao.commit();
         } catch (HibernateException hibEx) {
-            hibEx.printStackTrace();
+            logger.error("HibernateException - metodo BaseDAO.insert", hibEx);
         } finally {
             sessao.close();
         }
@@ -137,7 +140,7 @@ public class BaseDAO {
             }
             transacao.commit();
         } catch (HibernateException hibEx) {
-            hibEx.printStackTrace();
+            logger.error("HibernateException - metodo BaseDAO.update", hibEx);
         } finally {
             sessao.close();
         }
@@ -154,7 +157,7 @@ public class BaseDAO {
             }
             transacao.commit();
         } catch (HibernateException hibEx) {
-            hibEx.printStackTrace();
+            logger.error("HibernateException - metodo BaseDAO.delete", hibEx);
         } finally {
             sessao.close();
         }
