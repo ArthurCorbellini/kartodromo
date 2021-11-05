@@ -1,0 +1,28 @@
+erro ao dividir
+java.lang.ArithmeticException: / by zero
+	at br.univates.kartodromo.TesteLog4j.dividir(TesteLog4j.java:29)
+	at br.univates.kartodromo.TesteLog4j.main(TesteLog4j.java:22)
+erro ao dividir
+java.lang.ArithmeticException: / by zero
+	at br.univates.kartodromo.TesteLog4j.dividir(TesteLog4j.java:29)
+	at br.univates.kartodromo.TesteLog4j.main(TesteLog4j.java:22)
+erro ao dividir
+java.lang.ArithmeticException: / by zero
+	at br.univates.kartodromo.TesteLog4j.dividir(TesteLog4j.java:29)
+	at br.univates.kartodromo.TesteLog4j.main(TesteLog4j.java:22)
+2021-11-04 22:40:12 ERROR TesteLog4j:24 -erro ao dividir
+java.lang.ArithmeticException: / by zero
+	at br.univates.kartodromo.TesteLog4j.dividir(TesteLog4j.java:29)
+	at br.univates.kartodromo.TesteLog4j.main(TesteLog4j.java:22)
+2021-11-04 22:43:21 ERROR TesteLog4j:24 -erro ao dividir
+java.lang.ArithmeticException: / by zero
+	at br.univates.kartodromo.TesteLog4j.dividir(TesteLog4j.java:29)
+	at br.univates.kartodromo.TesteLog4j.main(TesteLog4j.java:22)
+2021-11-04 22:43:43 ERROR TesteLog4j:24 -erro ao dividir
+java.lang.ArithmeticException: / by zero
+	at br.univates.kartodromo.TesteLog4j.dividir(TesteLog4j.java:29)
+	at br.univates.kartodromo.TesteLog4j.main(TesteLog4j.java:22)
+2021-11-04 22:45:24 ERROR TesteLog4j:24 -erro ao dividir
+java.lang.ArithmeticException: / by zero
+	at br.univates.kartodromo.TesteLog4j.dividir(TesteLog4j.java:29)
+	at br.univates.kartodromo.TesteLog4j.main(TesteLog4j.java:22)
