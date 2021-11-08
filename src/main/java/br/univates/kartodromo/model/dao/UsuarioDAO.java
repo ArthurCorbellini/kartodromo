@@ -26,7 +26,7 @@ public class UsuarioDAO extends BaseDAO {
 
     public static boolean validateUser(String user, String password) {
         StringBuilder stringQuery = new StringBuilder();
-        
+
         stringQuery.append(" from   Usuario ");
         stringQuery.append(" where  tx_login = '" + user + "' ");
         stringQuery.append(" and    tx_senha = '" + encrypt(password) + "' ");
@@ -34,11 +34,31 @@ public class UsuarioDAO extends BaseDAO {
         Query query = getEntityManager().createQuery(stringQuery.toString());
 
         List<Usuario> resultList = query.getResultList();
-        
+
         if (resultList.isEmpty()) {
             return false;
         } else {
             loggedUser = resultList.get(0);
+            return true;
+        }
+    }
+
+    public static boolean validateUserWithProcedure(String user, String password) {
+        StringBuilder stringQuery = new StringBuilder();
+
+        stringQuery.append(" select * from validateUser('" + user + "','" + encrypt(password) + "') ");
+        Query query = getEntityManager().createNativeQuery(stringQuery.toString());
+
+//        List<Usuario> resultList = query.getResultList();
+
+        List<Object[]> result = query.getResultList();
+        
+        
+
+        if (result == null) {
+            return false;
+        } else {
+//            loggedUser = result;
             return true;
         }
     }

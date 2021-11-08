@@ -17,11 +17,12 @@ public class UsuarioController {
 
     private static final UsuarioDAO getUsuarioDAO = new UsuarioDAO();
 
-    public static Usuario getLoggedUser(){
+    public static Usuario getLoggedUser() {
         return getUsuarioDAO.getLoggedUser();
     }
-    
+
     public static boolean validateUser(String user, String password) {
+//        return getUsuarioDAO.validateUserWithProcedure(user, password);
         return getUsuarioDAO.validateUser(user, password);
     }
 

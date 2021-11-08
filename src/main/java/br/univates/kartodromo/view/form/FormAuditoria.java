@@ -149,7 +149,7 @@ public class FormAuditoria extends javax.swing.JPanel {
         lbSubTitulo.setFont(new java.awt.Font("Trebuchet MS", 0, 12)); // NOI18N
         lbSubTitulo.setForeground(new java.awt.Color(204, 204, 204));
         lbSubTitulo.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        lbSubTitulo.setText("Lista das alterações, inserções e exclusões dos últimos três meses");
+        lbSubTitulo.setText("Lista das alterações, inserções e exclusões");
         lbSubTitulo.setVerticalAlignment(javax.swing.SwingConstants.TOP);
         lbSubTitulo.setPreferredSize(new java.awt.Dimension(300, 16));
 
