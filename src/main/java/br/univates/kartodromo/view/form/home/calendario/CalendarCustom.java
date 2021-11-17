@@ -15,39 +15,19 @@ import java.util.Date;
  */
 public class CalendarCustom extends javax.swing.JPanel {
 
-    private int month;
-    private int year;
     private Calendar anoMes;
 
     public CalendarCustom() {
         initComponents();
 
-        thisMonth();
+        anoMes = Calendar.getInstance();
 
         slide.setAnimate(15);
-//        slide.show(new PanelDate(month, year), PanelSlide.AnimateType.TO_RIGHT);
         slide.show(new PanelDate(anoMes.get(Calendar.MONTH), anoMes.get(Calendar.YEAR)), PanelSlide.AnimateType.TO_RIGHT);
         showMonthYear();
     }
 
-    private void thisMonth() {
-//        Calendar calendar = Calendar.getInstance();
-//        calendar.setTime(new Date());
-//        month = calendar.get(Calendar.MONTH) + 1;
-//        year = calendar.get(Calendar.YEAR);
-
-        anoMes = Calendar.getInstance();
-
-    }
-
     private void showMonthYear() {
-//        Calendar calendar = Calendar.getInstance();
-//        calendar.set(Calendar.MONTH, month - 1);
-//        calendar.set(Calendar.YEAR, year);
-//        calendar.set(Calendar.DATE, 1);
-//        SimpleDateFormat sdf = new SimpleDateFormat("MMMM/yyyy");
-//        lbMonthYear.setText(sdf.format(calendar.getTime()));
-
         SimpleDateFormat sdf = new SimpleDateFormat("MMMM/yyyy");
         lbMonthYear.setText(sdf.format(anoMes.getTime()));
     }
@@ -152,30 +132,12 @@ public class CalendarCustom extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void cmdNextMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cmdNextMouseReleased
-//        if (month == 12) {
-//            month = 1;
-//            year++;
-//        } else {
-//            month++;
-//        }
-//        slide.show(new PanelDate(month, year), PanelSlide.AnimateType.TO_LEFT);
-//        showMonthYear();
-
         anoMes.add(Calendar.MONTH, +1);
         slide.show(new PanelDate(anoMes.get(Calendar.MONTH), anoMes.get(Calendar.YEAR)), PanelSlide.AnimateType.TO_LEFT);
         showMonthYear();
     }//GEN-LAST:event_cmdNextMouseReleased
 
     private void cmdBackMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cmdBackMouseReleased
-//        if (month == 12) {
-//            month = 1;
-//            year--;
-//        } else {
-//            month--;
-//        }        
-//        slide.show(new PanelDate(month, year), PanelSlide.AnimateType.TO_RIGHT);
-//        showMonthYear();
-
         anoMes.add(Calendar.MONTH, -1);
         slide.show(new PanelDate(anoMes.get(Calendar.MONTH), anoMes.get(Calendar.YEAR)), PanelSlide.AnimateType.TO_RIGHT);
         showMonthYear();

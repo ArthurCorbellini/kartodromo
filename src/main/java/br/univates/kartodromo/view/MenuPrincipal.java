@@ -83,6 +83,9 @@ public class MenuPrincipal extends javax.swing.JFrame {
         jpAboutHide.add(btnSobreHide);
 
         addMenu(listMenu);
+        
+        // "Aperta" o botão Home ao instanciar o menu do sistema.
+        pressButton(btnHome, new FormHome());
     }
 
     private void addMenu(List<MenuItem> listMenu) {
@@ -260,7 +263,6 @@ public class MenuPrincipal extends javax.swing.JFrame {
         jpContent.add(form);
         jpContent.repaint();
         jpContent.revalidate();
-
     }
 
     private void resetOnButton() {

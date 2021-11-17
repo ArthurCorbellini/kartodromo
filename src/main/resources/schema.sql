@@ -111,6 +111,8 @@ CREATE TABLE IF NOT EXISTS public.clientes
     nr_telefone bigint,
     tx_endereco character varying,
     nr_cep bigint,
+    dt_melhor_tempo timestamp without time zone,
+    dt_dia_melhor_tempo timestamp with time zone,
     PRIMARY KEY (id_cliente)
 );
 

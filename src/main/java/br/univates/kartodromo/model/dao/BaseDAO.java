@@ -44,7 +44,7 @@ public class BaseDAO {
             Transaction transacao = session.beginTransaction();
 
             Path schemaPath = new File("src/main/resources/data.sql").toPath();
-            String schema = new String(Files.readAllBytes(schemaPath)).replaceAll("\\:", "\\\\:");
+            String schema = new String(Files.readAllBytes(schemaPath));
 
             session.createSQLQuery(schema).executeUpdate();
 

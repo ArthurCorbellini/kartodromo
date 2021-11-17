@@ -10,9 +10,7 @@ import br.univates.kartodromo.model.entity.Auditoria;
 import br.univates.kartodromo.model.type.CrudType;
 import java.awt.Color;
 import java.awt.Font;
-import java.util.Arrays;
 import java.util.List;
-import java.util.stream.Collectors;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
@@ -59,7 +57,6 @@ public class FormAuditoria extends javax.swing.JPanel {
         setColumnCustomWidth(jtAuditoria, 6, 100);
         setColumnCustomWidth(jtAuditoria, 7, 100);
         jtAuditoria.setAutoResizeMode(JTable.AUTO_RESIZE_LAST_COLUMN);
-
     }
 
     private void setColumnCustomWidth(JTable table, int index, int width) {

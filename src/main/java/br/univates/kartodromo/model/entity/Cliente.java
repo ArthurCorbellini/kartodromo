@@ -34,6 +34,8 @@ public class Cliente implements Serializable {
     private Long telefone;
     private String endereco;
     private Long cep;
+    private Calendar melhorTempo;
+    private Calendar diaMelhorTempo;
 
     public Cliente(Integer id) {
         this.id = id;
@@ -125,6 +127,26 @@ public class Cliente implements Serializable {
 
     public void setCep(Long cep) {
         this.cep = cep;
+    }
+
+    @Column(name = "dt_melhor_tempo")
+    @Temporal(TemporalType.TIMESTAMP)
+    public Calendar getMelhorTempo() {
+        return melhorTempo;
+    }
+
+    public void setMelhorTempo(Calendar melhorTempo) {
+        this.melhorTempo = melhorTempo;
+    }
+
+    @Column(name = "dt_dia_melhor_tempo")
+    @Temporal(TemporalType.TIMESTAMP)
+    public Calendar getDiaMelhorTempo() {
+        return diaMelhorTempo;
+    }
+
+    public void setDiaMelhorTempo(Calendar diaMelhorTempo) {
+        this.diaMelhorTempo = diaMelhorTempo;
     }
 
 }

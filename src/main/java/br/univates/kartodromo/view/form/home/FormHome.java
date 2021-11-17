@@ -5,8 +5,20 @@
  */
 package br.univates.kartodromo.view.form.home;
 
+import br.univates.kartodromo.controller.ClienteController;
+import br.univates.kartodromo.model.entity.Auditoria;
+import br.univates.kartodromo.model.entity.Cliente;
+import java.awt.Color;
+import java.awt.Font;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Comparator;
+import java.util.List;
+import java.util.concurrent.atomic.AtomicInteger;
+import java.util.stream.Collectors;
 import javax.swing.ImageIcon;
-import javax.swing.JButton;
+import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -14,33 +26,131 @@ import javax.swing.JButton;
  */
 public class FormHome extends javax.swing.JPanel {
 
+    private List<Cliente> clientes;
+
     public FormHome() {
         initComponents();
 
-        buildPanelRankingGeral();
-        buildPanelPrevisaoTempo();
-        buildPanelCalendario();
-        buildPanelRankingSemanal();
+        clientes = new ClienteController().getAll()
+                .stream()
+                .sorted(Comparator.comparing(Cliente::getMelhorTempo))
+                .collect(Collectors.toList());
+
+        init();
     }
 
-    private void buildPanelRankingGeral() {
+    private void init() {
         lbRankingGeral.setText("Ranking Geral");
         lbIconRankingGeral.setIcon(new ImageIcon(getClass().getResource("/images/menuIcons/icon-trophy-light.png")));
-    }
+        buildTableRankingGeral();
 
-    private void buildPanelRankingSemanal() {
-        lbRankingSemanal.setText("Ranking Semanal");
-        lbIconRankingSemanal.setIcon(new ImageIcon(getClass().getResource("/images/menuIcons/icon-trophy-light.png")));
-    }
+        lbRankingMensal.setText("Ranking Mensal");
+        lbIconRankingMensal.setIcon(new ImageIcon(getClass().getResource("/images/menuIcons/icon-trophy-light.png")));
+        buildTableRankingMensal();
 
-    private void buildPanelPrevisaoTempo() {
         lbPrevisaoTempo.setText("Previsão do Tempo");
         lbIconPrevisaoTempo.setIcon(new ImageIcon(getClass().getResource("/images/menuIcons/icon-sun-cloud-light.png")));
     }
 
-    private void buildPanelCalendario() {
-        lbCalendario.setText("Calendário");
-        lbIconCalendario.setIcon(new ImageIcon(getClass().getResource("/images/menuIcons/icon-calendar-light.png")));
+    private void buildTableRankingMensal() {
+        fillTableRankingMensal();
+
+        jtRankingMensal.getTableHeader().setFont(new Font("Trebuchet MS", Font.BOLD, 12));
+        jtRankingMensal.getTableHeader().setOpaque(false);
+//        jtRankingMensal.getTableHeader().setBackground(new Color(69, 73, 74));
+        jtRankingMensal.getTableHeader().setForeground(new Color(51, 51, 51));
+        jtRankingMensal.setRowHeight(20);
+
+        setColumnCustomWidth(jtRankingMensal, 0, 35);
+        setColumnCustomWidth(jtRankingMensal, 2, 90);
+        setColumnCustomWidth(jtRankingMensal, 3, 70);
+        jtRankingMensal.setAutoResizeMode(JTable.AUTO_RESIZE_ALL_COLUMNS);
+    }
+
+    private void fillTableRankingMensal() {
+        DefaultTableModel tableModel = new DefaultTableModel() {
+            @Override
+            public boolean isCellEditable(int i, int i1) {
+                return false;
+            }
+        };
+
+        tableModel.addColumn("Pos");
+        tableModel.addColumn("Nome");
+        tableModel.addColumn("Tempo");
+        tableModel.addColumn("Dia");
+
+        AtomicInteger index = new AtomicInteger(1);
+        clientes.stream().filter(p -> applyTableFilters(p)).forEach(p -> {
+            tableModel.addRow(
+                    new Object[]{
+                        index.getAndIncrement(),
+                        p.getNome(),
+                        new SimpleDateFormat("HH:mm:ss.SSSS").format(p.getMelhorTempo().getTime()),
+                        new SimpleDateFormat("dd/MM/yyyy").format(p.getDiaMelhorTempo().getTime())
+                    }
+            );
+        });
+
+        this.jtRankingMensal.setModel(tableModel);
+    }
+
+    private void buildTableRankingGeral() {
+        fillTableRankingGeral();
+
+        jtRankingGeral.getTableHeader().setFont(new Font("Trebuchet MS", Font.BOLD, 12));
+        jtRankingGeral.getTableHeader().setOpaque(false);
+//        jtRankingGeral.getTableHeader().setBackground(new Color(69, 73, 74));
+        jtRankingGeral.getTableHeader().setForeground(new Color(51, 51, 51));
+        jtRankingGeral.setRowHeight(20);
+
+        setColumnCustomWidth(jtRankingGeral, 0, 35);
+        setColumnCustomWidth(jtRankingGeral, 2, 90);
+        setColumnCustomWidth(jtRankingGeral, 3, 70);
+        jtRankingGeral.setAutoResizeMode(JTable.AUTO_RESIZE_ALL_COLUMNS);
+    }
+
+    private void fillTableRankingGeral() {
+        DefaultTableModel tableModel = new DefaultTableModel() {
+            @Override
+            public boolean isCellEditable(int i, int i1) {
+                return false;
+            }
+        };
+
+        tableModel.addColumn("Pos");
+        tableModel.addColumn("Nome");
+        tableModel.addColumn("Tempo");
+        tableModel.addColumn("Dia");
+
+        AtomicInteger index = new AtomicInteger(1);
+        clientes.stream().forEach(p -> {
+            tableModel.addRow(
+                    new Object[]{
+                        index.getAndIncrement(),
+                        p.getNome(),
+                        new SimpleDateFormat("HH:mm:ss.SSSS").format(p.getMelhorTempo().getTime()),
+                        new SimpleDateFormat("dd/MM/yyyy").format(p.getDiaMelhorTempo().getTime())
+                    }
+            );
+        });
+
+        this.jtRankingGeral.setModel(tableModel);
+    }
+
+    private void setColumnCustomWidth(JTable table, int index, int width) {
+        table.getColumnModel().getColumn(index).setMaxWidth(width);
+        table.getColumnModel().getColumn(index).setMinWidth(width);
+    }
+
+    private boolean applyTableFilters(Cliente cli) {
+        Calendar dataMesPassado = Calendar.getInstance();
+        dataMesPassado.add(Calendar.MONTH, -1);
+        if (cli.getDiaMelhorTempo().compareTo(dataMesPassado) < 0) {
+            return false;
+        }
+
+        return true;
     }
 
     /**
@@ -60,16 +170,17 @@ public class FormHome extends javax.swing.JPanel {
         lbPrevisaoTempo = new javax.swing.JLabel();
         lbIconPrevisaoTempo = new javax.swing.JLabel();
         jpCalendario = new javax.swing.JPanel();
-        jpHeaderCalendario = new javax.swing.JPanel();
-        lbIconCalendario = new javax.swing.JLabel();
-        lbCalendario = new javax.swing.JLabel();
         calendarCustom2 = new br.univates.kartodromo.view.form.home.calendario.CalendarCustom();
         jpRankingGeral = new javax.swing.JPanel();
         lbRankingGeral = new javax.swing.JLabel();
         lbIconRankingGeral = new javax.swing.JLabel();
-        jpRankingGeral1 = new javax.swing.JPanel();
-        lbIconRankingSemanal = new javax.swing.JLabel();
-        lbRankingSemanal = new javax.swing.JLabel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        jtRankingGeral = new javax.swing.JTable();
+        jpRankingMensal = new javax.swing.JPanel();
+        lbIconRankingMensal = new javax.swing.JLabel();
+        lbRankingMensal = new javax.swing.JLabel();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        jtRankingMensal = new javax.swing.JTable();
 
         setBackground(new java.awt.Color(35, 40, 44));
         setPreferredSize(new java.awt.Dimension(575, 400));
@@ -146,42 +257,12 @@ public class FormHome extends javax.swing.JPanel {
                 .addGroup(jpPrevisaoTempoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(lbIconPrevisaoTempo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(lbPrevisaoTempo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(43, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         jpCalendario.setBackground(new java.awt.Color(21, 25, 28));
         jpCalendario.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 211, 0)));
         jpCalendario.setPreferredSize(new java.awt.Dimension(247, 150));
-
-        jpHeaderCalendario.setBackground(new java.awt.Color(21, 25, 28));
-
-        lbIconCalendario.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lbIconCalendario.setPreferredSize(new java.awt.Dimension(50, 50));
-
-        lbCalendario.setFont(new java.awt.Font("Trebuchet MS", 0, 14)); // NOI18N
-        lbCalendario.setForeground(new java.awt.Color(204, 204, 204));
-        lbCalendario.setText(".");
-
-        javax.swing.GroupLayout jpHeaderCalendarioLayout = new javax.swing.GroupLayout(jpHeaderCalendario);
-        jpHeaderCalendario.setLayout(jpHeaderCalendarioLayout);
-        jpHeaderCalendarioLayout.setHorizontalGroup(
-            jpHeaderCalendarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jpHeaderCalendarioLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(lbIconCalendario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(lbCalendario)
-                .addContainerGap(234, Short.MAX_VALUE))
-        );
-        jpHeaderCalendarioLayout.setVerticalGroup(
-            jpHeaderCalendarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jpHeaderCalendarioLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jpHeaderCalendarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lbCalendario, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lbIconCalendario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
 
         javax.swing.GroupLayout jpCalendarioLayout = new javax.swing.GroupLayout(jpCalendario);
         jpCalendario.setLayout(jpCalendarioLayout);
@@ -189,18 +270,14 @@ public class FormHome extends javax.swing.JPanel {
             jpCalendarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jpCalendarioLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jpCalendarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jpHeaderCalendario, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(calendarCustom2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(calendarCustom2, javax.swing.GroupLayout.DEFAULT_SIZE, 379, Short.MAX_VALUE)
                 .addContainerGap())
         );
         jpCalendarioLayout.setVerticalGroup(
             jpCalendarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jpCalendarioLayout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpCalendarioLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jpHeaderCalendario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(calendarCustom2, javax.swing.GroupLayout.DEFAULT_SIZE, 148, Short.MAX_VALUE)
+                .addComponent(calendarCustom2, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -215,16 +292,35 @@ public class FormHome extends javax.swing.JPanel {
         lbIconRankingGeral.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lbIconRankingGeral.setPreferredSize(new java.awt.Dimension(50, 50));
 
+        jtRankingGeral.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jtRankingGeral.getTableHeader().setReorderingAllowed(false);
+        jScrollPane2.setViewportView(jtRankingGeral);
+
         javax.swing.GroupLayout jpRankingGeralLayout = new javax.swing.GroupLayout(jpRankingGeral);
         jpRankingGeral.setLayout(jpRankingGeralLayout);
         jpRankingGeralLayout.setHorizontalGroup(
             jpRankingGeralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jpRankingGeralLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(lbIconRankingGeral, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(lbRankingGeral)
-                .addGap(0, 0, Short.MAX_VALUE))
+                .addGroup(jpRankingGeralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jpRankingGeralLayout.createSequentialGroup()
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                        .addContainerGap())
+                    .addGroup(jpRankingGeralLayout.createSequentialGroup()
+                        .addComponent(lbIconRankingGeral, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(lbRankingGeral)
+                        .addGap(0, 0, Short.MAX_VALUE))))
         );
         jpRankingGeralLayout.setVerticalGroup(
             jpRankingGeralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -233,39 +329,61 @@ public class FormHome extends javax.swing.JPanel {
                 .addGroup(jpRankingGeralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(lbRankingGeral, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lbIconRankingGeral, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-
-        jpRankingGeral1.setBackground(new java.awt.Color(21, 25, 28));
-        jpRankingGeral1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 211, 0)));
-        jpRankingGeral1.setPreferredSize(new java.awt.Dimension(100, 312));
-
-        lbIconRankingSemanal.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lbIconRankingSemanal.setPreferredSize(new java.awt.Dimension(50, 50));
-
-        lbRankingSemanal.setFont(new java.awt.Font("Trebuchet MS", 0, 14)); // NOI18N
-        lbRankingSemanal.setForeground(new java.awt.Color(204, 204, 204));
-        lbRankingSemanal.setText(".");
-
-        javax.swing.GroupLayout jpRankingGeral1Layout = new javax.swing.GroupLayout(jpRankingGeral1);
-        jpRankingGeral1.setLayout(jpRankingGeral1Layout);
-        jpRankingGeral1Layout.setHorizontalGroup(
-            jpRankingGeral1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jpRankingGeral1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(lbIconRankingSemanal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(lbRankingSemanal)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 65, Short.MAX_VALUE)
+                .addContainerGap())
         );
-        jpRankingGeral1Layout.setVerticalGroup(
-            jpRankingGeral1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jpRankingGeral1Layout.createSequentialGroup()
+
+        jpRankingMensal.setBackground(new java.awt.Color(21, 25, 28));
+        jpRankingMensal.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 211, 0)));
+        jpRankingMensal.setPreferredSize(new java.awt.Dimension(100, 312));
+
+        lbIconRankingMensal.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lbIconRankingMensal.setPreferredSize(new java.awt.Dimension(50, 50));
+
+        lbRankingMensal.setFont(new java.awt.Font("Trebuchet MS", 0, 14)); // NOI18N
+        lbRankingMensal.setForeground(new java.awt.Color(204, 204, 204));
+        lbRankingMensal.setText(".");
+
+        jtRankingMensal.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jtRankingMensal.getTableHeader().setReorderingAllowed(false);
+        jScrollPane3.setViewportView(jtRankingMensal);
+
+        javax.swing.GroupLayout jpRankingMensalLayout = new javax.swing.GroupLayout(jpRankingMensal);
+        jpRankingMensal.setLayout(jpRankingMensalLayout);
+        jpRankingMensalLayout.setHorizontalGroup(
+            jpRankingMensalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jpRankingMensalLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jpRankingGeral1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(lbRankingSemanal, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lbIconRankingSemanal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(jpRankingMensalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jpRankingMensalLayout.createSequentialGroup()
+                        .addComponent(lbIconRankingMensal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(lbRankingMensal)
+                        .addGap(0, 53, Short.MAX_VALUE))
+                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
+                .addContainerGap())
+        );
+        jpRankingMensalLayout.setVerticalGroup(
+            jpRankingMensalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jpRankingMensalLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jpRankingMensalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(lbRankingMensal, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lbIconRankingMensal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 65, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         javax.swing.GroupLayout jpBodyLayout = new javax.swing.GroupLayout(jpBody);
@@ -275,25 +393,25 @@ public class FormHome extends javax.swing.JPanel {
             .addGroup(jpBodyLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jpBodyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jpPrevisaoTempo, javax.swing.GroupLayout.DEFAULT_SIZE, 327, Short.MAX_VALUE)
-                    .addComponent(jpCalendario, javax.swing.GroupLayout.DEFAULT_SIZE, 327, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jpRankingGeral1, javax.swing.GroupLayout.DEFAULT_SIZE, 87, Short.MAX_VALUE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jpRankingGeral, javax.swing.GroupLayout.DEFAULT_SIZE, 81, Short.MAX_VALUE)
+                    .addComponent(jpCalendario, javax.swing.GroupLayout.DEFAULT_SIZE, 393, Short.MAX_VALUE)
+                    .addComponent(jpPrevisaoTempo, javax.swing.GroupLayout.DEFAULT_SIZE, 393, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addGroup(jpBodyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jpRankingGeral, javax.swing.GroupLayout.DEFAULT_SIZE, 140, Short.MAX_VALUE)
+                    .addComponent(jpRankingMensal, javax.swing.GroupLayout.DEFAULT_SIZE, 140, Short.MAX_VALUE))
                 .addContainerGap())
         );
         jpBodyLayout.setVerticalGroup(
             jpBodyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpBodyLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jpBodyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jpRankingGeral, javax.swing.GroupLayout.DEFAULT_SIZE, 343, Short.MAX_VALUE)
-                    .addGroup(jpBodyLayout.createSequentialGroup()
-                        .addComponent(jpPrevisaoTempo, javax.swing.GroupLayout.DEFAULT_SIZE, 101, Short.MAX_VALUE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jpCalendario, javax.swing.GroupLayout.DEFAULT_SIZE, 230, Short.MAX_VALUE))
-                    .addComponent(jpRankingGeral1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 343, Short.MAX_VALUE))
+            .addGroup(jpBodyLayout.createSequentialGroup()
+                .addGap(9, 9, 9)
+                .addGroup(jpBodyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jpPrevisaoTempo, javax.swing.GroupLayout.DEFAULT_SIZE, 147, Short.MAX_VALUE)
+                    .addComponent(jpRankingGeral, javax.swing.GroupLayout.DEFAULT_SIZE, 147, Short.MAX_VALUE))
+                .addGap(15, 15, 15)
+                .addGroup(jpBodyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jpCalendario, javax.swing.GroupLayout.DEFAULT_SIZE, 147, Short.MAX_VALUE)
+                    .addComponent(jpRankingMensal, javax.swing.GroupLayout.DEFAULT_SIZE, 147, Short.MAX_VALUE))
                 .addContainerGap())
         );
 
@@ -324,21 +442,22 @@ public class FormHome extends javax.swing.JPanel {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private br.univates.kartodromo.view.form.home.calendario.CalendarCustom calendarCustom2;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JPanel jpBody;
     private javax.swing.JPanel jpCalendario;
     private javax.swing.JPanel jpHeader;
-    private javax.swing.JPanel jpHeaderCalendario;
     private javax.swing.JPanel jpPrevisaoTempo;
     private javax.swing.JPanel jpRankingGeral;
-    private javax.swing.JPanel jpRankingGeral1;
-    private javax.swing.JLabel lbCalendario;
-    private javax.swing.JLabel lbIconCalendario;
+    private javax.swing.JPanel jpRankingMensal;
+    private javax.swing.JTable jtRankingGeral;
+    private javax.swing.JTable jtRankingMensal;
     private javax.swing.JLabel lbIconPrevisaoTempo;
     private javax.swing.JLabel lbIconRankingGeral;
-    private javax.swing.JLabel lbIconRankingSemanal;
+    private javax.swing.JLabel lbIconRankingMensal;
     private javax.swing.JLabel lbPrevisaoTempo;
     private javax.swing.JLabel lbRankingGeral;
-    private javax.swing.JLabel lbRankingSemanal;
+    private javax.swing.JLabel lbRankingMensal;
     private javax.swing.JLabel lbSubTitulo;
     private javax.swing.JLabel lbTitulo;
     // End of variables declaration//GEN-END:variables
