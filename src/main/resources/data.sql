@@ -60,3 +60,16 @@ values ('Traçado A', '1', 60, 1000)
 ,      ('Traçado E', '3', 50, 700)
 ,      ('Traçado F', '3', 50, 600)
 ;
+
+update tracados set nm_tracado = 'Traçado Alterado A' where id_tracado = '1';
+update veiculos set id_marca = '2' where id_veiculo = '1';
+update veiculos set id_marca = '2' where id_veiculo = '2';
+update tracados set nm_tracado = 'Traçado Alterado A' where id_tracado = '1';
+update veiculos set id_marca = '2' where id_veiculo = '1';
+update veiculos set id_marca = '2' where id_veiculo = '2';
+update tracados set nm_tracado = 'Traçado Alterado A' where id_tracado = '1';
+update veiculos set id_marca = '2' where id_veiculo = '1';
+update veiculos set id_marca = '2' where id_veiculo = '2';
+update tracados set nm_tracado = 'Traçado Alterado A' where id_tracado = '1';
+update veiculos set id_marca = '2' where id_veiculo = '1';
+update veiculos set id_marca = '2' where id_veiculo = '2';
