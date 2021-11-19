@@ -97,6 +97,20 @@ FOR EACH ROW EXECUTE PROCEDURE audit.if_modified_func();
 */
 
 /* -------------------------------------------------------------------- */
+/* -------------- Function para validar usuário logado ---------------- */
+/* -------------------------------------------------------------------- */
+
+CREATE OR REPLACE FUNCTION validateUser(usuario VARCHAR, senha VARCHAR)
+RETURNS TABLE (usuarios) AS $$
+BEGIN
+  RETURN QUERY SELECT * 
+               FROM   usuarios
+			   WHERE  tx_login = usuario
+			   AND    tx_senha = senha;
+END
+$$ LANGUAGE plpgsql;
+
+/* -------------------------------------------------------------------- */
 /* -------------- Schema de criação das tabelas do banco -------------- */
 /* -------------------------------------------------------------------- */
 

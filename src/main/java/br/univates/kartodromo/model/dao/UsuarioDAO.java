@@ -49,16 +49,12 @@ public class UsuarioDAO extends BaseDAO {
         stringQuery.append(" select * from validateUser('" + user + "','" + encrypt(password) + "') ");
         Query query = getEntityManager().createNativeQuery(stringQuery.toString());
 
-//        List<Usuario> resultList = query.getResultList();
+         List<Usuario> resultList = query.getResultList();
 
-        List<Object[]> result = query.getResultList();
-        
-        
-
-        if (result == null) {
+        if (resultList.isEmpty()) {
             return false;
         } else {
-//            loggedUser = result;
+            loggedUser = resultList.get(0);
             return true;
         }
     }
