@@ -6,6 +6,7 @@
 package br.univates.kartodromo.model.entity;
 
 import java.io.Serializable;
+import java.math.BigDecimal;
 import java.util.Calendar;
 import javax.persistence.Column;
 import javax.persistence.Entity;

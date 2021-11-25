@@ -6,8 +6,11 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.ZoneId;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.*;
 import javax.swing.text.*;
 
@@ -238,5 +241,22 @@ public class Formatacao {
 
     public static String limpaCaracter(String texto) {
         return texto.replaceAll("\\D", "");
+    }
+    
+    public static Calendar dateStrToCalendar(String dataStr) {
+        Calendar calendar = Calendar.getInstance();
+        SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+        try {
+            calendar.setTime(df.parse(ajustaDataAMD(dataStr)));
+        } catch (ParseException ex) {
+            Logger.getLogger(Formatacao.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        return calendar;
+    }
+    
+    public static String calendarDateToStr(Calendar date) {
+        SimpleDateFormat df = new SimpleDateFormat("dd/MM/yyyy");
+        return df.format(date.getTime());
     }
 }
