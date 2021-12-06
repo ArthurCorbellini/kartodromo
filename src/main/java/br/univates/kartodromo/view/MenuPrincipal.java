@@ -13,6 +13,7 @@ import br.univates.kartodromo.view.form.FormCadastroTracado;
 import br.univates.kartodromo.view.form.FormCadastroUsuario;
 import br.univates.kartodromo.view.form.FormCadastroVeiculo;
 import br.univates.kartodromo.view.form.FormIniciarCorrida;
+import br.univates.kartodromo.view.form.FormLog;
 import br.univates.kartodromo.view.form.home.FormHome;
 import java.awt.Color;
 import java.awt.event.ActionEvent;
@@ -49,6 +50,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
     private MenuItem btnCadastroTracado;
     private MenuItem btnCadastroCliente;
     private MenuItem btnAuditoria;
+    private MenuItem btnLog;
 
     public MenuPrincipal() {
         initComponents();
@@ -74,6 +76,9 @@ public class MenuPrincipal extends javax.swing.JFrame {
         if (isUserAdmin()) {
             buildBtnAuditoria();
             listMenu.add(btnAuditoria);
+            
+            buildBtnLog();
+            listMenu.add(btnLog);
         }
 
         buildBtnSobreShow();
@@ -183,6 +188,18 @@ public class MenuPrincipal extends javax.swing.JFrame {
                 pressButton(btnAuditoria, new FormAuditoria());
             }
         });
+    }
+    
+        private void buildBtnLog() {
+        ImageIcon lightIcon = new ImageIcon(getClass().getResource("/images/menuIcons/icon-log-light.png"));
+        ImageIcon darkIcon = new ImageIcon(getClass().getResource("/images/menuIcons/icon-log-dark.png"));
+
+        btnLog = new MenuItem(lightIcon, darkIcon, "Log", new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent ae) {
+                pressButton(btnLog, new FormLog());
+            }
+        }); 
     }
 
     private void buildBtnSobreShow() {

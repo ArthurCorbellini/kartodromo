@@ -257,6 +257,6 @@ public class Formatacao {
     
     public static String calendarDateToStr(Calendar date) {
         SimpleDateFormat df = new SimpleDateFormat("dd/MM/yyyy");
-        return df.format(date.getTime());
+        return date != null ? df.format(date.getTime()) : null;
     }
 }
