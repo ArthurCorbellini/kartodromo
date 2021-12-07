@@ -38,34 +38,8 @@ public class FormAuditoria extends javax.swing.JPanel {
         cbAcao.setSelectedIndex(0);
     }
 
-    // CUSTOMIZAR 
     private void buildTableAuditoria() {
-        fillTableAuditoria();
-
-        jtAuditoria.getTableHeader().setFont(new Font("Trebuchet MS", Font.BOLD, 12));
-        jtAuditoria.getTableHeader().setOpaque(false);
-//        jtAuditoria.getTableHeader().setBackground(new Color(69, 73, 74));
-        jtAuditoria.getTableHeader().setForeground(new Color(51, 51, 51));
-        jtAuditoria.setRowHeight(20);
-
-        setColumnCustomWidth(jtAuditoria, 0, 30);
-        setColumnCustomWidth(jtAuditoria, 1, 75);
-        setColumnCustomWidth(jtAuditoria, 2, 75);
-        setColumnCustomWidth(jtAuditoria, 3, 75);
-        setColumnCustomWidth(jtAuditoria, 4, 200);
-        setColumnCustomWidth(jtAuditoria, 5, 40);
-        setColumnCustomWidth(jtAuditoria, 6, 100);
-        setColumnCustomWidth(jtAuditoria, 7, 100);
-        jtAuditoria.setAutoResizeMode(JTable.AUTO_RESIZE_LAST_COLUMN);
-    }
-
-    private void setColumnCustomWidth(JTable table, int index, int width) {
-        table.getColumnModel().getColumn(index).setMaxWidth(width);
-        table.getColumnModel().getColumn(index).setMinWidth(width);
-    }
-
-    // POPULAR
-    private void fillTableAuditoria() {
+        // -------------- Popular dados
         DefaultTableModel tableModel = new DefaultTableModel() {
             @Override
             public boolean isCellEditable(int i, int i1) {
@@ -98,8 +72,29 @@ public class FormAuditoria extends javax.swing.JPanel {
                     }
             );
         });
-
         this.jtAuditoria.setModel(tableModel);
+
+        // -------------- Customizar tabela
+        jtAuditoria.getTableHeader().setFont(new Font("Trebuchet MS", Font.BOLD, 12));
+        jtAuditoria.getTableHeader().setOpaque(false);
+//        jtAuditoria.getTableHeader().setBackground(new Color(69, 73, 74));
+        jtAuditoria.getTableHeader().setForeground(new Color(51, 51, 51));
+        jtAuditoria.setRowHeight(20);
+
+        setColumnCustomWidth(jtAuditoria, 0, 30);
+        setColumnCustomWidth(jtAuditoria, 1, 75);
+        setColumnCustomWidth(jtAuditoria, 2, 75);
+        setColumnCustomWidth(jtAuditoria, 3, 75);
+        setColumnCustomWidth(jtAuditoria, 4, 200);
+        setColumnCustomWidth(jtAuditoria, 5, 40);
+        setColumnCustomWidth(jtAuditoria, 6, 100);
+        setColumnCustomWidth(jtAuditoria, 7, 100);
+        jtAuditoria.setAutoResizeMode(JTable.AUTO_RESIZE_LAST_COLUMN);
+    }
+
+    private void setColumnCustomWidth(JTable table, int index, int width) {
+        table.getColumnModel().getColumn(index).setMaxWidth(width);
+        table.getColumnModel().getColumn(index).setMinWidth(width);
     }
 
     private boolean applyTableFilters(Auditoria audit) {

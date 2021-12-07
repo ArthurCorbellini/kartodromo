@@ -5,7 +5,10 @@
  */
 package br.univates.kartodromo.view.form;
 
+import br.univates.kartodromo.model.entity.Auditoria;
 import br.univates.kartodromo.view.form.vo.LogVO;
+import java.awt.Color;
+import java.awt.Font;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
@@ -14,11 +17,11 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Calendar;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -64,7 +67,49 @@ public class FormLog extends javax.swing.JPanel {
     }
 
     private void buildTableLog() {
+        // -------------- Popular dados
+        DefaultTableModel tableModel = new DefaultTableModel() {
+            @Override
+            public boolean isCellEditable(int i, int i1) {
+                return false;
+            }
+        };
 
+        tableModel.addColumn("Data");
+        tableModel.addColumn("Tipo");
+        tableModel.addColumn("Local");
+        tableModel.addColumn("Exception");
+        tableModel.addColumn("Conteúdo");
+
+        logList.forEach(p -> {
+            tableModel.addRow(
+                    new Object[]{
+                        p.getData().getTime(),
+                        p.getTipo(),
+                        p.getLocal(),
+                        p.getException(),
+                        p.getConteudo()
+                    }
+            );
+        });
+        this.jtLog.setModel(tableModel);
+
+        // -------------- Customizar tabela
+        jtLog.getTableHeader().setFont(new Font("Trebuchet MS", Font.BOLD, 12));
+        jtLog.getTableHeader().setOpaque(false);
+        jtLog.getTableHeader().setForeground(new Color(51, 51, 51));
+        jtLog.setRowHeight(20);
+
+        setColumnCustomWidth(jtLog, 0, 200);
+        setColumnCustomWidth(jtLog, 1, 75);
+        setColumnCustomWidth(jtLog, 2, 150);
+        setColumnCustomWidth(jtLog, 3, 400);
+        jtLog.setAutoResizeMode(JTable.AUTO_RESIZE_LAST_COLUMN);
+    }
+
+    private void setColumnCustomWidth(JTable table, int index, int width) {
+        table.getColumnModel().getColumn(index).setMaxWidth(width);
+        table.getColumnModel().getColumn(index).setMinWidth(width);
     }
 
     @SuppressWarnings("unchecked")
@@ -75,6 +120,8 @@ public class FormLog extends javax.swing.JPanel {
         lbTitulo = new javax.swing.JLabel();
         lbSubTitulo = new javax.swing.JLabel();
         jpBody = new javax.swing.JPanel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        jtLog = new javax.swing.JTable();
 
         setBackground(new java.awt.Color(35, 40, 44));
         setPreferredSize(new java.awt.Dimension(575, 400));
@@ -86,7 +133,7 @@ public class FormLog extends javax.swing.JPanel {
         lbTitulo.setFont(new java.awt.Font("Trebuchet MS", 0, 24)); // NOI18N
         lbTitulo.setForeground(new java.awt.Color(204, 204, 204));
         lbTitulo.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        lbTitulo.setText("Título Lorem Ipsum");
+        lbTitulo.setText("Logs");
         lbTitulo.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
         lbTitulo.setPreferredSize(new java.awt.Dimension(321, 30));
 
@@ -94,7 +141,7 @@ public class FormLog extends javax.swing.JPanel {
         lbSubTitulo.setFont(new java.awt.Font("Trebuchet MS", 0, 12)); // NOI18N
         lbSubTitulo.setForeground(new java.awt.Color(204, 204, 204));
         lbSubTitulo.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        lbSubTitulo.setText("Título Lorem Ipsum");
+        lbSubTitulo.setText("Registros de Logs do sistema");
         lbSubTitulo.setVerticalAlignment(javax.swing.SwingConstants.TOP);
         lbSubTitulo.setPreferredSize(new java.awt.Dimension(300, 16));
 
@@ -123,15 +170,39 @@ public class FormLog extends javax.swing.JPanel {
 
         jpBody.setBackground(new java.awt.Color(35, 40, 44));
 
+        jtLog.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jtLog.getTableHeader().setReorderingAllowed(false);
+        jScrollPane2.setViewportView(jtLog);
+
         javax.swing.GroupLayout jpBodyLayout = new javax.swing.GroupLayout(jpBody);
         jpBody.setLayout(jpBodyLayout);
         jpBodyLayout.setHorizontalGroup(
             jpBodyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 0, Short.MAX_VALUE)
+            .addGroup(jpBodyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jpBodyLayout.createSequentialGroup()
+                    .addContainerGap()
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 551, Short.MAX_VALUE)
+                    .addContainerGap()))
         );
         jpBodyLayout.setVerticalGroup(
             jpBodyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 324, Short.MAX_VALUE)
+            .addGroup(jpBodyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jpBodyLayout.createSequentialGroup()
+                    .addGap(19, 19, 19)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 285, Short.MAX_VALUE)
+                    .addGap(20, 20, 20)))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -160,8 +231,10 @@ public class FormLog extends javax.swing.JPanel {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JPanel jpBody;
     private javax.swing.JPanel jpHeader;
+    private javax.swing.JTable jtLog;
     private javax.swing.JLabel lbSubTitulo;
     private javax.swing.JLabel lbTitulo;
     // End of variables declaration//GEN-END:variables
