@@ -30,13 +30,13 @@ public class FormCadastroCliente extends javax.swing.JPanel {
     int idCliente = 0;
     private Cliente cliente;
     ClienteController ClienteController = new ClienteController();
-    
+
     public FormCadastroCliente() {
         initComponents();
-        
+
         refreshTable();
         popularComboSexo();
-        
+
         Formatacao.formatarData(campoDataNascimento);
         Formatacao.formatarCep(campoCEP);
         Formatacao.formatarTelefone(campoTelefone);
@@ -242,6 +242,8 @@ public class FormCadastroCliente extends javax.swing.JPanel {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        tabelaClientes.setEditingColumn(0);
+        tabelaClientes.setEditingRow(0);
         tabelaClientes.setGridColor(new java.awt.Color(255, 211, 0));
         tabelaClientes.setSelectionBackground(new java.awt.Color(255, 211, 0));
         tabelaClientes.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -458,15 +460,21 @@ public class FormCadastroCliente extends javax.swing.JPanel {
 
             Object item = getComboSexo().getSelectedItem();
 
-            cliente.setSexo(((ComboItem)item).getValue());
+            cliente.setSexo(((ComboItem) item).getValue());
             cliente.setEmail(getCampoEmail().getText());
             cliente.setTelefone(Long.parseLong(Formatacao.limpaCaracter(getCampoTelefone().getText())));
             cliente.setEndereco(getCampoEndereco().getText());
             cliente.setCep(Long.parseLong(Formatacao.limpaCaracter(getCampoCEP().getText())));
 
             ClienteDAO clienteDAO = new ClienteDAO();
-            clienteDAO.insert(cliente);
-
+            
+            if (idCliente > 0) {
+                cliente.setId(idCliente);
+                clienteDAO.update(cliente);
+            } else {
+                clienteDAO.insert(cliente);    
+            }
+        
             refreshTable();
             this.limparTela();
             JOptionPane.showMessageDialog(this, "Cadastrado", "Cliente Salvo com sucesso", JOptionPane.INFORMATION_MESSAGE);
@@ -496,40 +504,42 @@ public class FormCadastroCliente extends javax.swing.JPanel {
     private void tabelaClientesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabelaClientesMouseClicked
         int row = tabelaClientes.getSelectedRow();
 
-        if (row >=0){
+        if (row >= 0) {
 
             DefaultTableModel modeloTabela = (DefaultTableModel) tabelaClientes.getModel();
 
-            campoNome.setText(cliente.getNome());
+            //campoNome.setText(cliente.getNome());
+
+            try {
+                String idString = String.valueOf(tabelaClientes.getValueAt(tabelaClientes.getSelectedRow(), 0));
+
+                idCliente = Integer.parseInt(idString);
+
+                ClienteDAO cDAO = new ClienteDAO();
+
+                cliente = cDAO.getById(idCliente);
+
+                if (cliente != null) {
+
+                    this.getCampoNome().setText(cliente.getNome());
+                    this.getCampoCEP().setText(String.valueOf(cliente.getCep()));
+                    this.getCampoDataNascimento().setText(Formatacao.calendarDateToStr(cliente.getDataNascimento()));
+                    this.getCampoEmail().setText(cliente.getEmail());
+                    this.getCampoEndereco().setText(cliente.getEndereco());
+                    this.getCampoCPF().setText(String.valueOf(cliente.getCpf()));
+                    this.getCampoTelefone().setText(String.valueOf(cliente.getTelefone()));
+                    this.getComboSexo().getModel().setSelectedItem(GeneroType.valueOf(cliente.getSexo()));
+                }
+                 else {
+                    JOptionPane.showMessageDialog(null, "Não foi possível localizar o cadastro do cliente");
+                
+                }
+
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(null, "Selecione um registro para editar"+ e.getMessage());
+            }
+
         }
-
-        //try {
-            //  String idString = String.valueOf(tabelaClientes.getValueAt(tabelaClientes.getSelectedRow(), 0));
-
-            // idCliente = Integer.parseInt(idString);
-
-            //     ClienteDAO cDAO = new ClienteDAO();
-
-            //     cliente = cDAO.consultarId(idCliente);
-
-            //      if (cliente != null) {
-
-                //       this.getCampoNome().setText(cliente.getNome());
-                //           this.getCampoCEP().setText(cliente.getCep().toString());
-                //          this.getCampoDataNascimento().setText(Formatacao.calendarDateToStr(cliente.getDataNascimento()));
-                //this.getCampoEmail_cadastro().setText(cliente.getEmail());
-                //this.getCampoRG_cadastro().setText(cliente.getRg());
-                //this.getCampoEndereco_cadastro().setText(cliente.getEndereco());
-                // this.getCampoTelefone_cadastro().setText(cliente.getTelefone());
-                //          this.getComboSexo().getModel().setSelectedItem(cliente.getSexo());
-
-                //     } else {
-                //          System.out.println("Erro na consulta");
-                //      }
-
-            //    } catch (ArrayIndexOutOfBoundsException e) {
-            //        JOptionPane.showMessageDialog(null, "Selecione um registro para editar");
-            //    }
     }//GEN-LAST:event_tabelaClientesMouseClicked
 
     private void btnCancelar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelar1ActionPerformed
@@ -541,9 +551,9 @@ public class FormCadastroCliente extends javax.swing.JPanel {
         comboSexoModel.removeAllElements();
         comboSexoModel.addElement(new ComboItem(GeneroType.M.getName(), GeneroType.M.name()));
         comboSexoModel.addElement(new ComboItem(GeneroType.F.getName(), GeneroType.F.name()));
- 
+
     }
-    
+
     public void refreshTable() {
         List<Cliente> listaCliente = new ArrayList();
         listaCliente = ClienteController.getAll();
@@ -580,7 +590,7 @@ public class FormCadastroCliente extends javax.swing.JPanel {
 
         }
     }
-    
+
     public JFormattedTextField getCampoCEP() {
         return campoCEP;
     }
@@ -644,7 +654,7 @@ public class FormCadastroCliente extends javax.swing.JPanel {
     public void setComboSexo(JComboBox<String> comboSexo) {
         this.comboSexo = comboSexo;
     }
-    
+
     public void limparTela() {
 
         getCampoCEP().setText("");
