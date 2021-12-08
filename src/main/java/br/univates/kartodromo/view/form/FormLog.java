@@ -5,7 +5,6 @@
  */
 package br.univates.kartodromo.view.form;
 
-import br.univates.kartodromo.model.entity.Auditoria;
 import br.univates.kartodromo.view.form.vo.LogVO;
 import java.awt.Color;
 import java.awt.Font;
