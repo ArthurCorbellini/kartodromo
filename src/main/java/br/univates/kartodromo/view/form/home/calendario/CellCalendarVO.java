@@ -9,6 +9,9 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.RenderingHints;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.util.Calendar;
 import java.util.Date;
 import javax.swing.JButton;
 import javax.swing.JLabel;
@@ -27,6 +30,12 @@ public class CellCalendarVO extends JButton {
         setContentAreaFilled(false);
         setBorder(null);
         setHorizontalAlignment(JLabel.CENTER);
+
+        addMouseListener(new MouseAdapter() {
+            public void mouseClicked(MouseEvent evt) {
+                actPerformed(evt);
+            }
+        });
     }
 
     public void currentMonth(boolean act) {
@@ -54,6 +63,15 @@ public class CellCalendarVO extends JButton {
         }
 
         super.paintComponent(grphcs);
+    }
+
+    private void actPerformed(MouseEvent evt) {
+        if (!title) {
+            Calendar cal = Calendar.getInstance();
+            cal.setTime(date);
+
+            new FormAgenda(cal, this.getLocationOnScreen()).setVisible(true);
+        }
     }
 
     public void setAsToday() {
