@@ -11,6 +11,7 @@ import br.univates.kartodromo.model.type.CrudType;
 import java.awt.Color;
 import java.awt.Font;
 import java.util.List;
+import java.util.stream.Collectors;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
@@ -36,36 +37,20 @@ public class FormAuditoria extends javax.swing.JPanel {
         cbAcao.setModel(new DefaultComboBoxModel<>(CrudType.values()));
         ((DefaultComboBoxModel) cbAcao.getModel()).insertElementAt(null, 0);
         cbAcao.setSelectedIndex(0);
+
+        List<String> listTableName = audit.stream().map(Auditoria::getTableName).distinct().collect(Collectors.toList());
+        cbTabela.setModel(new DefaultComboBoxModel<>(listTableName.toArray()));
+        ((DefaultComboBoxModel) cbTabela.getModel()).insertElementAt(null, 0);
+        cbTabela.setSelectedIndex(0);
+
+        List<String> listUserName = audit.stream().map(Auditoria::getUserName).distinct().collect(Collectors.toList());
+        cbUsuario.setModel(new DefaultComboBoxModel<>(listUserName.toArray()));
+        ((DefaultComboBoxModel) cbUsuario.getModel()).insertElementAt(null, 0);
+        cbUsuario.setSelectedIndex(0);
     }
 
-    // CUSTOMIZAR 
     private void buildTableAuditoria() {
-        fillTableAuditoria();
-
-        jtAuditoria.getTableHeader().setFont(new Font("Trebuchet MS", Font.BOLD, 12));
-        jtAuditoria.getTableHeader().setOpaque(false);
-//        jtAuditoria.getTableHeader().setBackground(new Color(69, 73, 74));
-        jtAuditoria.getTableHeader().setForeground(new Color(51, 51, 51));
-        jtAuditoria.setRowHeight(20);
-
-        setColumnCustomWidth(jtAuditoria, 0, 30);
-        setColumnCustomWidth(jtAuditoria, 1, 75);
-        setColumnCustomWidth(jtAuditoria, 2, 75);
-        setColumnCustomWidth(jtAuditoria, 3, 75);
-        setColumnCustomWidth(jtAuditoria, 4, 200);
-        setColumnCustomWidth(jtAuditoria, 5, 40);
-        setColumnCustomWidth(jtAuditoria, 6, 100);
-        setColumnCustomWidth(jtAuditoria, 7, 100);
-        jtAuditoria.setAutoResizeMode(JTable.AUTO_RESIZE_LAST_COLUMN);
-    }
-
-    private void setColumnCustomWidth(JTable table, int index, int width) {
-        table.getColumnModel().getColumn(index).setMaxWidth(width);
-        table.getColumnModel().getColumn(index).setMinWidth(width);
-    }
-
-    // POPULAR
-    private void fillTableAuditoria() {
+        // -------------- Popular dados
         DefaultTableModel tableModel = new DefaultTableModel() {
             @Override
             public boolean isCellEditable(int i, int i1) {
@@ -98,16 +83,37 @@ public class FormAuditoria extends javax.swing.JPanel {
                     }
             );
         });
-
         this.jtAuditoria.setModel(tableModel);
+
+        // -------------- Customizar tabela
+        jtAuditoria.getTableHeader().setFont(new Font("Trebuchet MS", Font.BOLD, 12));
+        jtAuditoria.getTableHeader().setOpaque(false);
+//        jtAuditoria.getTableHeader().setBackground(new Color(69, 73, 74));
+        jtAuditoria.getTableHeader().setForeground(new Color(51, 51, 51));
+        jtAuditoria.setRowHeight(20);
+
+        setColumnCustomWidth(jtAuditoria, 0, 30);
+        setColumnCustomWidth(jtAuditoria, 1, 75);
+        setColumnCustomWidth(jtAuditoria, 2, 75);
+        setColumnCustomWidth(jtAuditoria, 3, 75);
+        setColumnCustomWidth(jtAuditoria, 4, 200);
+        setColumnCustomWidth(jtAuditoria, 5, 40);
+        setColumnCustomWidth(jtAuditoria, 6, 100);
+        setColumnCustomWidth(jtAuditoria, 7, 100);
+        jtAuditoria.setAutoResizeMode(JTable.AUTO_RESIZE_LAST_COLUMN);
+    }
+
+    private void setColumnCustomWidth(JTable table, int index, int width) {
+        table.getColumnModel().getColumn(index).setMaxWidth(width);
+        table.getColumnModel().getColumn(index).setMinWidth(width);
     }
 
     private boolean applyTableFilters(Auditoria audit) {
-        if (cbAcao.getSelectedItem() != null) {
-            return audit.getAction().toString() == cbAcao.getSelectedItem().toString();
-        }
+        boolean filtroAction = cbAcao.getSelectedItem() != null ? audit.getAction().toString().equals(cbAcao.getSelectedItem().toString()) : true;
+        boolean filtroTableName = cbTabela.getSelectedItem() != null ? audit.getTableName().toString().equals(cbTabela.getSelectedItem().toString()) : true;
+        boolean filtroUserName = cbUsuario.getSelectedItem() != null ? audit.getUserName().toString().equals(cbUsuario.getSelectedItem().toString()) : true;
 
-        return true;
+        return filtroAction && filtroTableName && filtroUserName;
     }
 
     /**
@@ -127,6 +133,10 @@ public class FormAuditoria extends javax.swing.JPanel {
         jtAuditoria = new javax.swing.JTable();
         cbAcao = new javax.swing.JComboBox<>();
         lbAcao = new javax.swing.JLabel();
+        lbTabela = new javax.swing.JLabel();
+        cbTabela = new javax.swing.JComboBox();
+        lbUsuario = new javax.swing.JLabel();
+        cbUsuario = new javax.swing.JComboBox();
 
         setBackground(new java.awt.Color(35, 40, 44));
         setPreferredSize(new java.awt.Dimension(575, 400));
@@ -202,6 +212,30 @@ public class FormAuditoria extends javax.swing.JPanel {
         lbAcao.setForeground(new java.awt.Color(204, 204, 204));
         lbAcao.setText("Ação:");
 
+        lbTabela.setFont(new java.awt.Font("Trebuchet MS", 0, 12)); // NOI18N
+        lbTabela.setForeground(new java.awt.Color(204, 204, 204));
+        lbTabela.setText("Tabela:");
+
+        cbTabela.setFont(new java.awt.Font("Trebuchet MS", 0, 12)); // NOI18N
+        cbTabela.setPreferredSize(new java.awt.Dimension(50, 21));
+        cbTabela.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cbTabelaActionPerformed(evt);
+            }
+        });
+
+        lbUsuario.setFont(new java.awt.Font("Trebuchet MS", 0, 12)); // NOI18N
+        lbUsuario.setForeground(new java.awt.Color(204, 204, 204));
+        lbUsuario.setText("Usuário:");
+
+        cbUsuario.setFont(new java.awt.Font("Trebuchet MS", 0, 12)); // NOI18N
+        cbUsuario.setPreferredSize(new java.awt.Dimension(50, 21));
+        cbUsuario.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cbUsuarioActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jpBodyLayout = new javax.swing.GroupLayout(jpBody);
         jpBody.setLayout(jpBodyLayout);
         jpBodyLayout.setHorizontalGroup(
@@ -215,6 +249,14 @@ public class FormAuditoria extends javax.swing.JPanel {
                 .addComponent(lbAcao)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(cbAcao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(lbTabela)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(cbTabela, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(lbUsuario)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(cbUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jpBodyLayout.setVerticalGroup(
@@ -223,7 +265,12 @@ public class FormAuditoria extends javax.swing.JPanel {
                 .addContainerGap()
                 .addGroup(jpBodyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(cbAcao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lbAcao))
+                    .addComponent(lbAcao)
+                    .addComponent(lbTabela)
+                    .addComponent(cbTabela, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jpBodyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(lbUsuario)
+                        .addComponent(cbUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 285, Short.MAX_VALUE)
                 .addContainerGap())
@@ -257,15 +304,26 @@ public class FormAuditoria extends javax.swing.JPanel {
         buildTableAuditoria();
     }//GEN-LAST:event_cbAcaoActionPerformed
 
+    private void cbTabelaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbTabelaActionPerformed
+        buildTableAuditoria();
+    }//GEN-LAST:event_cbTabelaActionPerformed
+
+    private void cbUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbUsuarioActionPerformed
+        buildTableAuditoria();
+    }//GEN-LAST:event_cbUsuarioActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox<CrudType> cbAcao;
+    private javax.swing.JComboBox cbTabela;
+    private javax.swing.JComboBox cbUsuario;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JPanel jpBody;
     private javax.swing.JPanel jpHeader;
     private javax.swing.JTable jtAuditoria;
     private javax.swing.JLabel lbAcao;
     private javax.swing.JLabel lbSubTitulo;
+    private javax.swing.JLabel lbTabela;
     private javax.swing.JLabel lbTitulo;
+    private javax.swing.JLabel lbUsuario;
     // End of variables declaration//GEN-END:variables
 }
