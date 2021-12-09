@@ -53,12 +53,12 @@ values ('Carro A', '1')
 ;
 
 insert into tracados (nm_tracado, dm_dificuldade, vl_maximo, vl_tamanho)
-values ('Traçado A', '1', 60, 1000)
-,      ('Traçado B', '1', 50, 600)
-,      ('Traçado C', '2', 40, 600)
-,      ('Traçado D', '2', 60, 800)
-,      ('Traçado E', '3', 50, 700)
-,      ('Traçado F', '3', 50, 600)
+values ('Traçado A', '1', '60', '1000')
+,      ('Traçado B', '1', '50', '600')
+,      ('Traçado C', '2', '40', '600')
+,      ('Traçado D', '2', '60', '800')
+,      ('Traçado E', '3', '50', '700')
+,      ('Traçado F', '3', '50', '600')
 ;
 
 update tracados set nm_tracado = 'Traçado Alterado A' where id_tracado = '1';

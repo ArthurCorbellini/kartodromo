@@ -100,7 +100,7 @@ FOR EACH ROW EXECUTE PROCEDURE audit.if_modified_func();
 /* -------------- Function para validar usuário logado ---------------- */
 /* -------------------------------------------------------------------- */
 
-CREATE OR REPLACE FUNCTION validateUser(usuario VARCHAR, senha VARCHAR)
+/*CREATE OR REPLACE FUNCTION validateUser(usuario VARCHAR, senha VARCHAR)
 RETURNS TABLE (usuarios) AS $$
 BEGIN
   RETURN QUERY SELECT * 
@@ -108,7 +108,7 @@ BEGIN
 			   WHERE  tx_login = usuario
 			   AND    tx_senha = senha;
 END
-$$ LANGUAGE plpgsql;
+$$ LANGUAGE plpgsql; */
 
 /* -------------------------------------------------------------------- */
 /* -------------- Schema de criação das tabelas do banco -------------- */
@@ -184,8 +184,8 @@ CREATE TABLE IF NOT EXISTS public.tracados
     id_tracado serial,
     nm_tracado character varying NOT NULL,
     dm_dificuldade character varying NOT NULL,
-    vl_maximo bigint,
-    vl_tamanho bigint,
+    vl_maximo character varying,
+    vl_tamanho character varying,
     PRIMARY KEY (id_tracado)
 );
 

@@ -5,12 +5,16 @@
  */
 package br.univates.kartodromo.view.form;
 
+import br.univates.kartodromo.controller.TracadoController;
 import br.univates.kartodromo.model.dao.TracadoDAO;
+import br.univates.kartodromo.model.entity.Cliente;
 import br.univates.kartodromo.model.entity.Tracado;
-import java.math.BigDecimal;
+import java.util.ArrayList;
+import java.util.List;
 import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -18,11 +22,14 @@ import javax.swing.JTextField;
  */
 public class FormCadastroTracado extends javax.swing.JPanel {
 
-    /**
-     * Creates new form formCadastros
-     */
+    TracadoController TracadoController = new TracadoController();
+    int idTracado = 0;
+    
     public FormCadastroTracado() {
         initComponents();
+        
+        refreshTable();
+        
     }
 
     /**
@@ -54,6 +61,7 @@ public class FormCadastroTracado extends javax.swing.JPanel {
         btnSalvar1 = new javax.swing.JButton();
         btnCancelar = new javax.swing.JButton();
         btnCancelar1 = new javax.swing.JButton();
+        jLabel9 = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(224, 224, 224));
         setPreferredSize(new java.awt.Dimension(575, 400));
@@ -148,6 +156,8 @@ public class FormCadastroTracado extends javax.swing.JPanel {
         campoTamanho.setFont(new java.awt.Font("Open Sans", 0, 12)); // NOI18N
 
         comboDificuldade.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Fácil", "Médio", "Díficil" }));
+        comboDificuldade.setMinimumSize(new java.awt.Dimension(53, 29));
+        comboDificuldade.setPreferredSize(new java.awt.Dimension(53, 29));
         comboDificuldade.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 comboDificuldadeActionPerformed(evt);
@@ -209,7 +219,7 @@ public class FormCadastroTracado extends javax.swing.JPanel {
                         .addComponent(btnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(btnSalvar1, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 493, Short.MAX_VALUE)
+                    .addComponent(jScrollPane1)
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel2Layout.createSequentialGroup()
@@ -220,7 +230,7 @@ public class FormCadastroTracado extends javax.swing.JPanel {
                             .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addGap(10, 10, 10)
                                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(campoNumeroMaximo, javax.swing.GroupLayout.DEFAULT_SIZE, 316, Short.MAX_VALUE)
+                                    .addComponent(campoNumeroMaximo)
                                     .addComponent(campoNome))
                                 .addGap(20, 20, 20)))
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -244,7 +254,7 @@ public class FormCadastroTracado extends javax.swing.JPanel {
                         .addGap(23, 23, 23)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(campoNome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(comboDificuldade, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(comboDificuldade, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jLabel3)
                         .addComponent(jLabel1)))
@@ -259,8 +269,8 @@ public class FormCadastroTracado extends javax.swing.JPanel {
                 .addGap(20, 20, 20)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(20, 20, 20)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 92, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnSalvar1, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -280,10 +290,13 @@ public class FormCadastroTracado extends javax.swing.JPanel {
         jpBodyLayout.setVerticalGroup(
             jpBodyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpBodyLayout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(10, 10, 10)
                 .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
+                .addGap(10, 10, 10))
         );
+
+        jLabel9.setForeground(new java.awt.Color(204, 204, 204));
+        jLabel9.setText("Campos Obrigatórios *");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -292,35 +305,40 @@ public class FormCadastroTracado extends javax.swing.JPanel {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jpBody, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jpBody, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addContainerGap())
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jpHeader, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 222, Short.MAX_VALUE)))
-                .addContainerGap())
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 112, Short.MAX_VALUE)
+                        .addComponent(jLabel9)
+                        .addGap(21, 21, 21))))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jpHeader, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jpHeader, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel9))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jpBody, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
+                .addGap(10, 10, 10))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 575, Short.MAX_VALUE)
+            .addGap(0, 585, Short.MAX_VALUE)
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 585, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 407, Short.MAX_VALUE)
+            .addGap(0, 400, Short.MAX_VALUE)
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 407, Short.MAX_VALUE))
+                .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -333,19 +351,38 @@ public class FormCadastroTracado extends javax.swing.JPanel {
     }//GEN-LAST:event_comboDificuldadeActionPerformed
 
     private void btnSalvar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvar1ActionPerformed
+        boolean continuar = true;
+        
         if (campoNome.getText().equals("") || campoNumeroMaximo.getText().equals("") || campoTamanho.getText().equals("")) {
             JOptionPane.showMessageDialog(null, "Todos Campos são Obrigatórios!");
         }
+        
+                if (continuar) {
+
         Tracado tracado = new Tracado();
+        
         tracado.setNome(getCampoNome().getText());
         tracado.setDificuldade((String) getComboDificuldade().getSelectedItem());
         tracado.setMaximo(getCampoNumeroMaximo().getText().toString());
+        tracado.setTamanho(getCampoTamanho().getText().toString());
+        
         TracadoDAO tracadoDAO = new TracadoDAO();
-        tracadoDAO.insert(tracado);
-        this.limparTela();
+        
+        if (idTracado > 0) {
+                tracado.setId(idTracado);
+                tracadoDAO.update(tracado);
+            } else {
+                tracadoDAO.insert(tracado);    
+            }
+        
+        refreshTable();
+            this.limparTela();
+            JOptionPane.showMessageDialog(this, "Cadastrado", "Usuário Salvo com sucesso", JOptionPane.INFORMATION_MESSAGE);
 
-        JOptionPane.showMessageDialog(this, "Traçado cadastrado com sucesso", "Salvo", JOptionPane.INFORMATION_MESSAGE);
+        } else {
+            JOptionPane.showMessageDialog(this, "Erro", "Erro no Cadastro", JOptionPane.INFORMATION_MESSAGE);
 
+        }
     }//GEN-LAST:event_btnSalvar1ActionPerformed
 
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
@@ -376,6 +413,7 @@ public class FormCadastroTracado extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
@@ -417,6 +455,34 @@ public class FormCadastroTracado extends javax.swing.JPanel {
 
     public void setComboDificuldade(JComboBox<String> comboDificuldade) {
         this.comboDificuldade = comboDificuldade;
+    }
+
+    private void refreshTable() {
+        List<Tracado> listaTracado = new ArrayList();
+        listaTracado = TracadoController.getAll();
+        this.popularTabelaTracado(listaTracado);
+    }
+    
+    void popularTabelaTracado(List<Tracado> pListaTracado) {
+
+        DefaultTableModel modeloTabela = new DefaultTableModel();
+
+        this.tabelaTracados.setModel(modeloTabela);
+        modeloTabela.addColumn("Id");
+        modeloTabela.addColumn("Nome");
+        modeloTabela.addColumn("Dificuldade");
+        modeloTabela.addColumn("Número máximo");
+        modeloTabela.addColumn("Tamanho");
+
+        for (Tracado tracado : pListaTracado) {
+            modeloTabela.addRow(
+                    new Object[]{
+                        tracado.getId(),
+                        tracado.getNome(),
+                        tracado.getDificuldade(),
+                        tracado.getMaximo(),
+                        tracado.getTamanho()});
+        }
     }
 
 }

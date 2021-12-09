@@ -8,6 +8,7 @@ package br.univates.kartodromo.view;
 import br.univates.kartodromo.controller.UsuarioController;
 import br.univates.kartodromo.view.MenuPrincipal;
 import java.awt.Color;
+import java.awt.event.KeyEvent;
 import javax.swing.ImageIcon;
 import javax.swing.JTextField;
 
@@ -76,7 +77,7 @@ public class Login extends javax.swing.JFrame {
             jpLeftLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jpLeftLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(lbLogo, javax.swing.GroupLayout.DEFAULT_SIZE, 213, Short.MAX_VALUE)
+                .addComponent(lbLogo, javax.swing.GroupLayout.DEFAULT_SIZE, 205, Short.MAX_VALUE)
                 .addContainerGap())
         );
         jpLeftLayout.setVerticalGroup(
@@ -119,6 +120,11 @@ public class Login extends javax.swing.JFrame {
             }
             public void focusLost(java.awt.event.FocusEvent evt) {
                 tfPasswordFocusLost(evt);
+            }
+        });
+        tfPassword.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                tfPasswordKeyPressed(evt);
             }
         });
 
@@ -235,7 +241,7 @@ public class Login extends javax.swing.JFrame {
             .addGroup(jpRightLayout.createSequentialGroup()
                 .addGap(125, 125, 125)
                 .addComponent(jpInputData, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(117, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -308,6 +314,19 @@ public class Login extends javax.swing.JFrame {
             tfPassword.setEchoChar('\u0000');
         }
     }//GEN-LAST:event_tfPasswordFocusLost
+
+    private void tfPasswordKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tfPasswordKeyPressed
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            jpLogin.setBackground(defaultRightColor);
+
+            if (UsuarioController.validateUser(tfUser.getText(), tfPassword.getText())) {
+                this.setVisible(false);
+                new MenuPrincipal().setVisible(true);
+            } else {
+                new DialogError(this, "Usuário não localizado.").setVisible(true);
+            }
+        }
+    }//GEN-LAST:event_tfPasswordKeyPressed
 
     /**
      * @param args the command line arguments

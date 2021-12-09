@@ -8,6 +8,7 @@ package br.univates.kartodromo.view.form;
 import br.univates.kartodromo.controller.UsuarioController;
 import br.univates.kartodromo.model.dao.UsuarioDAO;
 import br.univates.kartodromo.model.entity.Usuario;
+import br.univates.kartodromo.model.type.GeneroType;
 import br.univates.kartodromo.model.type.PerfilType;
 import br.univates.kartodromo.util.SoNumeros;
 import static java.awt.image.ImageObserver.WIDTH;
@@ -19,12 +20,15 @@ import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 
-
 public class FormCadastroUsuario extends javax.swing.JPanel {
+    
+    int idUsuario = 0;
+    private Usuario usuario;
+    UsuarioController UsuarioController = new UsuarioController();
 
     public FormCadastroUsuario() {
         initComponents();
-        
+
         UsuarioController UsuarioController = new UsuarioController();
 
         List<Usuario> listaUsuario = new ArrayList();
@@ -73,6 +77,7 @@ public class FormCadastroUsuario extends javax.swing.JPanel {
         btnCancelar = new javax.swing.JButton();
         btnSalvar = new javax.swing.JButton();
         btnCancelar1 = new javax.swing.JButton();
+        jLabel10 = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(35, 40, 44));
         setPreferredSize(new java.awt.Dimension(575, 400));
@@ -83,7 +88,7 @@ public class FormCadastroUsuario extends javax.swing.JPanel {
         jpHeader.setBackground(new java.awt.Color(35, 40, 44));
         jpHeader.setPreferredSize(new java.awt.Dimension(333, 58));
 
-        lbTitulo.setBackground(new java.awt.Color(204, 204, 204));
+        lbTitulo.setBackground(new java.awt.Color(255, 211, 0));
         lbTitulo.setFont(new java.awt.Font("Open Sans Semibold", 1, 24)); // NOI18N
         lbTitulo.setForeground(new java.awt.Color(204, 204, 204));
         lbTitulo.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
@@ -165,28 +170,29 @@ public class FormCadastroUsuario extends javax.swing.JPanel {
         campoLogin.setFont(new java.awt.Font("Open Sans", 0, 12)); // NOI18N
 
         comboSexo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Masculino", "Feminino", "Não informar" }));
-        comboSexo.setMinimumSize(new java.awt.Dimension(6, 30));
+        comboSexo.setMinimumSize(new java.awt.Dimension(6, 29));
         comboSexo.setName(""); // NOI18N
-        comboSexo.setPreferredSize(new java.awt.Dimension(6, 23));
+        comboSexo.setPreferredSize(new java.awt.Dimension(6, 29));
 
-        campoCPF.setMinimumSize(new java.awt.Dimension(6, 23));
-        campoCPF.setPreferredSize(new java.awt.Dimension(6, 23));
+        campoCPF.setMinimumSize(new java.awt.Dimension(6, 29));
+        campoCPF.setPreferredSize(new java.awt.Dimension(6, 29));
         campoCPF.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 campoCPFActionPerformed(evt);
             }
         });
 
-        campoTelefone.setMinimumSize(new java.awt.Dimension(6, 23));
-        campoTelefone.setPreferredSize(new java.awt.Dimension(6, 23));
+        campoTelefone.setMinimumSize(new java.awt.Dimension(6, 29));
+        campoTelefone.setPreferredSize(new java.awt.Dimension(6, 29));
         campoTelefone.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 campoTelefoneActionPerformed(evt);
             }
         });
 
-        campoRSenha.setMinimumSize(new java.awt.Dimension(6, 23));
-        campoRSenha.setPreferredSize(new java.awt.Dimension(6, 23));
+        campoRSenha.setMinimumSize(new java.awt.Dimension(6, 29));
+        campoRSenha.setPreferredSize(new java.awt.Dimension(6, 29));
+        campoRSenha.setRequestFocusEnabled(false);
         campoRSenha.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 campoRSenhaActionPerformed(evt);
@@ -205,6 +211,11 @@ public class FormCadastroUsuario extends javax.swing.JPanel {
             }
         ));
         tabelaUsuarios.setSelectionBackground(new java.awt.Color(255, 211, 0));
+        tabelaUsuarios.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tabelaUsuariosMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(tabelaUsuarios);
 
         jLabel9.setFont(new java.awt.Font("Open Sans", 0, 12)); // NOI18N
@@ -212,7 +223,8 @@ public class FormCadastroUsuario extends javax.swing.JPanel {
         jLabel9.setText("Perfil *");
 
         comboPerfil.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Administrador", "Padrão" }));
-        comboPerfil.setMinimumSize(new java.awt.Dimension(91, 23));
+        comboPerfil.setMinimumSize(new java.awt.Dimension(91, 29));
+        comboPerfil.setPreferredSize(new java.awt.Dimension(91, 29));
 
         campoSenha.setFont(new java.awt.Font("Open Sans", 0, 12)); // NOI18N
 
@@ -283,13 +295,10 @@ public class FormCadastroUsuario extends javax.swing.JPanel {
                             .addComponent(jSeparator1)
                             .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(jPanel2Layout.createSequentialGroup()
-                                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(jLabel1)
-                                            .addComponent(jLabel5)
-                                            .addComponent(jLabel7)
-                                            .addComponent(jLabel2))
-                                        .addGap(0, 0, Short.MAX_VALUE))
+                                    .addComponent(jLabel1)
+                                    .addComponent(jLabel5)
+                                    .addComponent(jLabel7)
+                                    .addComponent(jLabel2)
                                     .addGroup(jPanel2Layout.createSequentialGroup()
                                         .addGap(10, 10, 10)
                                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -317,20 +326,17 @@ public class FormCadastroUsuario extends javax.swing.JPanel {
                                                     .addComponent(campoTelefone, javax.swing.GroupLayout.DEFAULT_SIZE, 137, Short.MAX_VALUE)
                                                     .addComponent(campoRSenha, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))
                                     .addGroup(jPanel2Layout.createSequentialGroup()
-                                        .addGap(18, 18, 18)
-                                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                                .addGap(10, 10, 10)
-                                                .addComponent(comboPerfil, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                            .addComponent(jLabel9)))
+                                        .addGap(28, 28, 28)
+                                        .addComponent(comboPerfil, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE))
                                     .addGroup(jPanel2Layout.createSequentialGroup()
                                         .addGap(18, 18, 18)
                                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                             .addGroup(jPanel2Layout.createSequentialGroup()
                                                 .addGap(10, 10, 10)
                                                 .addComponent(comboSexo, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                            .addComponent(jLabel4)))))
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 493, Short.MAX_VALUE))
+                                            .addComponent(jLabel4)
+                                            .addComponent(jLabel9)))))
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 505, Short.MAX_VALUE))
                         .addGap(20, 20, 20))))
         );
         jPanel2Layout.setVerticalGroup(
@@ -340,32 +346,26 @@ public class FormCadastroUsuario extends javax.swing.JPanel {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(jLabel1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGap(6, 6, 6)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(campoNome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(comboSexo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(7, 7, 7))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(jLabel4)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 1, Short.MAX_VALUE)
-                        .addComponent(jLabel2)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(campoCPF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(comboPerfil, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(8, 8, 8))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(jLabel9)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                            .addComponent(comboSexo, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(jLabel4))
+                .addGap(10, 10, 10)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel2)
+                    .addComponent(jLabel9))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(campoCPF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(comboPerfil, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(10, 10, 10)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
                     .addComponent(jLabel6))
                 .addGap(6, 6, 6)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(campoTelefone, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(campoTelefone, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(campoEmail, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
@@ -377,7 +377,7 @@ public class FormCadastroUsuario extends javax.swing.JPanel {
                                 .addComponent(jLabel11)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(campoRSenha, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(campoRSenha, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(campoSenha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(33, 33, 33)
@@ -385,8 +385,8 @@ public class FormCadastroUsuario extends javax.swing.JPanel {
                 .addGap(20, 20, 20)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(20, 20, 20)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 126, Short.MAX_VALUE)
+                .addGap(10, 10, 10)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnCancelar1, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -406,13 +406,16 @@ public class FormCadastroUsuario extends javax.swing.JPanel {
         );
         jpBodyLayout.setVerticalGroup(
             jpBodyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 464, Short.MAX_VALUE)
+            .addGap(0, 386, Short.MAX_VALUE)
             .addGroup(jpBodyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jpBodyLayout.createSequentialGroup()
                     .addContainerGap()
-                    .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGap(11, 11, 11)))
         );
+
+        jLabel10.setForeground(new java.awt.Color(204, 204, 204));
+        jLabel10.setText("Campos Obrigatórios *");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -424,17 +427,20 @@ public class FormCadastroUsuario extends javax.swing.JPanel {
                     .addComponent(jpBody, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jpHeader, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 212, Short.MAX_VALUE)))
-                .addGap(20, 20, 20))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 108, Short.MAX_VALUE)
+                        .addComponent(jLabel10)))
+                .addGap(15, 15, 15))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jpHeader, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jpHeader, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel10))
+                .addGap(7, 7, 7)
                 .addComponent(jpBody, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
+                .addGap(5, 5, 5))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -443,41 +449,19 @@ public class FormCadastroUsuario extends javax.swing.JPanel {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 575, Short.MAX_VALUE)
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGap(0, 0, 0)))
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 550, Short.MAX_VALUE)
+            .addGap(0, 467, Short.MAX_VALUE)
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 550, Short.MAX_VALUE))
+                .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 467, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void campoNomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_campoNomeActionPerformed
+    private void btnCancelar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelar1ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_campoNomeActionPerformed
-
-    private void campoCPFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_campoCPFActionPerformed
-        campoCPF.setDocument(new SoNumeros());
-    }//GEN-LAST:event_campoCPFActionPerformed
-
-    private void campoTelefoneActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_campoTelefoneActionPerformed
-        campoTelefone.setDocument(new SoNumeros());
-    }//GEN-LAST:event_campoTelefoneActionPerformed
-
-    private void campoRSenhaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_campoRSenhaActionPerformed
-        campoRSenha.setDocument(new SoNumeros());
-    }//GEN-LAST:event_campoRSenhaActionPerformed
-
-    private void campoEmailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_campoEmailActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_campoEmailActionPerformed
-
-    private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
-        setVisible(false);
-    }//GEN-LAST:event_btnCancelarActionPerformed
+    }//GEN-LAST:event_btnCancelar1ActionPerformed
 
     private void btnSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarActionPerformed
         boolean continuar = true;
@@ -512,9 +496,68 @@ public class FormCadastroUsuario extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_btnSalvarActionPerformed
 
-    private void btnCancelar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelar1ActionPerformed
+    private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
+        setVisible(false);
+    }//GEN-LAST:event_btnCancelarActionPerformed
+
+    private void campoEmailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_campoEmailActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_btnCancelar1ActionPerformed
+    }//GEN-LAST:event_campoEmailActionPerformed
+
+    private void tabelaUsuariosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabelaUsuariosMouseClicked
+        int row = tabelaUsuarios.getSelectedRow();
+
+        if (row >= 0) {
+
+            DefaultTableModel modeloTabela = (DefaultTableModel) tabelaUsuarios.getModel();
+
+            //campoNome.setText(cliente.getNome());
+            try {
+                String idString = String.valueOf(tabelaUsuarios.getValueAt(tabelaUsuarios.getSelectedRow(), 0));
+
+                idUsuario = Integer.parseInt(idString);
+
+                UsuarioDAO cDAO = new UsuarioDAO();
+
+                usuario = cDAO.getById(idUsuario);
+
+                if (usuario != null) {
+
+                    this.getCampoNome().setText(usuario.getNome());
+                    this.getCampoLogin().setText(usuario.getLogin());
+                    this.getCampoCPF().setText(String.valueOf(usuario.getCpf()));
+                    this.getCampoTelefone().setText(String.valueOf(usuario.getTelefone()));
+                    this.getCampoEmail().setText(usuario.getEmail());
+                    this.getComboSexo().getModel().setSelectedItem(GeneroType.valueOf(usuario.getSexo()));
+                    //this.getComboPerfil().getModel().setSelectedItem(PerfilType.valueOf(usuario.getPerfil()));
+
+                } else {
+                    JOptionPane.showMessageDialog(null, "Não foi possível localizar o cadastro do usuário");
+
+                }
+
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(null, "Selecione um registro para editar" + e.getMessage());
+            }
+
+        }
+    }//GEN-LAST:event_tabelaUsuariosMouseClicked
+
+    private void campoRSenhaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_campoRSenhaActionPerformed
+        campoRSenha.setDocument(new SoNumeros());
+    }//GEN-LAST:event_campoRSenhaActionPerformed
+
+    private void campoTelefoneActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_campoTelefoneActionPerformed
+        campoTelefone.setDocument(new SoNumeros());
+    }//GEN-LAST:event_campoTelefoneActionPerformed
+
+    private void campoCPFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_campoCPFActionPerformed
+        campoCPF.setDocument(new SoNumeros());
+    }//GEN-LAST:event_campoCPFActionPerformed
+
+    private void campoNomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_campoNomeActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_campoNomeActionPerformed
 
     public void limparTela() {
 
@@ -570,6 +613,7 @@ public class FormCadastroUsuario extends javax.swing.JPanel {
     private javax.swing.JComboBox<String> comboPerfil;
     private javax.swing.JComboBox<String> comboSexo;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel4;

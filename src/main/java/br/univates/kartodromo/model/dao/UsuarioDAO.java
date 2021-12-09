@@ -10,6 +10,7 @@ import br.univates.kartodromo.model.entity.Usuario;
 import java.math.BigInteger;
 import java.security.MessageDigest;
 import java.util.List;
+import javax.persistence.EntityManager;
 import javax.persistence.Query;
 
 /**
@@ -80,6 +81,13 @@ public class UsuarioDAO extends BaseDAO {
         }
 
         return retorno;
+    }
+    
+    public Usuario getById(int id) {
+        EntityManager em = getEntityManager();
+        return em.createQuery("select u from Usuario u where u.id = :id", Usuario.class)
+                .setParameter("id", id)
+                .getSingleResult();
     }
 
 }

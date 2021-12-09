@@ -144,14 +144,14 @@ public class MenuPrincipal extends javax.swing.JFrame {
             listSubBtnCadastro.add(btnCadastroUsuario);
         }
 
-        btnCadastroVeiculo = new MenuItem(dotLight, dotDark, "  Veículo", new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent ae) {
-                pressButton(btnCadastroVeiculo, new FormCadastroVeiculo());
-            }
-        });
-        btnCadastroVeiculo.getLbIcon().setHorizontalAlignment(JLabel.RIGHT);
-        listSubBtnCadastro.add(btnCadastroVeiculo);
+//        btnCadastroVeiculo = new MenuItem(dotLight, dotDark, "  Veículo", new ActionListener() {
+//            @Override
+//            public void actionPerformed(ActionEvent ae) {
+//                pressButton(btnCadastroVeiculo, new FormCadastroVeiculo());
+//            }
+//        });
+//        btnCadastroVeiculo.getLbIcon().setHorizontalAlignment(JLabel.RIGHT);
+//        listSubBtnCadastro.add(btnCadastroVeiculo);
 
         if (isUserAdmin()) {
             btnCadastroTracado = new MenuItem(dotLight, dotDark, "  Traçado", new ActionListener() {
