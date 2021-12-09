@@ -242,18 +242,18 @@
 	at java.awt.EventDispatchThread.run(EventDispatchThread.java:82)
 !-!-!Cabecalho!-!-! 2021-12-08 11:52:32 :: ERROR :: SqlExceptionHelper:142 :: ERROR: column "vl_maximo" is of type bigint but expression is of type character varying
   Dica: You will need to rewrite or cast the expression.
-  Posição: 98
+  Posiï¿½ï¿½o: 98
  :: !-!-!Cabecalho!-!-! 2021-12-08 11:52:32 :: ERROR :: ExceptionMapperStandardImpl:39 :: HHH000346: Error during managed flush [org.hibernate.exception.SQLGrammarException: could not execute statement]
  :: !-!-!Cabecalho!-!-! 2021-12-08 16:16:23 :: ERROR :: SqlExceptionHelper:142 :: ERROR: column "vl_maximo" is of type bigint but expression is of type character varying
   Dica: You will need to rewrite or cast the expression.
-  Posição: 98
+  Posiï¿½ï¿½o: 98
  :: !-!-!Cabecalho!-!-! 2021-12-08 16:16:23 :: ERROR :: ExceptionMapperStandardImpl:39 :: HHH000346: Error during managed flush [org.hibernate.exception.SQLGrammarException: could not execute statement]
  :: !-!-!Cabecalho!-!-! 2021-12-08 16:16:32 :: ERROR :: SqlExceptionHelper:142 :: ERROR: column "vl_maximo" is of type bigint but expression is of type character varying
   Dica: You will need to rewrite or cast the expression.
-  Posição: 98
+  Posiï¿½ï¿½o: 98
  :: !-!-!Cabecalho!-!-! 2021-12-08 16:16:32 :: ERROR :: ExceptionMapperStandardImpl:39 :: HHH000346: Error during managed flush [org.hibernate.exception.SQLGrammarException: could not execute statement]
  :: !-!-!Cabecalho!-!-! 2021-12-08 16:35:47 :: ERROR :: SqlExceptionHelper:142 :: ERROR: syntax error at or near ")"
-  Posição: 518
+  Posiï¿½ï¿½o: 518
  :: !-!-!Cabecalho!-!-! 2021-12-08 16:35:47 :: ERROR :: TesteLog4j:75 :: HibernateException - metodo BaseDAO.firstExecutionProcess
  :: org.hibernate.exception.SQLGrammarException: could not execute statement
 	at org.hibernate.exception.internal.SQLStateConversionDelegate.convert(SQLStateConversionDelegate.java:106)
@@ -268,7 +268,7 @@
 	at br.univates.kartodromo.model.dao.BaseDAO.firstExecutionProcess(BaseDAO.java:71)
 	at br.univates.kartodromo.CriacaoBanco.main(CriacaoBanco.java:21)
 Caused by: org.postgresql.util.PSQLException: ERROR: syntax error at or near ")"
-  Posição: 518
+  Posiï¿½ï¿½o: 518
 	at org.postgresql.core.v3.QueryExecutorImpl.receiveErrorResponse(QueryExecutorImpl.java:2497)
 	at org.postgresql.core.v3.QueryExecutorImpl.processResults(QueryExecutorImpl.java:2233)
 	at org.postgresql.core.v3.QueryExecutorImpl.execute(QueryExecutorImpl.java:310)
@@ -279,7 +279,7 @@ Caused by: org.postgresql.util.PSQLException: ERROR: syntax error at or near ")"
 	at org.hibernate.engine.jdbc.internal.ResultSetReturnImpl.executeUpdate(ResultSetReturnImpl.java:175)
 	... 6 more
 !-!-!Cabecalho!-!-! 2021-12-08 16:35:47 :: ERROR :: SqlExceptionHelper:142 :: ERROR: relation "usuarios" does not exist
-  Posição: 245
+  Posiï¿½ï¿½o: 245
  :: !-!-!Cabecalho!-!-! 2021-12-08 16:35:47 :: ERROR :: TesteLog4j:54 :: HibernateException - metodo BaseDAO.populateDataBase
  :: org.hibernate.exception.SQLGrammarException: could not execute statement
 	at org.hibernate.exception.internal.SQLStateConversionDelegate.convert(SQLStateConversionDelegate.java:106)
@@ -294,7 +294,7 @@ Caused by: org.postgresql.util.PSQLException: ERROR: syntax error at or near ")"
 	at br.univates.kartodromo.model.dao.BaseDAO.populateDataBase(BaseDAO.java:50)
 	at br.univates.kartodromo.CriacaoBanco.main(CriacaoBanco.java:22)
 Caused by: org.postgresql.util.PSQLException: ERROR: relation "usuarios" does not exist
-  Posição: 245
+  Posiï¿½ï¿½o: 245
 	at org.postgresql.core.v3.QueryExecutorImpl.receiveErrorResponse(QueryExecutorImpl.java:2497)
 	at org.postgresql.core.v3.QueryExecutorImpl.processResults(QueryExecutorImpl.java:2233)
 	at org.postgresql.core.v3.QueryExecutorImpl.execute(QueryExecutorImpl.java:310)
@@ -305,7 +305,7 @@ Caused by: org.postgresql.util.PSQLException: ERROR: relation "usuarios" does no
 	at org.hibernate.engine.jdbc.internal.ResultSetReturnImpl.executeUpdate(ResultSetReturnImpl.java:175)
 	... 6 more
 !-!-!Cabecalho!-!-! 2021-12-08 16:38:19 :: ERROR :: SqlExceptionHelper:142 :: ERROR: syntax error at or near ")"
-  Posição: 518
+  Posiï¿½ï¿½o: 518
  :: !-!-!Cabecalho!-!-! 2021-12-08 16:38:19 :: ERROR :: TesteLog4j:75 :: HibernateException - metodo BaseDAO.firstExecutionProcess
  :: org.hibernate.exception.SQLGrammarException: could not execute statement
 	at org.hibernate.exception.internal.SQLStateConversionDelegate.convert(SQLStateConversionDelegate.java:106)
@@ -320,7 +320,7 @@ Caused by: org.postgresql.util.PSQLException: ERROR: relation "usuarios" does no
 	at br.univates.kartodromo.model.dao.BaseDAO.firstExecutionProcess(BaseDAO.java:71)
 	at br.univates.kartodromo.CriacaoBanco.main(CriacaoBanco.java:21)
 Caused by: org.postgresql.util.PSQLException: ERROR: syntax error at or near ")"
-  Posição: 518
+  Posiï¿½ï¿½o: 518
 	at org.postgresql.core.v3.QueryExecutorImpl.receiveErrorResponse(QueryExecutorImpl.java:2497)
 	at org.postgresql.core.v3.QueryExecutorImpl.processResults(QueryExecutorImpl.java:2233)
 	at org.postgresql.core.v3.QueryExecutorImpl.execute(QueryExecutorImpl.java:310)
@@ -331,7 +331,7 @@ Caused by: org.postgresql.util.PSQLException: ERROR: syntax error at or near ")"
 	at org.hibernate.engine.jdbc.internal.ResultSetReturnImpl.executeUpdate(ResultSetReturnImpl.java:175)
 	... 6 more
 !-!-!Cabecalho!-!-! 2021-12-08 16:38:19 :: ERROR :: SqlExceptionHelper:142 :: ERROR: relation "usuarios" does not exist
-  Posição: 245
+  Posiï¿½ï¿½o: 245
  :: !-!-!Cabecalho!-!-! 2021-12-08 16:38:19 :: ERROR :: TesteLog4j:54 :: HibernateException - metodo BaseDAO.populateDataBase
  :: org.hibernate.exception.SQLGrammarException: could not execute statement
 	at org.hibernate.exception.internal.SQLStateConversionDelegate.convert(SQLStateConversionDelegate.java:106)
@@ -346,7 +346,7 @@ Caused by: org.postgresql.util.PSQLException: ERROR: syntax error at or near ")"
 	at br.univates.kartodromo.model.dao.BaseDAO.populateDataBase(BaseDAO.java:50)
 	at br.univates.kartodromo.CriacaoBanco.main(CriacaoBanco.java:22)
 Caused by: org.postgresql.util.PSQLException: ERROR: relation "usuarios" does not exist
-  Posição: 245
+  Posiï¿½ï¿½o: 245
 	at org.postgresql.core.v3.QueryExecutorImpl.receiveErrorResponse(QueryExecutorImpl.java:2497)
 	at org.postgresql.core.v3.QueryExecutorImpl.processResults(QueryExecutorImpl.java:2233)
 	at org.postgresql.core.v3.QueryExecutorImpl.execute(QueryExecutorImpl.java:310)
@@ -357,7 +357,7 @@ Caused by: org.postgresql.util.PSQLException: ERROR: relation "usuarios" does no
 	at org.hibernate.engine.jdbc.internal.ResultSetReturnImpl.executeUpdate(ResultSetReturnImpl.java:175)
 	... 6 more
 !-!-!Cabecalho!-!-! 2021-12-08 16:42:16 :: ERROR :: SqlExceptionHelper:142 :: ERROR: syntax error at or near ")"
-  Posição: 518
+  Posiï¿½ï¿½o: 518
  :: !-!-!Cabecalho!-!-! 2021-12-08 16:42:16 :: ERROR :: TesteLog4j:75 :: HibernateException - metodo BaseDAO.firstExecutionProcess
  :: org.hibernate.exception.SQLGrammarException: could not execute statement
 	at org.hibernate.exception.internal.SQLStateConversionDelegate.convert(SQLStateConversionDelegate.java:106)
@@ -372,7 +372,7 @@ Caused by: org.postgresql.util.PSQLException: ERROR: relation "usuarios" does no
 	at br.univates.kartodromo.model.dao.BaseDAO.firstExecutionProcess(BaseDAO.java:71)
 	at br.univates.kartodromo.CriacaoBanco.main(CriacaoBanco.java:21)
 Caused by: org.postgresql.util.PSQLException: ERROR: syntax error at or near ")"
-  Posição: 518
+  Posiï¿½ï¿½o: 518
 	at org.postgresql.core.v3.QueryExecutorImpl.receiveErrorResponse(QueryExecutorImpl.java:2497)
 	at org.postgresql.core.v3.QueryExecutorImpl.processResults(QueryExecutorImpl.java:2233)
 	at org.postgresql.core.v3.QueryExecutorImpl.execute(QueryExecutorImpl.java:310)
@@ -383,7 +383,7 @@ Caused by: org.postgresql.util.PSQLException: ERROR: syntax error at or near ")"
 	at org.hibernate.engine.jdbc.internal.ResultSetReturnImpl.executeUpdate(ResultSetReturnImpl.java:175)
 	... 6 more
 !-!-!Cabecalho!-!-! 2021-12-08 16:42:16 :: ERROR :: SqlExceptionHelper:142 :: ERROR: relation "usuarios" does not exist
-  Posição: 245
+  Posiï¿½ï¿½o: 245
  :: !-!-!Cabecalho!-!-! 2021-12-08 16:42:16 :: ERROR :: TesteLog4j:54 :: HibernateException - metodo BaseDAO.populateDataBase
  :: org.hibernate.exception.SQLGrammarException: could not execute statement
 	at org.hibernate.exception.internal.SQLStateConversionDelegate.convert(SQLStateConversionDelegate.java:106)
@@ -398,7 +398,7 @@ Caused by: org.postgresql.util.PSQLException: ERROR: syntax error at or near ")"
 	at br.univates.kartodromo.model.dao.BaseDAO.populateDataBase(BaseDAO.java:50)
 	at br.univates.kartodromo.CriacaoBanco.main(CriacaoBanco.java:22)
 Caused by: org.postgresql.util.PSQLException: ERROR: relation "usuarios" does not exist
-  Posição: 245
+  Posiï¿½ï¿½o: 245
 	at org.postgresql.core.v3.QueryExecutorImpl.receiveErrorResponse(QueryExecutorImpl.java:2497)
 	at org.postgresql.core.v3.QueryExecutorImpl.processResults(QueryExecutorImpl.java:2233)
 	at org.postgresql.core.v3.QueryExecutorImpl.execute(QueryExecutorImpl.java:310)
@@ -409,7 +409,7 @@ Caused by: org.postgresql.util.PSQLException: ERROR: relation "usuarios" does no
 	at org.hibernate.engine.jdbc.internal.ResultSetReturnImpl.executeUpdate(ResultSetReturnImpl.java:175)
 	... 6 more
 !-!-!Cabecalho!-!-! 2021-12-08 16:48:11 :: ERROR :: SqlExceptionHelper:142 :: ERROR: syntax error at or near ")"
-  Posição: 518
+  Posiï¿½ï¿½o: 518
  :: !-!-!Cabecalho!-!-! 2021-12-08 16:48:11 :: ERROR :: TesteLog4j:75 :: HibernateException - metodo BaseDAO.firstExecutionProcess
  :: org.hibernate.exception.SQLGrammarException: could not execute statement
 	at org.hibernate.exception.internal.SQLStateConversionDelegate.convert(SQLStateConversionDelegate.java:106)
@@ -424,7 +424,7 @@ Caused by: org.postgresql.util.PSQLException: ERROR: relation "usuarios" does no
 	at br.univates.kartodromo.model.dao.BaseDAO.firstExecutionProcess(BaseDAO.java:71)
 	at br.univates.kartodromo.CriacaoBanco.main(CriacaoBanco.java:21)
 Caused by: org.postgresql.util.PSQLException: ERROR: syntax error at or near ")"
-  Posição: 518
+  Posiï¿½ï¿½o: 518
 	at org.postgresql.core.v3.QueryExecutorImpl.receiveErrorResponse(QueryExecutorImpl.java:2497)
 	at org.postgresql.core.v3.QueryExecutorImpl.processResults(QueryExecutorImpl.java:2233)
 	at org.postgresql.core.v3.QueryExecutorImpl.execute(QueryExecutorImpl.java:310)
@@ -435,7 +435,7 @@ Caused by: org.postgresql.util.PSQLException: ERROR: syntax error at or near ")"
 	at org.hibernate.engine.jdbc.internal.ResultSetReturnImpl.executeUpdate(ResultSetReturnImpl.java:175)
 	... 6 more
 !-!-!Cabecalho!-!-! 2021-12-08 16:48:11 :: ERROR :: SqlExceptionHelper:142 :: ERROR: relation "usuarios" does not exist
-  Posição: 245
+  Posiï¿½ï¿½o: 245
  :: !-!-!Cabecalho!-!-! 2021-12-08 16:48:11 :: ERROR :: TesteLog4j:54 :: HibernateException - metodo BaseDAO.populateDataBase
  :: org.hibernate.exception.SQLGrammarException: could not execute statement
 	at org.hibernate.exception.internal.SQLStateConversionDelegate.convert(SQLStateConversionDelegate.java:106)
@@ -450,7 +450,7 @@ Caused by: org.postgresql.util.PSQLException: ERROR: syntax error at or near ")"
 	at br.univates.kartodromo.model.dao.BaseDAO.populateDataBase(BaseDAO.java:50)
 	at br.univates.kartodromo.CriacaoBanco.main(CriacaoBanco.java:22)
 Caused by: org.postgresql.util.PSQLException: ERROR: relation "usuarios" does not exist
-  Posição: 245
+  Posiï¿½ï¿½o: 245
 	at org.postgresql.core.v3.QueryExecutorImpl.receiveErrorResponse(QueryExecutorImpl.java:2497)
 	at org.postgresql.core.v3.QueryExecutorImpl.processResults(QueryExecutorImpl.java:2233)
 	at org.postgresql.core.v3.QueryExecutorImpl.execute(QueryExecutorImpl.java:310)
@@ -461,9 +461,9 @@ Caused by: org.postgresql.util.PSQLException: ERROR: relation "usuarios" does no
 	at org.hibernate.engine.jdbc.internal.ResultSetReturnImpl.executeUpdate(ResultSetReturnImpl.java:175)
 	... 6 more
 !-!-!Cabecalho!-!-! 2021-12-08 16:49:06 :: ERROR :: SqlExceptionHelper:142 :: ERROR: relation "usuarios" does not exist
-  Posição: 334
+  Posiï¿½ï¿½o: 334
  :: !-!-!Cabecalho!-!-! 2021-12-08 16:51:17 :: ERROR :: SqlExceptionHelper:142 :: ERROR: syntax error at or near ")"
-  Posição: 518
+  Posiï¿½ï¿½o: 518
  :: !-!-!Cabecalho!-!-! 2021-12-08 16:51:17 :: ERROR :: TesteLog4j:75 :: HibernateException - metodo BaseDAO.firstExecutionProcess
  :: org.hibernate.exception.SQLGrammarException: could not execute statement
 	at org.hibernate.exception.internal.SQLStateConversionDelegate.convert(SQLStateConversionDelegate.java:106)
@@ -478,7 +478,7 @@ Caused by: org.postgresql.util.PSQLException: ERROR: relation "usuarios" does no
 	at br.univates.kartodromo.model.dao.BaseDAO.firstExecutionProcess(BaseDAO.java:71)
 	at br.univates.kartodromo.CriacaoBanco.main(CriacaoBanco.java:21)
 Caused by: org.postgresql.util.PSQLException: ERROR: syntax error at or near ")"
-  Posição: 518
+  Posiï¿½ï¿½o: 518
 	at org.postgresql.core.v3.QueryExecutorImpl.receiveErrorResponse(QueryExecutorImpl.java:2497)
 	at org.postgresql.core.v3.QueryExecutorImpl.processResults(QueryExecutorImpl.java:2233)
 	at org.postgresql.core.v3.QueryExecutorImpl.execute(QueryExecutorImpl.java:310)
@@ -489,7 +489,7 @@ Caused by: org.postgresql.util.PSQLException: ERROR: syntax error at or near ")"
 	at org.hibernate.engine.jdbc.internal.ResultSetReturnImpl.executeUpdate(ResultSetReturnImpl.java:175)
 	... 6 more
 !-!-!Cabecalho!-!-! 2021-12-08 16:51:17 :: ERROR :: SqlExceptionHelper:142 :: ERROR: relation "usuarios" does not exist
-  Posição: 245
+  Posiï¿½ï¿½o: 245
  :: !-!-!Cabecalho!-!-! 2021-12-08 16:51:17 :: ERROR :: TesteLog4j:54 :: HibernateException - metodo BaseDAO.populateDataBase
  :: org.hibernate.exception.SQLGrammarException: could not execute statement
 	at org.hibernate.exception.internal.SQLStateConversionDelegate.convert(SQLStateConversionDelegate.java:106)
@@ -504,7 +504,7 @@ Caused by: org.postgresql.util.PSQLException: ERROR: syntax error at or near ")"
 	at br.univates.kartodromo.model.dao.BaseDAO.populateDataBase(BaseDAO.java:50)
 	at br.univates.kartodromo.CriacaoBanco.main(CriacaoBanco.java:22)
 Caused by: org.postgresql.util.PSQLException: ERROR: relation "usuarios" does not exist
-  Posição: 245
+  Posiï¿½ï¿½o: 245
 	at org.postgresql.core.v3.QueryExecutorImpl.receiveErrorResponse(QueryExecutorImpl.java:2497)
 	at org.postgresql.core.v3.QueryExecutorImpl.processResults(QueryExecutorImpl.java:2233)
 	at org.postgresql.core.v3.QueryExecutorImpl.execute(QueryExecutorImpl.java:310)
@@ -515,7 +515,7 @@ Caused by: org.postgresql.util.PSQLException: ERROR: relation "usuarios" does no
 	at org.hibernate.engine.jdbc.internal.ResultSetReturnImpl.executeUpdate(ResultSetReturnImpl.java:175)
 	... 6 more
 !-!-!Cabecalho!-!-! 2021-12-08 22:36:11 :: ERROR :: SqlExceptionHelper:142 :: ERROR: syntax error at or near ")"
-  Posição: 518
+  Posiï¿½ï¿½o: 518
  :: !-!-!Cabecalho!-!-! 2021-12-08 22:36:11 :: ERROR :: TesteLog4j:75 :: HibernateException - metodo BaseDAO.firstExecutionProcess
  :: org.hibernate.exception.SQLGrammarException: could not execute statement
 	at org.hibernate.exception.internal.SQLStateConversionDelegate.convert(SQLStateConversionDelegate.java:106)
@@ -530,7 +530,7 @@ Caused by: org.postgresql.util.PSQLException: ERROR: relation "usuarios" does no
 	at br.univates.kartodromo.model.dao.BaseDAO.firstExecutionProcess(BaseDAO.java:71)
 	at br.univates.kartodromo.CriacaoBanco.main(CriacaoBanco.java:21)
 Caused by: org.postgresql.util.PSQLException: ERROR: syntax error at or near ")"
-  Posição: 518
+  Posiï¿½ï¿½o: 518
 	at org.postgresql.core.v3.QueryExecutorImpl.receiveErrorResponse(QueryExecutorImpl.java:2497)
 	at org.postgresql.core.v3.QueryExecutorImpl.processResults(QueryExecutorImpl.java:2233)
 	at org.postgresql.core.v3.QueryExecutorImpl.execute(QueryExecutorImpl.java:310)
@@ -541,7 +541,7 @@ Caused by: org.postgresql.util.PSQLException: ERROR: syntax error at or near ")"
 	at org.hibernate.engine.jdbc.internal.ResultSetReturnImpl.executeUpdate(ResultSetReturnImpl.java:175)
 	... 6 more
 !-!-!Cabecalho!-!-! 2021-12-08 22:36:11 :: ERROR :: SqlExceptionHelper:142 :: ERROR: relation "usuarios" does not exist
-  Posição: 245
+  Posiï¿½ï¿½o: 245
  :: !-!-!Cabecalho!-!-! 2021-12-08 22:36:11 :: ERROR :: TesteLog4j:54 :: HibernateException - metodo BaseDAO.populateDataBase
  :: org.hibernate.exception.SQLGrammarException: could not execute statement
 	at org.hibernate.exception.internal.SQLStateConversionDelegate.convert(SQLStateConversionDelegate.java:106)
@@ -556,7 +556,7 @@ Caused by: org.postgresql.util.PSQLException: ERROR: syntax error at or near ")"
 	at br.univates.kartodromo.model.dao.BaseDAO.populateDataBase(BaseDAO.java:50)
 	at br.univates.kartodromo.CriacaoBanco.main(CriacaoBanco.java:22)
 Caused by: org.postgresql.util.PSQLException: ERROR: relation "usuarios" does not exist
-  Posição: 245
+  Posiï¿½ï¿½o: 245
 	at org.postgresql.core.v3.QueryExecutorImpl.receiveErrorResponse(QueryExecutorImpl.java:2497)
 	at org.postgresql.core.v3.QueryExecutorImpl.processResults(QueryExecutorImpl.java:2233)
 	at org.postgresql.core.v3.QueryExecutorImpl.execute(QueryExecutorImpl.java:310)
@@ -567,7 +567,7 @@ Caused by: org.postgresql.util.PSQLException: ERROR: relation "usuarios" does no
 	at org.hibernate.engine.jdbc.internal.ResultSetReturnImpl.executeUpdate(ResultSetReturnImpl.java:175)
 	... 6 more
 !-!-!Cabecalho!-!-! 2021-12-08 22:40:25 :: ERROR :: SqlExceptionHelper:142 :: ERROR: syntax error at or near ")"
-  Posição: 518
+  Posiï¿½ï¿½o: 518
  :: !-!-!Cabecalho!-!-! 2021-12-08 22:40:25 :: ERROR :: TesteLog4j:75 :: HibernateException - metodo BaseDAO.firstExecutionProcess
  :: org.hibernate.exception.SQLGrammarException: could not execute statement
 	at org.hibernate.exception.internal.SQLStateConversionDelegate.convert(SQLStateConversionDelegate.java:106)
@@ -582,7 +582,7 @@ Caused by: org.postgresql.util.PSQLException: ERROR: relation "usuarios" does no
 	at br.univates.kartodromo.model.dao.BaseDAO.firstExecutionProcess(BaseDAO.java:71)
 	at br.univates.kartodromo.CriacaoBanco.main(CriacaoBanco.java:21)
 Caused by: org.postgresql.util.PSQLException: ERROR: syntax error at or near ")"
-  Posição: 518
+  Posiï¿½ï¿½o: 518
 	at org.postgresql.core.v3.QueryExecutorImpl.receiveErrorResponse(QueryExecutorImpl.java:2497)
 	at org.postgresql.core.v3.QueryExecutorImpl.processResults(QueryExecutorImpl.java:2233)
 	at org.postgresql.core.v3.QueryExecutorImpl.execute(QueryExecutorImpl.java:310)

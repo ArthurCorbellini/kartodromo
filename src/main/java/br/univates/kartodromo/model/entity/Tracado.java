@@ -37,8 +37,7 @@ public class Tracado implements Serializable {
     }
 
     @Id
-    @SequenceGenerator(name = "tracados_id_tracado_seq", sequenceName = "tracados_id_tracado_seq")
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "tracados_id_tracado_seq")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_tracado")
     public Integer getId() {
         return id;

@@ -46,7 +46,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
     private MenuItem btnSobreHide;
     private MenuItem btnCadastro;
     private MenuItem btnCadastroUsuario;
-    private MenuItem btnCadastroVeiculo;
+    //private MenuItem btnCadastroVeiculo;
     private MenuItem btnCadastroTracado;
     private MenuItem btnCadastroCliente;
     private MenuItem btnAuditoria;

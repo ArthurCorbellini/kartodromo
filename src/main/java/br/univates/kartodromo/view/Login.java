@@ -293,7 +293,6 @@ public class Login extends javax.swing.JFrame {
         if (tfUser.getText().equals("Usuário")) {
             tfUser.setText(null);
         }
-
     }//GEN-LAST:event_tfUserFocusGained
 
     private void tfUserFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_tfUserFocusLost

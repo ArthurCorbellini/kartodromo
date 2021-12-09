@@ -37,6 +37,11 @@ public class FormCadastroCliente extends javax.swing.JPanel {
         refreshTable();
         popularComboSexo();
 
+        formatacoes();
+        
+    }
+    
+    public void formatacoes(){      
         Formatacao.formatarData(campoDataNascimento);
         Formatacao.formatarCep(campoCEP);
         Formatacao.formatarTelefone(campoTelefone);
@@ -79,7 +84,7 @@ public class FormCadastroCliente extends javax.swing.JPanel {
         jSeparator1 = new javax.swing.JSeparator();
         jScrollPane1 = new javax.swing.JScrollPane();
         tabelaClientes = new javax.swing.JTable();
-        btnCancelar1 = new javax.swing.JButton();
+        btnExcluir = new javax.swing.JButton();
         jLabel9 = new javax.swing.JLabel();
 
         jPanel1.setBackground(new java.awt.Color(35, 40, 44));
@@ -200,17 +205,19 @@ public class FormCadastroCliente extends javax.swing.JPanel {
         });
 
         comboSexo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Masculino", "Feminino", "Não informar" }));
-        comboSexo.setMinimumSize(new java.awt.Dimension(87, 29));
-        comboSexo.setPreferredSize(new java.awt.Dimension(87, 29));
+        comboSexo.setMinimumSize(new java.awt.Dimension(87, 23));
+        comboSexo.setPreferredSize(new java.awt.Dimension(87, 23));
 
-        campoCPF.setMinimumSize(new java.awt.Dimension(6, 29));
-        campoCPF.setPreferredSize(new java.awt.Dimension(6, 29));
+        campoCPF.setMinimumSize(new java.awt.Dimension(6, 23));
+        campoCPF.setPreferredSize(new java.awt.Dimension(6, 23));
         campoCPF.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 campoCPFActionPerformed(evt);
             }
         });
 
+        campoTelefone.setMinimumSize(new java.awt.Dimension(6, 23));
+        campoTelefone.setPreferredSize(new java.awt.Dimension(6, 23));
         campoTelefone.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 campoTelefoneActionPerformed(evt);
@@ -232,9 +239,6 @@ public class FormCadastroCliente extends javax.swing.JPanel {
         jSeparator1.setBackground(new java.awt.Color(255, 211, 0));
         jSeparator1.setForeground(new java.awt.Color(255, 211, 0));
 
-        tabelaClientes.setBackground(new java.awt.Color(21, 25, 28));
-        tabelaClientes.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 211, 0)));
-        tabelaClientes.setForeground(new java.awt.Color(255, 211, 0));
         tabelaClientes.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
@@ -248,7 +252,7 @@ public class FormCadastroCliente extends javax.swing.JPanel {
         ));
         tabelaClientes.setEditingColumn(0);
         tabelaClientes.setEditingRow(0);
-        tabelaClientes.setGridColor(new java.awt.Color(255, 211, 0));
+        tabelaClientes.setGridColor(new java.awt.Color(21, 25, 28));
         tabelaClientes.setSelectionBackground(new java.awt.Color(255, 211, 0));
         tabelaClientes.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -257,16 +261,16 @@ public class FormCadastroCliente extends javax.swing.JPanel {
         });
         jScrollPane1.setViewportView(tabelaClientes);
 
-        btnCancelar1.setBackground(new java.awt.Color(21, 25, 28));
-        btnCancelar1.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        btnCancelar1.setForeground(new java.awt.Color(255, 211, 0));
-        btnCancelar1.setText("Listagem");
-        btnCancelar1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 211, 0)));
-        btnCancelar1.setMaximumSize(new java.awt.Dimension(123, 23));
-        btnCancelar1.setMinimumSize(new java.awt.Dimension(123, 23));
-        btnCancelar1.addActionListener(new java.awt.event.ActionListener() {
+        btnExcluir.setBackground(new java.awt.Color(21, 25, 28));
+        btnExcluir.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        btnExcluir.setForeground(new java.awt.Color(255, 211, 0));
+        btnExcluir.setText("Excluir");
+        btnExcluir.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 211, 0)));
+        btnExcluir.setMaximumSize(new java.awt.Dimension(123, 23));
+        btnExcluir.setMinimumSize(new java.awt.Dimension(123, 23));
+        btnExcluir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnCancelar1ActionPerformed(evt);
+                btnExcluirActionPerformed(evt);
             }
         });
 
@@ -278,7 +282,7 @@ public class FormCadastroCliente extends javax.swing.JPanel {
                 .addGap(20, 20, 20)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(btnCancelar1, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnExcluir, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(btnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
@@ -322,7 +326,7 @@ public class FormCadastroCliente extends javax.swing.JPanel {
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(campoDataNascimento, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.LEADING))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 503, Short.MAX_VALUE))
                 .addGap(20, 20, 20))
         );
         jPanel2Layout.setVerticalGroup(
@@ -341,9 +345,9 @@ public class FormCadastroCliente extends javax.swing.JPanel {
                     .addComponent(jLabel2)
                     .addComponent(jLabel4))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(campoCPF, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(comboSexo, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(comboSexo, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(campoCPF, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(10, 10, 10)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
@@ -351,7 +355,7 @@ public class FormCadastroCliente extends javax.swing.JPanel {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(campoEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(campoTelefone, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(campoTelefone, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(10, 10, 10)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jLabel7)
@@ -365,12 +369,12 @@ public class FormCadastroCliente extends javax.swing.JPanel {
                 .addGap(20, 20, 20)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(20, 20, 20)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 153, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 158, Short.MAX_VALUE)
                 .addGap(10, 10, 10)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnCancelar1, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnSalvar, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btnSalvar, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnExcluir, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(10, 10, 10))
         );
 
@@ -471,16 +475,17 @@ public class FormCadastroCliente extends javax.swing.JPanel {
             cliente.setCep(Long.parseLong(Formatacao.limpaCaracter(getCampoCEP().getText())));
 
             ClienteDAO clienteDAO = new ClienteDAO();
-            
+
             if (idCliente > 0) {
                 cliente.setId(idCliente);
                 clienteDAO.update(cliente);
             } else {
-                clienteDAO.insert(cliente);    
+                clienteDAO.insert(cliente);
             }
-        
+
             refreshTable();
             this.limparTela();
+
             JOptionPane.showMessageDialog(this, "Cadastrado", "Cliente Salvo com sucesso", JOptionPane.INFORMATION_MESSAGE);
 
         } else {
@@ -490,19 +495,19 @@ public class FormCadastroCliente extends javax.swing.JPanel {
     }//GEN-LAST:event_btnSalvarActionPerformed
 
     private void campoCPFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_campoCPFActionPerformed
-        campoCPF.setDocument(new SoNumeros());
+        
     }//GEN-LAST:event_campoCPFActionPerformed
 
     private void campoTelefoneActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_campoTelefoneActionPerformed
-        campoTelefone.setDocument(new SoNumeros());
+        
     }//GEN-LAST:event_campoTelefoneActionPerformed
 
     private void campoCEPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_campoCEPActionPerformed
-        campoCEP.setDocument(new SoNumeros());
+        
     }//GEN-LAST:event_campoCEPActionPerformed
 
     private void campoDataNascimentoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_campoDataNascimentoActionPerformed
-        campoDataNascimento.setDocument(new SoNumeros());
+        
     }//GEN-LAST:event_campoDataNascimentoActionPerformed
 
     private void tabelaClientesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabelaClientesMouseClicked
@@ -513,7 +518,6 @@ public class FormCadastroCliente extends javax.swing.JPanel {
             DefaultTableModel modeloTabela = (DefaultTableModel) tabelaClientes.getModel();
 
             //campoNome.setText(cliente.getNome());
-
             try {
                 String idString = String.valueOf(tabelaClientes.getValueAt(tabelaClientes.getSelectedRow(), 0));
 
@@ -533,22 +537,43 @@ public class FormCadastroCliente extends javax.swing.JPanel {
                     this.getCampoCPF().setText(String.valueOf(cliente.getCpf()));
                     this.getCampoTelefone().setText(String.valueOf(cliente.getTelefone()));
                     this.getComboSexo().getModel().setSelectedItem(GeneroType.valueOf(cliente.getSexo()));
-                }
-                 else {
+                } else {
                     JOptionPane.showMessageDialog(null, "Não foi possível localizar o cadastro do cliente");
-                
+
                 }
 
             } catch (Exception e) {
-                JOptionPane.showMessageDialog(null, "Selecione um registro para editar"+ e.getMessage());
+                JOptionPane.showMessageDialog(null, "Selecione um registro para editar");
             }
 
         }
     }//GEN-LAST:event_tabelaClientesMouseClicked
 
-    private void btnCancelar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelar1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnCancelar1ActionPerformed
+    private void btnExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcluirActionPerformed
+        int row = tabelaClientes.getSelectedRow();
+
+        if (row >= 0) {
+
+            if (idCliente > 0) {
+                int confirmacao = JOptionPane.showConfirmDialog(null, "Deseja realmente excluir?");
+
+                if (confirmacao == JOptionPane.YES_OPTION) {
+                    ClienteDAO tracadoDAO = new ClienteDAO();
+
+                    cliente.setId(idCliente);
+                    tracadoDAO.delete(cliente);
+                    refreshTable();
+
+                    JOptionPane.showMessageDialog(null, "Cliente Excluido");
+                } else {
+                    refreshTable();
+                }
+
+            } else {
+                JOptionPane.showMessageDialog(null, "Selecione um registro para Excluir");
+            }
+        }
+    }//GEN-LAST:event_btnExcluirActionPerformed
 
     public void popularComboSexo() {
         DefaultComboBoxModel comboSexoModel = (DefaultComboBoxModel) this.getComboSexo().getModel();
@@ -673,7 +698,7 @@ public class FormCadastroCliente extends javax.swing.JPanel {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCancelar;
-    private javax.swing.JButton btnCancelar1;
+    private javax.swing.JButton btnExcluir;
     private javax.swing.JButton btnSalvar;
     private javax.swing.JFormattedTextField campoCEP;
     private javax.swing.JFormattedTextField campoCPF;

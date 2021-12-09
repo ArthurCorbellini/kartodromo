@@ -10,32 +10,57 @@ import br.univates.kartodromo.model.dao.UsuarioDAO;
 import br.univates.kartodromo.model.entity.Usuario;
 import br.univates.kartodromo.model.type.GeneroType;
 import br.univates.kartodromo.model.type.PerfilType;
+import br.univates.kartodromo.util.Formatacao;
 import br.univates.kartodromo.util.SoNumeros;
 import static java.awt.image.ImageObserver.WIDTH;
 import java.util.ArrayList;
 import java.util.List;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.JComboBox;
 import javax.swing.JFormattedTextField;
 import javax.swing.JOptionPane;
+import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 
 public class FormCadastroUsuario extends javax.swing.JPanel {
-    
+
     int idUsuario = 0;
     private Usuario usuario;
     UsuarioController UsuarioController = new UsuarioController();
+    private List<Usuario> listaUsuario;
 
     public FormCadastroUsuario() {
         initComponents();
 
         UsuarioController UsuarioController = new UsuarioController();
 
-        List<Usuario> listaUsuario = new ArrayList();
+        listaUsuario = new ArrayList();
 
         listaUsuario = UsuarioController.getAll();
 
         this.popularTabelaUsuarios(listaUsuario);
+        
+        formatacoes();
+        
+    }
+    
+    public void formatacoes(){
+
+        //campoTelefone.setDocument(new SoNumeros());
+        //campoCPF.setDocument(new SoNumeros());
+
+        Formatacao.formatarTelefone(campoTelefone);
+        Formatacao.formatarCpf(campoCPF);
+        
+        comboSexo.setModel(new DefaultComboBoxModel<>(GeneroType.values()));
+        ((DefaultComboBoxModel) comboSexo.getModel()).insertElementAt(null, 0);
+        comboSexo.setSelectedIndex(0);
+        
+        comboPerfil.setModel(new DefaultComboBoxModel<>(PerfilType.values()));
+        ((DefaultComboBoxModel) comboPerfil.getModel()).insertElementAt(null, 0);
+        comboPerfil.setSelectedIndex(0);
+        
     }
 
     /**
@@ -65,8 +90,6 @@ public class FormCadastroUsuario extends javax.swing.JPanel {
         comboSexo = new javax.swing.JComboBox<>();
         campoCPF = new javax.swing.JFormattedTextField();
         campoTelefone = new javax.swing.JFormattedTextField();
-        campoRSenha = new javax.swing.JFormattedTextField();
-        jSeparator1 = new javax.swing.JSeparator();
         jScrollPane1 = new javax.swing.JScrollPane();
         tabelaUsuarios = new javax.swing.JTable();
         jLabel9 = new javax.swing.JLabel();
@@ -76,7 +99,9 @@ public class FormCadastroUsuario extends javax.swing.JPanel {
         campoEmail = new javax.swing.JTextField();
         btnCancelar = new javax.swing.JButton();
         btnSalvar = new javax.swing.JButton();
-        btnCancelar1 = new javax.swing.JButton();
+        btnExcluir = new javax.swing.JButton();
+        jSeparator1 = new javax.swing.JSeparator();
+        campoRSenha = new javax.swing.JPasswordField();
         jLabel10 = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(35, 40, 44));
@@ -169,33 +194,23 @@ public class FormCadastroUsuario extends javax.swing.JPanel {
 
         campoLogin.setFont(new java.awt.Font("Open Sans", 0, 12)); // NOI18N
 
-        comboSexo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Masculino", "Feminino", "Não informar" }));
-        comboSexo.setMinimumSize(new java.awt.Dimension(6, 29));
+        comboSexo.setMinimumSize(new java.awt.Dimension(6, 23));
         comboSexo.setName(""); // NOI18N
-        comboSexo.setPreferredSize(new java.awt.Dimension(6, 29));
+        comboSexo.setPreferredSize(new java.awt.Dimension(6, 23));
 
-        campoCPF.setMinimumSize(new java.awt.Dimension(6, 29));
-        campoCPF.setPreferredSize(new java.awt.Dimension(6, 29));
+        campoCPF.setMinimumSize(new java.awt.Dimension(6, 23));
+        campoCPF.setPreferredSize(new java.awt.Dimension(6, 23));
         campoCPF.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 campoCPFActionPerformed(evt);
             }
         });
 
-        campoTelefone.setMinimumSize(new java.awt.Dimension(6, 29));
-        campoTelefone.setPreferredSize(new java.awt.Dimension(6, 29));
+        campoTelefone.setMinimumSize(new java.awt.Dimension(6, 23));
+        campoTelefone.setPreferredSize(new java.awt.Dimension(6, 23));
         campoTelefone.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 campoTelefoneActionPerformed(evt);
-            }
-        });
-
-        campoRSenha.setMinimumSize(new java.awt.Dimension(6, 29));
-        campoRSenha.setPreferredSize(new java.awt.Dimension(6, 29));
-        campoRSenha.setRequestFocusEnabled(false);
-        campoRSenha.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                campoRSenhaActionPerformed(evt);
             }
         });
 
@@ -210,6 +225,7 @@ public class FormCadastroUsuario extends javax.swing.JPanel {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        tabelaUsuarios.setGridColor(new java.awt.Color(21, 25, 28));
         tabelaUsuarios.setSelectionBackground(new java.awt.Color(255, 211, 0));
         tabelaUsuarios.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -222,9 +238,13 @@ public class FormCadastroUsuario extends javax.swing.JPanel {
         jLabel9.setForeground(new java.awt.Color(255, 255, 255));
         jLabel9.setText("Perfil *");
 
-        comboPerfil.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Administrador", "Padrão" }));
-        comboPerfil.setMinimumSize(new java.awt.Dimension(91, 29));
-        comboPerfil.setPreferredSize(new java.awt.Dimension(91, 29));
+        comboPerfil.setMinimumSize(new java.awt.Dimension(91, 23));
+        comboPerfil.setPreferredSize(new java.awt.Dimension(91, 23));
+        comboPerfil.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                comboPerfilActionPerformed(evt);
+            }
+        });
 
         campoSenha.setFont(new java.awt.Font("Open Sans", 0, 12)); // NOI18N
 
@@ -263,18 +283,21 @@ public class FormCadastroUsuario extends javax.swing.JPanel {
             }
         });
 
-        btnCancelar1.setBackground(new java.awt.Color(21, 25, 28));
-        btnCancelar1.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        btnCancelar1.setForeground(new java.awt.Color(255, 211, 0));
-        btnCancelar1.setText("Listagem");
-        btnCancelar1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 211, 0)));
-        btnCancelar1.setMaximumSize(new java.awt.Dimension(123, 23));
-        btnCancelar1.setMinimumSize(new java.awt.Dimension(123, 23));
-        btnCancelar1.addActionListener(new java.awt.event.ActionListener() {
+        btnExcluir.setBackground(new java.awt.Color(21, 25, 28));
+        btnExcluir.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        btnExcluir.setForeground(new java.awt.Color(255, 211, 0));
+        btnExcluir.setText("Excluir");
+        btnExcluir.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 211, 0)));
+        btnExcluir.setMaximumSize(new java.awt.Dimension(123, 23));
+        btnExcluir.setMinimumSize(new java.awt.Dimension(123, 23));
+        btnExcluir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnCancelar1ActionPerformed(evt);
+                btnExcluirActionPerformed(evt);
             }
         });
+
+        jSeparator1.setBackground(new java.awt.Color(255, 211, 0));
+        jSeparator1.setForeground(new java.awt.Color(255, 211, 0));
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -284,15 +307,14 @@ public class FormCadastroUsuario extends javax.swing.JPanel {
                 .addGap(20, 20, 20)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(btnCancelar1, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 185, Short.MAX_VALUE)
+                        .addComponent(btnExcluir, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(btnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(btnSalvar, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(22, 22, 22))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jSeparator1)
                             .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel1)
@@ -324,7 +346,7 @@ public class FormCadastroUsuario extends javax.swing.JPanel {
                                                 .addGap(10, 10, 10)
                                                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                                     .addComponent(campoTelefone, javax.swing.GroupLayout.DEFAULT_SIZE, 137, Short.MAX_VALUE)
-                                                    .addComponent(campoRSenha, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))
+                                                    .addComponent(campoRSenha, javax.swing.GroupLayout.DEFAULT_SIZE, 137, Short.MAX_VALUE)))))
                                     .addGroup(jPanel2Layout.createSequentialGroup()
                                         .addGap(28, 28, 28)
                                         .addComponent(comboPerfil, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -336,8 +358,11 @@ public class FormCadastroUsuario extends javax.swing.JPanel {
                                                 .addComponent(comboSexo, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE))
                                             .addComponent(jLabel4)
                                             .addComponent(jLabel9)))))
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 505, Short.MAX_VALUE))
-                        .addGap(20, 20, 20))))
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 498, Short.MAX_VALUE))
+                        .addGap(20, 20, 20))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(jSeparator1)
+                        .addContainerGap())))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -349,7 +374,7 @@ public class FormCadastroUsuario extends javax.swing.JPanel {
                         .addGap(6, 6, 6)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(campoNome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(comboSexo, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(comboSexo, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addComponent(jLabel4))
                 .addGap(10, 10, 10)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -357,15 +382,15 @@ public class FormCadastroUsuario extends javax.swing.JPanel {
                     .addComponent(jLabel9))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(campoCPF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(comboPerfil, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(campoCPF, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(comboPerfil, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(10, 10, 10)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
                     .addComponent(jLabel6))
                 .addGap(6, 6, 6)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(campoTelefone, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(campoTelefone, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(campoEmail, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
@@ -376,21 +401,21 @@ public class FormCadastroUsuario extends javax.swing.JPanel {
                                 .addComponent(jLabel8)
                                 .addComponent(jLabel11)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(campoRSenha, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(campoSenha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(campoSenha)
+                            .addComponent(campoRSenha, javax.swing.GroupLayout.DEFAULT_SIZE, 23, Short.MAX_VALUE)))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(33, 33, 33)
                         .addComponent(campoLogin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(20, 20, 20)
+                .addGap(18, 18, 18)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(20, 20, 20)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 126, Short.MAX_VALUE)
+                .addGap(22, 22, 22)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 35, Short.MAX_VALUE)
                 .addGap(10, 10, 10)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnCancelar1, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnSalvar, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btnSalvar, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnExcluir, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(10, 10, 10))
         );
 
@@ -406,7 +431,7 @@ public class FormCadastroUsuario extends javax.swing.JPanel {
         );
         jpBodyLayout.setVerticalGroup(
             jpBodyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 386, Short.MAX_VALUE)
+            .addGap(0, 371, Short.MAX_VALUE)
             .addGroup(jpBodyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jpBodyLayout.createSequentialGroup()
                     .addContainerGap()
@@ -453,15 +478,11 @@ public class FormCadastroUsuario extends javax.swing.JPanel {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 467, Short.MAX_VALUE)
+            .addGap(0, 452, Short.MAX_VALUE)
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 467, Short.MAX_VALUE))
+                .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 444, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
-
-    private void btnCancelar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelar1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnCancelar1ActionPerformed
 
     private void btnSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarActionPerformed
         boolean continuar = true;
@@ -477,22 +498,34 @@ public class FormCadastroUsuario extends javax.swing.JPanel {
                 Usuario usuario = new Usuario();
 
                 usuario.setNome(getCampoNome().getText());
-                usuario.setSexo((String) getComboSexo().getSelectedItem());
-                usuario.setCpf(Long.parseLong(getCampoCPF().getText()));
-                usuario.setPerfil((PerfilType) getComboSexo().getSelectedItem());
+                usuario.setSexo(getComboSexo().getSelectedItem().toString());
+                usuario.setCpf(Long.parseLong(getCampoCPF().getText().replaceAll("[\\D]", "")));
+                usuario.setPerfil((PerfilType) getComboPerfil().getSelectedItem());
                 usuario.setEmail(getCampoEmail().getText());
-                usuario.setTelefone(Long.parseLong(getCampoTelefone().getText()));
+                usuario.setTelefone(Long.parseLong(getCampoTelefone().getText().replaceAll("[\\D]", "")));
                 usuario.setLogin(getCampoLogin().getText());
                 usuario.setSenha(getCampoSenha().getText());
 
                 UsuarioDAO usuarioDAO = new UsuarioDAO();
-                usuarioDAO.insert(usuario);
 
+                if (idUsuario > 0) {
+                    usuario.setId(idUsuario);
+                    usuarioDAO.update(usuario);
+                } else {
+                    usuarioDAO.insert(usuario);
+                }
+                
+                listaUsuario = UsuarioController.getAll();
                 this.limparTela();
+                refreshTable();
+
                 JOptionPane.showMessageDialog(this, "Cadastrado", "Usuário Salvo com sucesso", JOptionPane.INFORMATION_MESSAGE);
+
             } else {
-                JOptionPane.showMessageDialog(this, "Erro", "Erro no Cadastro", JOptionPane.INFORMATION_MESSAGE);
+                JOptionPane.showMessageDialog(this, "Erro", "Suas senhas são Incompatíveis", JOptionPane.INFORMATION_MESSAGE);
             }
+        } else {
+            JOptionPane.showMessageDialog(this, "Erro", "Erro no Cadastro", JOptionPane.INFORMATION_MESSAGE);
         }
     }//GEN-LAST:event_btnSalvarActionPerformed
 
@@ -506,12 +539,12 @@ public class FormCadastroUsuario extends javax.swing.JPanel {
 
     private void tabelaUsuariosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabelaUsuariosMouseClicked
         int row = tabelaUsuarios.getSelectedRow();
-
+        listaUsuario = UsuarioController.getAll();
+        
         if (row >= 0) {
 
             DefaultTableModel modeloTabela = (DefaultTableModel) tabelaUsuarios.getModel();
 
-            //campoNome.setText(cliente.getNome());
             try {
                 String idString = String.valueOf(tabelaUsuarios.getValueAt(tabelaUsuarios.getSelectedRow(), 0));
 
@@ -528,8 +561,8 @@ public class FormCadastroUsuario extends javax.swing.JPanel {
                     this.getCampoCPF().setText(String.valueOf(usuario.getCpf()));
                     this.getCampoTelefone().setText(String.valueOf(usuario.getTelefone()));
                     this.getCampoEmail().setText(usuario.getEmail());
-                    this.getComboSexo().getModel().setSelectedItem(GeneroType.valueOf(usuario.getSexo()));
-                    //this.getComboPerfil().getModel().setSelectedItem(PerfilType.valueOf(usuario.getPerfil()));
+                    this.getComboSexo().getModel().setSelectedItem(usuario.getSexo());
+                    this.getComboPerfil().getModel().setSelectedItem(usuario.getPerfil());
 
                 } else {
                     JOptionPane.showMessageDialog(null, "Não foi possível localizar o cadastro do usuário");
@@ -537,27 +570,53 @@ public class FormCadastroUsuario extends javax.swing.JPanel {
                 }
 
             } catch (Exception e) {
-                JOptionPane.showMessageDialog(null, "Selecione um registro para editar" + e.getMessage());
+                JOptionPane.showMessageDialog(null, "Selecione um registro para editar");
             }
 
         }
     }//GEN-LAST:event_tabelaUsuariosMouseClicked
 
-    private void campoRSenhaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_campoRSenhaActionPerformed
-        campoRSenha.setDocument(new SoNumeros());
-    }//GEN-LAST:event_campoRSenhaActionPerformed
-
     private void campoTelefoneActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_campoTelefoneActionPerformed
-        campoTelefone.setDocument(new SoNumeros());
+        
     }//GEN-LAST:event_campoTelefoneActionPerformed
 
     private void campoCPFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_campoCPFActionPerformed
-        campoCPF.setDocument(new SoNumeros());
+        
     }//GEN-LAST:event_campoCPFActionPerformed
 
     private void campoNomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_campoNomeActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_campoNomeActionPerformed
+
+    private void comboPerfilActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboPerfilActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_comboPerfilActionPerformed
+
+    private void btnExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcluirActionPerformed
+        int row = tabelaUsuarios.getSelectedRow();
+
+        if (row >= 0) {
+
+            if (idUsuario > 0) {
+                int confirmacao = JOptionPane.showConfirmDialog(null, "Deseja realmente excluir?");
+
+                if (confirmacao == JOptionPane.YES_OPTION) {
+                    UsuarioDAO tracadoDAO = new UsuarioDAO();
+
+                    usuario.setId(idUsuario);
+                    tracadoDAO.delete(usuario);
+                    refreshTable();
+
+                    JOptionPane.showMessageDialog(null, "Usuário Excluido");
+                } else {
+                    refreshTable();
+                }
+
+            } else {
+                JOptionPane.showMessageDialog(null, "Selecione um registro para Excluir");
+            }
+        }
+    }//GEN-LAST:event_btnExcluirActionPerformed
 
     public void limparTela() {
 
@@ -601,17 +660,17 @@ public class FormCadastroUsuario extends javax.swing.JPanel {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCancelar;
-    private javax.swing.JButton btnCancelar1;
+    private javax.swing.JButton btnExcluir;
     private javax.swing.JButton btnSalvar;
     private javax.swing.JFormattedTextField campoCPF;
     private javax.swing.JTextField campoEmail;
     private javax.swing.JTextField campoLogin;
     private javax.swing.JTextField campoNome;
-    private javax.swing.JFormattedTextField campoRSenha;
+    private javax.swing.JPasswordField campoRSenha;
     private javax.swing.JTextField campoSenha;
     private javax.swing.JFormattedTextField campoTelefone;
-    private javax.swing.JComboBox<String> comboPerfil;
-    private javax.swing.JComboBox<String> comboSexo;
+    private javax.swing.JComboBox<PerfilType> comboPerfil;
+    private javax.swing.JComboBox<GeneroType> comboSexo;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -665,11 +724,11 @@ public class FormCadastroUsuario extends javax.swing.JPanel {
         this.campoNome = campoNome;
     }
 
-    public JFormattedTextField getCampoRSenha() {
+    public JPasswordField getCampoRSenha() {
         return campoRSenha;
     }
 
-    public void setCampoRSenha(JFormattedTextField campoRSenha) {
+    public void setCampoRSenha(JPasswordField campoRSenha) {
         this.campoRSenha = campoRSenha;
     }
 
@@ -689,20 +748,26 @@ public class FormCadastroUsuario extends javax.swing.JPanel {
         this.campoTelefone = campoTelefone;
     }
 
-    public JComboBox<String> getComboPerfil() {
+    public JComboBox<PerfilType> getComboPerfil() {
         return comboPerfil;
     }
 
-    public void setComboPerfil(JComboBox<String> comboPerfil) {
+    public void setComboPerfil(JComboBox<PerfilType> comboPerfil) {
         this.comboPerfil = comboPerfil;
     }
 
-    public JComboBox<String> getComboSexo() {
+    public JComboBox<GeneroType> getComboSexo() {
         return comboSexo;
     }
 
-    public void setComboSexo(JComboBox<String> comboSexo) {
+    public void setComboSexo(JComboBox<GeneroType> comboSexo) {
         this.comboSexo = comboSexo;
+    }
+
+    private void refreshTable() {
+        List<Usuario> listaUsuario = new ArrayList();
+        listaUsuario = UsuarioController.getAll();
+        this.popularTabelaUsuarios(listaUsuario);
     }
 
 }

@@ -148,5 +148,4 @@ public class Cliente implements Serializable {
     public void setDiaMelhorTempo(Calendar diaMelhorTempo) {
         this.diaMelhorTempo = diaMelhorTempo;
     }
-
 }

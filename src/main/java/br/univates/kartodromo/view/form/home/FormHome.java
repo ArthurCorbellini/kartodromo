@@ -33,6 +33,7 @@ public class FormHome extends javax.swing.JPanel {
 
         clientes = new ClienteController().getAll()
                 .stream()
+                .filter(p -> p.getMelhorTempo()!= null)
                 .sorted(Comparator.comparing(Cliente::getMelhorTempo))
                 .collect(Collectors.toList());
 

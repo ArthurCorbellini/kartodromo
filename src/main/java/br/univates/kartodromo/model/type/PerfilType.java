@@ -14,6 +14,10 @@ public enum PerfilType {
     ADMIN("1", "Administrador"),
     PADRAO("2", "Padrão");
 
+    public static Object valueOf(PerfilType perfil) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
     private String id;
     private String name;
 
