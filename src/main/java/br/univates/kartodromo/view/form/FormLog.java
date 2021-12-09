@@ -59,7 +59,7 @@ public class FormLog extends javax.swing.JPanel {
                 Logger.getLogger(FormLog.class.getName()).log(Level.SEVERE, null, ex);
             }
 
-            logList.add(new LogVO(cal, erro[1], erro[2], erro[3], erro[4]));
+            logList.add(new LogVO(cal, erro[1], erro[2], erro[3], erro.length == 5 ? erro[4] : null));
         });
 
         // Regex do log: (\d{4}-\d{2}-\d{2}\s\d{2}:\d{2}:\d{2})\s(\w+)\s(\w+):(\w+).*
