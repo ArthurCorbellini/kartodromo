@@ -49,8 +49,8 @@ public class FormHome extends javax.swing.JPanel {
         lbIconRankingMensal.setIcon(new ImageIcon(getClass().getResource("/images/menuIcons/icon-trophy-light.png")));
         buildTableRankingMensal();
 
-        lbPrevisaoTempo.setText("Previsão do Tempo");
-        lbIconPrevisaoTempo.setIcon(new ImageIcon(getClass().getResource("/images/menuIcons/icon-sun-cloud-light.png")));
+//        lbPrevisaoTempo.setText("Previsão do Tempo");
+//        lbIconPrevisaoTempo.setIcon(new ImageIcon(getClass().getResource("/images/menuIcons/icon-sun-cloud-light.png")));
     }
 
     private void buildTableRankingMensal() {
@@ -167,9 +167,6 @@ public class FormHome extends javax.swing.JPanel {
         lbTitulo = new javax.swing.JLabel();
         lbSubTitulo = new javax.swing.JLabel();
         jpBody = new javax.swing.JPanel();
-        jpPrevisaoTempo = new javax.swing.JPanel();
-        lbPrevisaoTempo = new javax.swing.JLabel();
-        lbIconPrevisaoTempo = new javax.swing.JLabel();
         jpCalendario = new javax.swing.JPanel();
         calendarCustom2 = new br.univates.kartodromo.view.form.home.calendario.CalendarCustom();
         jpRankingGeral = new javax.swing.JPanel();
@@ -214,7 +211,7 @@ public class FormHome extends javax.swing.JPanel {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(jpHeaderLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(lbTitulo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(lbTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
                 .addContainerGap())
         );
         jpHeaderLayout.setVerticalGroup(
@@ -228,38 +225,6 @@ public class FormHome extends javax.swing.JPanel {
         );
 
         jpBody.setBackground(new java.awt.Color(35, 40, 44));
-
-        jpPrevisaoTempo.setBackground(new java.awt.Color(21, 25, 28));
-        jpPrevisaoTempo.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 211, 0)));
-        jpPrevisaoTempo.setPreferredSize(new java.awt.Dimension(247, 150));
-
-        lbPrevisaoTempo.setFont(new java.awt.Font("Trebuchet MS", 0, 14)); // NOI18N
-        lbPrevisaoTempo.setForeground(new java.awt.Color(204, 204, 204));
-        lbPrevisaoTempo.setText("P.T.");
-
-        lbIconPrevisaoTempo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lbIconPrevisaoTempo.setPreferredSize(new java.awt.Dimension(50, 50));
-
-        javax.swing.GroupLayout jpPrevisaoTempoLayout = new javax.swing.GroupLayout(jpPrevisaoTempo);
-        jpPrevisaoTempo.setLayout(jpPrevisaoTempoLayout);
-        jpPrevisaoTempoLayout.setHorizontalGroup(
-            jpPrevisaoTempoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpPrevisaoTempoLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(lbIconPrevisaoTempo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(lbPrevisaoTempo)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-        jpPrevisaoTempoLayout.setVerticalGroup(
-            jpPrevisaoTempoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jpPrevisaoTempoLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jpPrevisaoTempoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(lbIconPrevisaoTempo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(lbPrevisaoTempo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
 
         jpCalendario.setBackground(new java.awt.Color(21, 25, 28));
         jpCalendario.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 211, 0)));
@@ -278,7 +243,7 @@ public class FormHome extends javax.swing.JPanel {
             jpCalendarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpCalendarioLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(calendarCustom2, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                .addComponent(calendarCustom2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -393,9 +358,7 @@ public class FormHome extends javax.swing.JPanel {
             jpBodyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jpBodyLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jpBodyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jpCalendario, javax.swing.GroupLayout.DEFAULT_SIZE, 393, Short.MAX_VALUE)
-                    .addComponent(jpPrevisaoTempo, javax.swing.GroupLayout.DEFAULT_SIZE, 393, Short.MAX_VALUE))
+                .addComponent(jpCalendario, javax.swing.GroupLayout.DEFAULT_SIZE, 393, Short.MAX_VALUE)
                 .addGap(18, 18, 18)
                 .addGroup(jpBodyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jpRankingGeral, javax.swing.GroupLayout.DEFAULT_SIZE, 140, Short.MAX_VALUE)
@@ -407,12 +370,11 @@ public class FormHome extends javax.swing.JPanel {
             .addGroup(jpBodyLayout.createSequentialGroup()
                 .addGap(9, 9, 9)
                 .addGroup(jpBodyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jpPrevisaoTempo, javax.swing.GroupLayout.DEFAULT_SIZE, 147, Short.MAX_VALUE)
-                    .addComponent(jpRankingGeral, javax.swing.GroupLayout.DEFAULT_SIZE, 147, Short.MAX_VALUE))
-                .addGap(15, 15, 15)
-                .addGroup(jpBodyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jpCalendario, javax.swing.GroupLayout.DEFAULT_SIZE, 147, Short.MAX_VALUE)
-                    .addComponent(jpRankingMensal, javax.swing.GroupLayout.DEFAULT_SIZE, 147, Short.MAX_VALUE))
+                    .addGroup(jpBodyLayout.createSequentialGroup()
+                        .addComponent(jpRankingGeral, javax.swing.GroupLayout.DEFAULT_SIZE, 147, Short.MAX_VALUE)
+                        .addGap(15, 15, 15)
+                        .addComponent(jpRankingMensal, javax.swing.GroupLayout.DEFAULT_SIZE, 147, Short.MAX_VALUE))
+                    .addComponent(jpCalendario, javax.swing.GroupLayout.DEFAULT_SIZE, 309, Short.MAX_VALUE))
                 .addContainerGap())
         );
 
@@ -448,15 +410,12 @@ public class FormHome extends javax.swing.JPanel {
     private javax.swing.JPanel jpBody;
     private javax.swing.JPanel jpCalendario;
     private javax.swing.JPanel jpHeader;
-    private javax.swing.JPanel jpPrevisaoTempo;
     private javax.swing.JPanel jpRankingGeral;
     private javax.swing.JPanel jpRankingMensal;
     private javax.swing.JTable jtRankingGeral;
     private javax.swing.JTable jtRankingMensal;
-    private javax.swing.JLabel lbIconPrevisaoTempo;
     private javax.swing.JLabel lbIconRankingGeral;
     private javax.swing.JLabel lbIconRankingMensal;
-    private javax.swing.JLabel lbPrevisaoTempo;
     private javax.swing.JLabel lbRankingGeral;
     private javax.swing.JLabel lbRankingMensal;
     private javax.swing.JLabel lbSubTitulo;
