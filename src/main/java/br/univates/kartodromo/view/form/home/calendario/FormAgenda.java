@@ -29,11 +29,7 @@ public class FormAgenda extends javax.swing.JDialog {
         this.setUndecorated(true);
         initComponents();
 
-        this.addWindowListener(new WindowAdapter() {
-            public void windowClosing(WindowEvent we) {
-                closeDialog();
-            }
-        });
+        setModalityType(ModalityType.APPLICATION_MODAL);
 
         this.setLocation(point);
 
@@ -65,13 +61,15 @@ public class FormAgenda extends javax.swing.JDialog {
         lbSubTitulo3 = new javax.swing.JLabel();
         cbDataFinal = new javax.swing.JComboBox<>();
         tfNumeroCarros = new javax.swing.JTextField();
-        jpList = new javax.swing.JPanel();
-        jScrollPane3 = new javax.swing.JScrollPane();
-        tableMarcacoes = new javax.swing.JTable();
+        jpLogin = new javax.swing.JPanel();
+        lbLogin = new javax.swing.JLabel();
+        jpExit5 = new javax.swing.JPanel();
+        lbExit5 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jPanel1.setBackground(new java.awt.Color(21, 25, 28));
+        jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 204)));
 
         lbTitulo.setBackground(new java.awt.Color(204, 204, 204));
         lbTitulo.setFont(new java.awt.Font("Trebuchet MS", 0, 24)); // NOI18N
@@ -107,8 +105,6 @@ public class FormAgenda extends javax.swing.JDialog {
         lbSubTitulo2.setVerticalAlignment(javax.swing.SwingConstants.TOP);
         lbSubTitulo2.setPreferredSize(new java.awt.Dimension(300, 16));
 
-        cbDataInicial.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-
         lbSubTitulo3.setBackground(new java.awt.Color(204, 204, 204));
         lbSubTitulo3.setFont(new java.awt.Font("Trebuchet MS", 0, 12)); // NOI18N
         lbSubTitulo3.setForeground(new java.awt.Color(204, 204, 204));
@@ -117,7 +113,25 @@ public class FormAgenda extends javax.swing.JDialog {
         lbSubTitulo3.setVerticalAlignment(javax.swing.SwingConstants.TOP);
         lbSubTitulo3.setPreferredSize(new java.awt.Dimension(300, 16));
 
-        cbDataFinal.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jpLogin.setBackground(new java.awt.Color(35, 40, 44));
+        jpLogin.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 204)));
+        jpLogin.setPreferredSize(new java.awt.Dimension(100, 35));
+
+        lbLogin.setFont(new java.awt.Font("Trebuchet MS", 1, 12)); // NOI18N
+        lbLogin.setForeground(new java.awt.Color(204, 204, 204));
+        lbLogin.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lbLogin.setText("Salvar");
+
+        javax.swing.GroupLayout jpLoginLayout = new javax.swing.GroupLayout(jpLogin);
+        jpLogin.setLayout(jpLoginLayout);
+        jpLoginLayout.setHorizontalGroup(
+            jpLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(lbLogin, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+        jpLoginLayout.setVerticalGroup(
+            jpLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(lbLogin, javax.swing.GroupLayout.DEFAULT_SIZE, 33, Short.MAX_VALUE)
+        );
 
         javax.swing.GroupLayout jpEditLayout = new javax.swing.GroupLayout(jpEdit);
         jpEdit.setLayout(jpEditLayout);
@@ -140,10 +154,14 @@ public class FormAgenda extends javax.swing.JDialog {
                                 .addComponent(lbSubTitulo1, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(cbDataInicial, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 12, Short.MAX_VALUE)
-                        .addComponent(lbSubTitulo3, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(cbDataFinal, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(18, 18, 18)
+                        .addGroup(jpEditLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jpEditLayout.createSequentialGroup()
+                                .addGap(0, 0, Short.MAX_VALUE)
+                                .addComponent(lbSubTitulo3, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(cbDataFinal, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jpLogin, javax.swing.GroupLayout.DEFAULT_SIZE, 178, Short.MAX_VALUE))))
                 .addContainerGap())
         );
         jpEditLayout.setVerticalGroup(
@@ -159,44 +177,39 @@ public class FormAgenda extends javax.swing.JDialog {
                     .addComponent(cbDataInicial, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lbSubTitulo3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(cbDataFinal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(jpEditLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lbSubTitulo2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(tfNumeroCarros, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(10, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jpEditLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jpEditLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(lbSubTitulo2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(tfNumeroCarros, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jpLogin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        jpList.setBackground(new java.awt.Color(21, 25, 28));
-
-        tableMarcacoes.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
-            },
-            new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+        jpExit5.setBackground(new java.awt.Color(35, 40, 44));
+        jpExit5.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 204)));
+        jpExit5.setPreferredSize(new java.awt.Dimension(100, 35));
+        jpExit5.setRequestFocusEnabled(false);
+        jpExit5.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jpExit5MouseClicked(evt);
             }
-        ));
-        tableMarcacoes.getTableHeader().setReorderingAllowed(false);
-        jScrollPane3.setViewportView(tableMarcacoes);
+        });
 
-        javax.swing.GroupLayout jpListLayout = new javax.swing.GroupLayout(jpList);
-        jpList.setLayout(jpListLayout);
-        jpListLayout.setHorizontalGroup(
-            jpListLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jpListLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-                .addContainerGap())
+        lbExit5.setFont(new java.awt.Font("Trebuchet MS", 1, 12)); // NOI18N
+        lbExit5.setForeground(new java.awt.Color(204, 204, 204));
+        lbExit5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lbExit5.setText("Voltar");
+
+        javax.swing.GroupLayout jpExit5Layout = new javax.swing.GroupLayout(jpExit5);
+        jpExit5.setLayout(jpExit5Layout);
+        jpExit5Layout.setHorizontalGroup(
+            jpExit5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(lbExit5, javax.swing.GroupLayout.DEFAULT_SIZE, 98, Short.MAX_VALUE)
         );
-        jpListLayout.setVerticalGroup(
-            jpListLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jpListLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 104, Short.MAX_VALUE)
-                .addContainerGap())
+        jpExit5Layout.setVerticalGroup(
+            jpExit5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(lbExit5, javax.swing.GroupLayout.DEFAULT_SIZE, 33, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -205,24 +218,23 @@ public class FormAgenda extends javax.swing.JDialog {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jpList, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jpEdit, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jpEdit, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(lbTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jpExit5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(lbTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jpEdit, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jpList, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lbTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jpExit5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jpEdit, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -233,11 +245,15 @@ public class FormAgenda extends javax.swing.JDialog {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jpExit5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jpExit5MouseClicked
+        this.setVisible(false);
+    }//GEN-LAST:event_jpExit5MouseClicked
 
     /**
      * @param args the command line arguments
@@ -285,15 +301,28 @@ public class FormAgenda extends javax.swing.JDialog {
     private javax.swing.JComboBox<String> cbDataFinal;
     private javax.swing.JComboBox<String> cbDataInicial;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JPanel jpEdit;
-    private javax.swing.JPanel jpList;
+    private javax.swing.JPanel jpExit;
+    private javax.swing.JPanel jpExit1;
+    private javax.swing.JPanel jpExit2;
+    private javax.swing.JPanel jpExit3;
+    private javax.swing.JPanel jpExit4;
+    private javax.swing.JPanel jpExit5;
+    private javax.swing.JPanel jpLogin;
+    private javax.swing.JPanel jpLogin1;
+    private javax.swing.JLabel lbExit;
+    private javax.swing.JLabel lbExit1;
+    private javax.swing.JLabel lbExit2;
+    private javax.swing.JLabel lbExit3;
+    private javax.swing.JLabel lbExit4;
+    private javax.swing.JLabel lbExit5;
+    private javax.swing.JLabel lbLogin;
+    private javax.swing.JLabel lbLogin1;
     private javax.swing.JLabel lbSubTitulo;
     private javax.swing.JLabel lbSubTitulo1;
     private javax.swing.JLabel lbSubTitulo2;
     private javax.swing.JLabel lbSubTitulo3;
     private javax.swing.JLabel lbTitulo;
-    private javax.swing.JTable tableMarcacoes;
     private javax.swing.JTextField tfNomeCliente;
     private javax.swing.JTextField tfNumeroCarros;
     // End of variables declaration//GEN-END:variables
