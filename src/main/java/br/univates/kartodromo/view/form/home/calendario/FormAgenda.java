@@ -6,8 +6,12 @@
 package br.univates.kartodromo.view.form.home.calendario;
 
 import java.awt.Point;
+import java.awt.event.FocusAdapter;
 import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
 /**
@@ -22,24 +26,22 @@ public class FormAgenda extends javax.swing.JDialog {
     }
 
     public FormAgenda(Calendar cal, Point point) {
-        addFocusListener(new FocusListener() {
-            @Override
-            public void focusGained(FocusEvent fe) {
-            }
+        this.setUndecorated(true);
+        initComponents();
 
-            @Override
-            public void focusLost(FocusEvent fe) {
+        this.addWindowListener(new WindowAdapter() {
+            public void windowClosing(WindowEvent we) {
                 closeDialog();
             }
         });
 
         this.setLocation(point);
-        this.setUndecorated(true);
 
-        initComponents();
+        lbTitulo.setText(new SimpleDateFormat("dd/MM").format(cal.getTime()));
+
     }
-    
-    private void closeDialog(){
+
+    private void closeDialog() {
         this.setVisible(false);
     }
 
@@ -69,7 +71,7 @@ public class FormAgenda extends javax.swing.JDialog {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
-        jPanel1.setBackground(new java.awt.Color(35, 40, 44));
+        jPanel1.setBackground(new java.awt.Color(21, 25, 28));
 
         lbTitulo.setBackground(new java.awt.Color(204, 204, 204));
         lbTitulo.setFont(new java.awt.Font("Trebuchet MS", 0, 24)); // NOI18N
@@ -79,7 +81,7 @@ public class FormAgenda extends javax.swing.JDialog {
         lbTitulo.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
         lbTitulo.setPreferredSize(new java.awt.Dimension(321, 30));
 
-        jpEdit.setBackground(new java.awt.Color(35, 40, 44));
+        jpEdit.setBackground(new java.awt.Color(21, 25, 28));
 
         lbSubTitulo.setBackground(new java.awt.Color(204, 204, 204));
         lbSubTitulo.setFont(new java.awt.Font("Trebuchet MS", 0, 12)); // NOI18N
@@ -164,7 +166,7 @@ public class FormAgenda extends javax.swing.JDialog {
                 .addContainerGap(10, Short.MAX_VALUE))
         );
 
-        jpList.setBackground(new java.awt.Color(35, 40, 44));
+        jpList.setBackground(new java.awt.Color(21, 25, 28));
 
         tableMarcacoes.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {

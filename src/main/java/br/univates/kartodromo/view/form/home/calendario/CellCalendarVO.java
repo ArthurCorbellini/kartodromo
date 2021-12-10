@@ -31,11 +31,11 @@ public class CellCalendarVO extends JButton {
         setBorder(null);
         setHorizontalAlignment(JLabel.CENTER);
 
-        addMouseListener(new MouseAdapter() {
-            public void mouseClicked(MouseEvent evt) {
-                actPerformed(evt);
-            }
-        });
+//        addMouseListener(new MouseAdapter() {
+//            public void mouseClicked(MouseEvent evt) {
+//                actPerformed(evt);
+//            }
+//        });
     }
 
     public void currentMonth(boolean act) {
@@ -70,6 +70,7 @@ public class CellCalendarVO extends JButton {
             Calendar cal = Calendar.getInstance();
             cal.setTime(date);
 
+            // remover aqui
             new FormAgenda(cal, this.getLocationOnScreen()).setVisible(true);
         }
     }

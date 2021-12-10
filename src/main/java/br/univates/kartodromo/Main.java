@@ -5,10 +5,8 @@
  */
 package br.univates.kartodromo;
 
-import br.univates.kartodromo.view.form.FormLog;
-import java.math.BigDecimal;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import br.univates.kartodromo.controller.ClienteController;
+import br.univates.kartodromo.model.dao.BaseDAO;
 
 /**
  *
@@ -17,17 +15,17 @@ import java.util.logging.Logger;
 public class Main {
 
     static final org.apache.log4j.Logger logger = org.apache.log4j.Logger.getLogger(TesteLog4j.class);
-    
+
     public static void main(String[] args) {
+        try {
+            new ClienteController().getAll();
+        } catch (Exception e) {
+            BaseDAO.firstExecutionProcess();
+            BaseDAO.populateDataBase();
+        }
+
         SystemKartodromo sys = SystemKartodromo.getInstance();
         sys.start();
-
-//        try {
-//            BigDecimal teste = new BigDecimal(100).divide(BigDecimal.ZERO);
-//        } catch (Exception e) {
-//            logger.error("HibernateException - metodo BaseDAO.populateDataBase", e);
-//        }
-
     }
 
 }

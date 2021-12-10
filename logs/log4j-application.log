@@ -616,3 +616,6 @@ Caused by: org.postgresql.util.PSQLException: ERROR: schema "audit" already exis
 	at org.postgresql.jdbc.PgPreparedStatement.executeUpdate(PgPreparedStatement.java:124)
 	at org.hibernate.engine.jdbc.internal.ResultSetReturnImpl.executeUpdate(ResultSetReturnImpl.java:175)
 	... 6 more
+!-!-!Cabecalho!-!-! 2021-12-10 19:08:51 :: ERROR :: SqlExceptionHelper:142 :: ERROR: relation "clientes" does not exist
+  Posição: 432
+ :: 
